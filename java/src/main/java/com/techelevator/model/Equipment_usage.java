@@ -2,28 +2,28 @@ package com.techelevator.model;
 
 public class Equipment_usage {
 
-    private int equipment_id;
-    private int workout_id;
+    private int equipmentId;
+    private int workoutId;
     private String workout;
-    private String workout_date;
+    private String workoutDate;
     private int sets;
     private int reps;
     private double weight;
 
-    public int getEquipment_id() {
-        return equipment_id;
+    public int getEquipmentId() {
+        return equipmentId;
     }
 
-    public void setEquipment_id(int equipment_id) {
-        this.equipment_id = equipment_id;
+    public void setEquipmentId(int equipmentId) {
+        this.equipmentId = equipmentId;
     }
 
-    public int getWorkout_id() {
-        return workout_id;
+    public int getWorkoutId() {
+        return workoutId;
     }
 
-    public void setWorkout_id(int workout_id) {
-        this.workout_id = workout_id;
+    public void setWorkout_id(int workoutId) {
+        this.workoutId = workoutId;
     }
 
     public String getWorkout() {
@@ -34,12 +34,12 @@ public class Equipment_usage {
         this.workout = workout;
     }
 
-    public String getWorkout_date() {
-        return workout_date;
+    public String getWorkoutDate() {
+        return workoutDate;
     }
 
-    public void setWorkout_date(String workout_date) {
-        this.workout_date = workout_date;
+    public void setWorkoutDate(String workoutDate) {
+        this.workoutDate = workoutDate;
     }
 
     public int getSets() {

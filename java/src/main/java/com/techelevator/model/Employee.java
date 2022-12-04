@@ -2,22 +2,22 @@ package com.techelevator.model;
 
 public class Employee {
 
-    private int employee_id;
-    private int user_id;
+    private int employeeId;
+    private int userId;
 
-    public int getEmployee_id() {
-        return employee_id;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployee_id(int employee_id) {
-        this.employee_id = employee_id;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
