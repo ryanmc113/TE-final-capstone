@@ -9,7 +9,8 @@ CREATE TABLE users (
 	password_hash varchar(200) NOT NULL,
 	email varchar(60) NOT NULL UNIQUE,
 	role varchar(50) NOT NULL,
-	image_file varchar(500) NOT NULL UNIQUE
+	image_file varchar(500) NOT NULL UNIQUE,
+
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
@@ -35,14 +36,14 @@ CREATE TABLE workout (
 CREATE TABLE equipment_usage (
     equipment_id SERIAL,
     workout_id NOT NULL,
-    workout varchar(50) NOT NULL,
-    workout_date CURRENT_DATE;
+    exercise_type varchar(50) NOT NULL,
+    workout_date CURRENT_DATE,
     sets integer,
     reps integer,
     weight DECIMAL(5, 2),
 
     CONSTRAINT PK_equipment_usage PRIMARY KEY (equipment_id),
-    CONSTRAINT FK_workout FOREIGN KEY (workout_id)
+    CONSTRAINT FK_workout FOREIGN KEY (workout_id),
     CONSTRAINT weight_limit CHECK (weight >= 0)
 );
 

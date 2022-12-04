@@ -1,6 +1,6 @@
 package com.techelevator.model;
 
-public class goals {
+public class Goals {
 
     private int goalId;
     private int userId;
