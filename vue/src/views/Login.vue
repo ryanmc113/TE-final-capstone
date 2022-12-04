@@ -1,7 +1,7 @@
-<template>
+<template class>
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+      <h1 class="h3 mb-3 font-weight-normal is-size-2">Welcome to the Workout Companion</h1>
       <div
         class="alert alert-danger"
         role="alert"
@@ -12,7 +12,9 @@
         role="alert"
         v-if="this.$route.query.registration"
       >Thank you for registering, please sign in.</div>
-      <label for="username" class="sr-only">Username</label>
+      <div class = "field">
+      <label for="username" class="sr-only label">Username</label>
+      </div>
       <input
         type="text"
         id="username"
@@ -22,7 +24,10 @@
         required
         autofocus
       />
-      <label for="password" class="sr-only">Password</label>
+      <div class = "field">
+      <label for="password" class="sr-only label">Password</label>
+      </div>
+      <div class = "field">
       <input
         type="password"
         id="password"
@@ -31,8 +36,10 @@
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
+      </div>
+      <div class = "field">
+        <button type="submit" class = "button is-primary">Sign in</button>
+      </div>
     </form>
   </div>
 </template>
@@ -74,3 +81,24 @@ export default {
   }
 };
 </script>
+
+<style>
+.text-center{
+  background-color:lightblue ;
+  border: 10px solid yellow;
+  border-radius: 20px;
+  max-width: 700px;
+  margin: auto;
+
+  height: 50vh;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+}
+
+.form-signin{
+  /* display: flex;
+  align-items:center;
+  justify-content: center; */
+}
+</style>
