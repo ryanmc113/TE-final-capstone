@@ -1,10 +1,10 @@
 package com.techelevator.model;
 
-public class Equipment_usage {
+public class EquipmentUsage {
 
     private int equipmentId;
     private int workoutId;
-    private String workout;
+    private String exerciseType;
     private String workoutDate;
     private int sets;
     private int reps;
@@ -26,12 +26,12 @@ public class Equipment_usage {
         this.workoutId = workoutId;
     }
 
-    public String getWorkout() {
-        return workout;
+    public String getExerciseType() {
+        return exerciseType;
     }
 
-    public void setWorkout(String workout) {
-        this.workout = workout;
+    public void setExerciseType(String exerciseType) {
+        this.exerciseType = exerciseType;
     }
 
     public String getWorkoutDate() {
