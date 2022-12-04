@@ -2,31 +2,31 @@ package com.techelevator.model;
 
 public class goals {
 
-    private int goal_id;
-    private int user_id;
-    private String goal_type;
+    private int goalId;
+    private int userId;
+    private String goalType;
 
-    public int getGoal_id() {
-        return goal_id;
+    public int getGoalId() {
+        return goalId;
     }
 
-    public void setGoal_id(int goal_id) {
-        this.goal_id = goal_id;
+    public void setGoalId(int goalId) {
+        this.goalId = goalId;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUser_id(int userId) {
+        this.userId = userId;
     }
 
-    public String getGoal_type() {
-        return goal_type;
+    public String getGoalType() {
+        return goalType;
     }
 
-    public void setGoal_type(String goal_type) {
-        this.goal_type = goal_type;
+    public void setGoalType(String goalType) {
+        this.goalType = goalType;
     }
 }

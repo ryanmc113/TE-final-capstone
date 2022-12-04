@@ -9,6 +9,7 @@ CREATE TABLE users (
 	password_hash varchar(200) NOT NULL,
 	email varchar(60) NOT NULL UNIQUE,
 	role varchar(50) NOT NULL,
+	image_file varchar(500) NOT NULL UNIQUE
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
