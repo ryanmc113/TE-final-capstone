@@ -1,24 +1,47 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS class_schedule;
 DROP TABLE IF EXISTS goals;
+--DROP TABLE IF EXISTS class_schedule;
 DROP TABLE IF EXISTS equipment_usage;
 DROP TABLE IF EXISTS workout;
+DROP TABLE IF EXISTS account;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
+
 	user_id SERIAL,
-	name varchar(50) NOT NULL,
 	username varchar(50) NOT NULL UNIQUE,
 	password_hash varchar(200) NOT NULL,
-	email varchar(60) NOT NULL UNIQUE,
-	role varchar(50) NOT NULL DEFAULT 'Member',
-	image_file varchar(500) NOT NULL UNIQUE,
-	class_id integer,
+	role varchar(50) NOT NULL default 'Member',
 
-	CONSTRAINT PK_user PRIMARY KEY (user_id),
-	CONSTRAINT FK_class_schedule FOREIGN KEY (class_id) references class_schedule (class_id)
+--	class_id integer REFERENCES class_schedule(id),
+
+	CONSTRAINT PK_user PRIMARY KEY (user_id)
+
 );
+
+CREATE TABLE account (
+	account_id SERIAL,
+	user_id integer NOT NULL,
+	first_name varchar(50) NOT NULL,
+	last_name varchar (50) NOT NULL,
+	email varchar(60) NOT NULL UNIQUE,
+	goal varchar(50) NOT NULL,
+	image_file varchar(500) NOT NULL UNIQUE,
+
+	CONSTRAINT PK_account PRIMARY KEY (account_id),
+	CONSTRAINT FK_account FOREIGN KEY (user_id) References users
+
+);
+
+CREATE TABLE account (
+    account_id SERIAL,
+	role varchar(50) NOT NULL DEFAULT 'Member',
+    first_name varchar(50) NOT NULL,
+    last_name varchar(50) NOT NULL,
+    email varchar(60) NOT NULL UNIQUE,
+
+)
 
 CREATE TABLE workout (
     workout_id SERIAL,
@@ -54,16 +77,18 @@ CREATE TABLE goals (
     CONSTRAINT FK_user FOREIGN KEY (user_id) references users
 );
 
-CREATE TABLE class_schedule (
-    class_id SERIAL,
-    class_name varchar(50) NOT NULL,
-    class_instructor varchar(50) NOT NULL,
-    class_description varchar(200),
-    class_time time NOT NULL,
-    class_day varchar(10) NOT NULL,
+-- CREATE TABLE class_schedule (
+--     class_id SERIAL,
+--     class_name varchar(50) NOT NULL,
+--     class_instructor varchar(50) NOT NULL,
+--     class_description varchar(200),
+--     class_time time NOT NULL,
+--     class_day varchar(10) NOT NULL,
+-- 	user_id integer references users(id),
 
-    CONSTRAINT PK_class_schedule PRIMARY KEY (class_id)
+--     CONSTRAINT PK_class_schedule PRIMARY KEY (class_id)
 
-);
+-- );
 
 COMMIT TRANSACTION;
+ --class_schedule table is giving errors in postgresql
