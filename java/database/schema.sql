@@ -34,6 +34,15 @@ CREATE TABLE account (
 
 );
 
+CREATE TABLE account (
+    account_id SERIAL,
+	role varchar(50) NOT NULL DEFAULT 'Member',
+    first_name varchar(50) NOT NULL,
+    last_name varchar(50) NOT NULL,
+    email varchar(60) NOT NULL UNIQUE,
+
+)
+
 CREATE TABLE workout (
     workout_id SERIAL,
     user_id integer NOT NULL,
