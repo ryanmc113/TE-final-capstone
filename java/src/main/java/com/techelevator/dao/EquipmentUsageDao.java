@@ -1,16 +1,16 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.EquipmentUsage;
+import com.techelevator.model.WorkoutLog;
 
 import java.util.List;
 
 public interface EquipmentUsageDao {
 
-    List<EquipmentUsage> listAllEquipment();
+    List<WorkoutLog> listAllEquipment();
 
-    EquipmentUsage getEquipmentById(int EquipmentId);
+    WorkoutLog getEquipmentById(int EquipmentId);
 
-    int logEquipmentUsage(EquipmentUsage input);
+    int logEquipmentUsage(WorkoutLog input);
 
 
 

@@ -1,37 +1,38 @@
 package com.techelevator.model;
 
-public class EquipmentUsage {
+public class WorkoutLog {
 
-    private int equipmentId;
     private int workoutId;
-    private String exerciseType;
+    private int visitId;
+    private int exerciseId;
     private String workoutDate;
     private int sets;
     private int reps;
     private double weight;
-
-    public int getEquipmentId() {
-        return equipmentId;
-    }
-
-    public void setEquipmentId(int equipmentId) {
-        this.equipmentId = equipmentId;
-    }
+    private String timer;
 
     public int getWorkoutId() {
         return workoutId;
     }
 
-    public void setWorkout_id(int workoutId) {
+    public void setWorkoutId(int workoutId) {
         this.workoutId = workoutId;
     }
 
-    public String getExerciseType() {
-        return exerciseType;
+    public int getVisitId() {
+        return visitId;
     }
 
-    public void setExerciseType(String exerciseType) {
-        this.exerciseType = exerciseType;
+    public void setVisitId(int visitId) {
+        this.visitId = visitId;
+    }
+
+    public int getExerciseId() {
+        return exerciseId;
+    }
+
+    public void setExerciseId(int exerciseId) {
+        this.exerciseId = exerciseId;
     }
 
     public String getWorkoutDate() {
@@ -64,5 +65,13 @@ public class EquipmentUsage {
 
     public void setWeight(double weight) {
         this.weight = weight;
+    }
+
+    public String getTimer() {
+        return timer;
+    }
+
+    public void setTimer(String timer) {
+        this.timer = timer;
     }
 }

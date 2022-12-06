@@ -26,14 +26,6 @@ public class User {
       this.activated = true;
    }
 
-   public String getRole() {
-      return role;
-   }
-
-   public void setRole(String role) {
-      this.role = role;
-   }
-
    public int getId() {
       return id;
    }

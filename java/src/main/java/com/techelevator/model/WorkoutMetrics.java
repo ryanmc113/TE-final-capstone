@@ -2,22 +2,22 @@ package com.techelevator.model;
 
 public class WorkoutMetrics {
 
-    private EquipmentUsage loggedExercise;
-    private Workout loggedWorkout;
+    private WorkoutLog loggedExercise;
+    private VisitLog loggedWorkout;
 
-    public EquipmentUsage getLoggedExercise() {
+    public WorkoutLog getLoggedExercise() {
         return loggedExercise;
     }
 
-    public void setLoggedExercise(EquipmentUsage loggedExercise) {
+    public void setLoggedExercise(WorkoutLog loggedExercise) {
         this.loggedExercise = loggedExercise;
     }
 
-    public Workout getLoggedWorkout() {
+    public VisitLog getLoggedWorkout() {
         return loggedWorkout;
     }
 
-    public void setLoggedWorkout(Workout loggedWorkout) {
+    public void setLoggedWorkout(VisitLog loggedWorkout) {
         this.loggedWorkout = loggedWorkout;
     }
 }
