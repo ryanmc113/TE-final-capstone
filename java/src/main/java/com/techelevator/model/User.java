@@ -11,13 +11,11 @@ public class User {
    private int id;
    //so far just added name, email, and role variables but have not assigned getters,
    //setters, or putting it in constructor... not sure where to use it yet...
-   private String firstName;
-   private String lastName;
+
    private String username;
    @JsonIgnore
    private String password;
    @JsonIgnore
-   private String email;
    private String role;
    private boolean activated;
    private Set<Authority> authorities = new HashSet<>();
@@ -30,6 +28,14 @@ public class User {
       this.password = password;
       if(authorities != null) this.setAuthorities(authorities);
       this.activated = true;
+   }
+
+   public String getRole() {
+      return role;
+   }
+
+   public void setRole(String role) {
+      this.role = role;
    }
 
    public int getId() {
