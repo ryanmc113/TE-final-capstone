@@ -17,7 +17,7 @@ CREATE TABLE users (
 	class_id integer,
 
 	CONSTRAINT PK_user PRIMARY KEY (user_id),
-	CONSTRAINT FK_class_schedule FOREIGN KEY (class_id) references class_schedule
+	CONSTRAINT FK_class_schedule FOREIGN KEY (class_id) references class_schedule (class_id)
 );
 
 CREATE TABLE workout (
