@@ -14,10 +14,11 @@ CREATE TABLE users (
 	email varchar(60) NOT NULL UNIQUE,
 	role varchar(50) NOT NULL,
 	image_file varchar(500) NOT NULL UNIQUE,
-	class_id integer,
+	goal varchar(50) NOT NULL,
+--	class_id integer,
 
 	CONSTRAINT PK_user PRIMARY KEY (user_id),
-	CONSTRAINT FK_class_schedule FOREIGN KEY (class_id) references class_schedule (class_id)
+--	CONSTRAINT FK_class_schedule FOREIGN KEY (class_id) references class_schedule (class_id)
 );
 
 CREATE TABLE workout (
@@ -45,25 +46,17 @@ CREATE TABLE equipment_usage (
     CONSTRAINT weight_limit CHECK (weight >= 0)
 );
 
-CREATE TABLE goals (
-    goal_id SERIAL,
-    user_id integer NOT NULL,
-    goal_type varchar(50) NOT NULL,
-
-    CONSTRAINT PK_goals PRIMARY KEY (goal_id),
-    CONSTRAINT FK_user FOREIGN KEY (user_id) references users
-);
-
-CREATE TABLE class_schedule (
-    class_id SERIAL,
-    class_name varchar(50) NOT NULL,
-    class_instructor varchar(50) NOT NULL,
-    class_description varchar(200),
-    class_time time NOT NULL,
-    class_day varchar(10) NOT NULL,
-
-    CONSTRAINT PK_class_schedule PRIMARY KEY (class_id)
-
-);
+--CREATE TABLE class_schedule (
+--    class_id SERIAL,
+--    class_name varchar(50) NOT NULL,
+--    class_instructor varchar(50) NOT NULL,
+--    class_description varchar(200),
+--    class_time time NOT NULL,
+--    class_day varchar(10) NOT NULL,
+--
+--    CONSTRAINT PK_class_schedule PRIMARY KEY (class_id)
+--
+--);
 
 COMMIT TRANSACTION;
+ --class_schedule table is giving errors in postgresql
