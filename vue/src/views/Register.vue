@@ -1,7 +1,7 @@
-<template>
+<template class>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <h1 class="is-size-2">Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
@@ -38,9 +38,39 @@
         required
       />
       </div>
+      <label for="firstName" class="sr-only">First Name</label>
       <div>
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
+        <input
+        type="firstName"
+        id="firstName"
+        class="form-control"
+        placeholder="Deborah"
+        >
       </div>
+      <label for="lastName" class="sr-only">Last Name</label>
+      <div>
+        <input
+        type="lastName"
+        id="lastName"
+        class="form-control"
+        placeholder="Lorde"
+        >
+      </div>
+
+
+     
+      <label for="goals" class="sr-only">Goal</label>
+      <div>
+        <select name="goal" id="goal" >
+          <option value="Activity">Increase Activity</option>
+          <option value="gainMuscle">Gain Muscle</option>
+         <option value="loseWeight">Lose Weight</option>
+          <option value="Endurance">Increase Endurance</option>
+          <option value="Flexibility">Increased Flexibility</option>
+        </select>
+      
+      </div>
+    <br>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button>
@@ -60,6 +90,9 @@ export default {
         password: '',
         confirmPassword: '',
         role: 'user',
+        firstName: '',
+        lastName: '',
+        goal: '',
       },
       registrationErrors: false,
       registrationErrorMsg: 'There were problems registering this user.',
