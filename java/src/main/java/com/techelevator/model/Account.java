@@ -3,12 +3,13 @@ package com.techelevator.model;
 public class Account {
 
     private int accountID;
+    private int userID;
     private String role;
     private String firstName;
     private String lastName;
     private String email;
     private String goals;
-    private String imageURL;
+    private String mediaURL;
 
     public int getAccountID() {
         return accountID;
@@ -16,6 +17,14 @@ public class Account {
 
     public void setAccountID(int accountID) {
         this.accountID = accountID;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public String getRole() {
@@ -58,11 +67,11 @@ public class Account {
         this.goals = goals;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getMediaURL() {
+        return mediaURL;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setMediaURL(String mediaURL) {
+        this.mediaURL = mediaURL;
     }
 }

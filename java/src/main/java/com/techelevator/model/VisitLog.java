@@ -1,6 +1,6 @@
 package com.techelevator.model;
 
-public class Workout {
+public class VisitLog {
 
     private int workoutID;
     private int accountID;
