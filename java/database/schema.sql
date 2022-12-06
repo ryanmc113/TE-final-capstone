@@ -8,17 +8,23 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
 	user_id SERIAL,
-	name varchar(50) NOT NULL,
 	username varchar(50) NOT NULL UNIQUE,
 	password_hash varchar(200) NOT NULL,
-	email varchar(60) NOT NULL UNIQUE,
-	role varchar(50) NOT NULL DEFAULT 'Member',
 	image_file varchar(500) NOT NULL UNIQUE,
 	class_id integer,
 
 	CONSTRAINT PK_user PRIMARY KEY (user_id),
 	CONSTRAINT FK_class_schedule FOREIGN KEY (class_id) references class_schedule (class_id)
 );
+
+CREATE TABLE account (
+    account_id SERIAL,
+	role varchar(50) NOT NULL DEFAULT 'Member',
+    first_name varchar(50) NOT NULL,
+    last_name varchar(50) NOT NULL,
+    email varchar(60) NOT NULL UNIQUE,
+
+)
 
 CREATE TABLE workout (
     workout_id SERIAL,
