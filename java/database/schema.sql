@@ -8,19 +8,19 @@ CREATE TABLE users (
 	username varchar(50) NOT NULL UNIQUE,
 	password_hash varchar(200) NOT NULL,
 	email varchar(60) NOT NULL UNIQUE,
-	role varchar(50) NOT NULL,
+	role varchar(50) NOT NULL DEFAULT 'Member',
 	image_file varchar(500) NOT NULL UNIQUE,
 
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
-CREATE TABLE employee (
-    employee_id SERIAL,
-    user_id integer NOT NULL,
-
-    CONSTRAINT PK_employee PRIMARY KEY (employee_id),
-    CONSTRAINT FK_user FOREIGN KEY (user_id)
-);
+--CREATE TABLE employee (
+--    employee_id SERIAL,
+--    user_id integer NOT NULL,
+--
+--    CONSTRAINT PK_employee PRIMARY KEY (employee_id),
+--    CONSTRAINT FK_user FOREIGN KEY (user_id)
+--);
 
 CREATE TABLE workout (
     workout_id SERIAL,
