@@ -10,6 +10,8 @@ public interface EquipmentUsageDao {
 
     EquipmentUsage getEquipmentById(int EquipmentId);
 
+    int logEquipmentUsage(EquipmentUsage input);
+
 
 
 

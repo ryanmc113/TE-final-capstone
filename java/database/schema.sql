@@ -12,7 +12,7 @@ CREATE TABLE users (
 	username varchar(50) NOT NULL UNIQUE,
 	password_hash varchar(200) NOT NULL,
 	email varchar(60) NOT NULL UNIQUE,
-	role varchar(50) NOT NULL,
+	role varchar(50) NOT NULL DEFAULT 'Member',
 	image_file varchar(500) NOT NULL UNIQUE,
 	class_id integer,
 
