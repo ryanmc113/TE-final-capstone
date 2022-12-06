@@ -11,7 +11,8 @@ public class User {
    private int id;
    //so far just added name, email, and role variables but have not assigned getters,
    //setters, or putting it in constructor... not sure where to use it yet...
-   private String name;
+   private String firstName;
+   private String lastName;
    private String username;
    @JsonIgnore
    private String password;

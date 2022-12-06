@@ -48,6 +48,13 @@ public class JdbcUserDao implements UserDao {
 	}
 
     @Override
+    public User findUserByName(String firstName, String lastName) {
+        String sql = "SELECT * FROM users WHERE "
+
+        return null;
+    }
+
+    @Override
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
         String sql = "select * from users";
