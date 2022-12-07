@@ -9,15 +9,10 @@ import java.util.Set;
 public class User {
 
    private int id;
-   //so far just added name, email, and role variables but have not assigned getters,
-   //setters, or putting it in constructor... not sure where to use it yet...
-   private String name;
    private String username;
    @JsonIgnore
    private String password;
    @JsonIgnore
-   private String email;
-   private String role;
    private boolean activated;
    private Set<Authority> authorities = new HashSet<>();
 

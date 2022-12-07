@@ -5,7 +5,8 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
-//import EmployeeLogin from '../views/EmployeeLogin.vue'
+import EmployeeLogin from '../views/EmployeeLogin.vue'
+import EmployeeAccount from '../views/EmployeeAccount.vue'
 
 Vue.use(Router)
 
@@ -57,8 +58,16 @@ const router = new Router({
     {
       path: "/login/employee",
       name: "employee-login",
-      //component: EmployeeLogin,
+      component: EmployeeLogin,
       meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path:"/employee",
+      name:"employee-account",
+      component: EmployeeAccount,
+      meta:{
         requiresAuth: false
       }
     }
