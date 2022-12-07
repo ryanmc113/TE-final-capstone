@@ -20,16 +20,16 @@ public class JdbcAccountDao implements AccountDao {
         String sql = "SELECT * FROM users WHERE firstName = ? AND lastName = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, firstName, lastName);
         if(results.next()){
-            return mapRowToUser(results);
+            return mapRowToAccount(results);
         }else {
 
             return null;
         }
     }
 
-    private Account mapRowToUser(SqlRowSet rs) {
+    private Account mapRowToAccount(SqlRowSet rs) {
         Account account = new Account();
-        account.setAccountId(rs.getAccountId("account_id"));
+        account.setAccountID(rs.getAccountID("account_id"));
         account.setFirstName(rs.getString("first_name"));
         account.setLastName(rs.getString("last_name"));
 
