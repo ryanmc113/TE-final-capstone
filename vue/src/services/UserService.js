@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 export default {
-    getUsers(firstName, lastName){
-        return axios.get('/employee/users', firstName, lastName)
+    getUsers(){
+        return axios.get('/employee/users')
+      },
+      createLogInDatabase(log){
+            return axios.post(`/employee/user/log`, log)
       }
 }
