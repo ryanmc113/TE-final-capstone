@@ -6,7 +6,7 @@
         {{ registrationErrorMsg }}
       </div>
       <div>
-      <label for="username" class="sr-only">Username</label>
+        <label for="username" class="sr-only">Username</label>
       </div>
       <input
         type="text"
@@ -18,7 +18,7 @@
         autofocus
       />
       <div>
-      <label for="password" class="sr-only">Password</label>
+        <label for="password" class="sr-only">Password</label>
       </div>
       <input
         type="password"
@@ -29,48 +29,54 @@
         required
       />
       <div>
-      <input
-        type="password"
-        id="confirmPassword"
-        class="form-control"
-        placeholder="Confirm Password"
-        v-model="user.confirmPassword"
-        required
-      />
+        <input
+          type="password"
+          id="confirmPassword"
+          class="form-control"
+          placeholder="Confirm Password"
+          v-model="user.confirmPassword"
+          required
+        />
       </div>
       <label for="firstName" class="sr-only">First Name</label>
       <div>
         <input
-        type="firstName"
-        id="firstName"
-        class="form-control"
-        placeholder="Deborah"
-        >
+          type="firstName"
+          id="firstName"
+          class="form-control"
+          placeholder="Deborah"
+        />
       </div>
       <label for="lastName" class="sr-only">Last Name</label>
       <div>
         <input
-        type="lastName"
-        id="lastName"
-        class="form-control"
-        placeholder="Lorde"
-        >
+          type="lastName"
+          id="lastName"
+          class="form-control"
+          placeholder="Lorde"
+        />
+      </div>
+      <label for="email" class="sr-only">Email</label>
+      <div>
+        <input
+          type="Email"
+          id="email"
+          class="form-control"
+          placeholder="john.doe@gmail.com"
+        />
       </div>
 
-
-     
       <label for="goals" class="sr-only">Goal</label>
       <div>
-        <select name="goal" id="goal" >
+        <select name="goal" id="goal">
           <option value="Activity">Increase Activity</option>
           <option value="gainMuscle">Gain Muscle</option>
-         <option value="loseWeight">Lose Weight</option>
+          <option value="loseWeight">Lose Weight</option>
           <option value="Endurance">Increase Endurance</option>
           <option value="Flexibility">Increased Flexibility</option>
         </select>
-      
       </div>
-    <br>
+      <br />
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button>
@@ -79,38 +85,41 @@
 </template>
 
 <script>
-import authService from '../services/AuthService';
+import authService from "../services/AuthService";
 
 export default {
-  name: 'register',
+  name: "register",
   data() {
     return {
       user: {
-        username: '',
-        password: '',
-        confirmPassword: '',
-        role: 'user',
-        firstName: '',
-        lastName: '',
-        goal: '',
+        username: "",
+        password: "",
+        confirmPassword: "",
+        role: "user",
+        account: {
+          firstName: "",
+          lastName: "",
+          email: "",
+          goal: "",
+        },
       },
       registrationErrors: false,
-      registrationErrorMsg: 'There were problems registering this user.',
+      registrationErrorMsg: "There were problems registering this user.",
     };
   },
   methods: {
     register() {
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
-        this.registrationErrorMsg = 'Password & Confirm Password do not match.';
+        this.registrationErrorMsg = "Password & Confirm Password do not match.";
       } else {
         authService
           .register(this.user)
           .then((response) => {
             if (response.status == 201) {
               this.$router.push({
-                path: '/login',
-                query: { registration: 'success' },
+                path: "/login",
+                query: { registration: "success" },
               });
             }
           })
@@ -118,14 +127,14 @@ export default {
             const response = error.response;
             this.registrationErrors = true;
             if (response.status === 400) {
-              this.registrationErrorMsg = 'Bad Request: Validation Errors';
+              this.registrationErrorMsg = "Bad Request: Validation Errors";
             }
           });
       }
     },
     clearErrors() {
       this.registrationErrors = false;
-      this.registrationErrorMsg = 'There were problems registering this user.';
+      this.registrationErrorMsg = "There were problems registering this user.";
     },
   },
 };
