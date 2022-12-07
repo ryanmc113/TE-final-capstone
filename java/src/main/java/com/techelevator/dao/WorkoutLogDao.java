@@ -4,7 +4,7 @@ import com.techelevator.model.WorkoutLog;
 
 import java.util.List;
 
-public interface EquipmentUsageDao {
+public interface WorkoutLogDao {
 
     List<WorkoutLog> listAllEquipment();
 
