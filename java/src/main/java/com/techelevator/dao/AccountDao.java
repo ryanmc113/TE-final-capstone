@@ -7,6 +7,8 @@ public interface AccountDao {
 
     boolean createAccount(Account account);
 
+    void updateAccount(Account account);
+
     Account findAccountByName(String firstName, String lastName);
 
     Account findAccountByUserId(int userId);
