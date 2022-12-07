@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.techelevator.model.Account;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -75,17 +76,16 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public int create(String username, String password, String role) {
-        Integer userId;
-        String insertUserSql = "insert into users (username,password_hash,role) values (?,?,?) returning user_id";
+    public boolean create(String username, String password, String role, Account account) {
+        String insertUserSql = "insert into users (username,password_hash,role) values (?,?,?)";
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
-        try {
-            userId = jdbcTemplate.queryForObject(insertUserSql, Integer.class, username, password_hash, ssRole);
-        } catch (NullPointerException e) {
-            throw e;
-        }
-        return userId;
+
+        String sql = "INSERT INTO account (user_id, first_name, last_name, email, goal, media_url)" +
+                "VALUES (?,?,?,?,?,?) RETURNING account_id;";
+    
+        return (jdbcTemplate.update(sql, account.getUserId(), account.getFirstName(), account.getLastName(), account.getEmail(),
+            account.getGoals(), account.getMediaURL()) == 1) && (jdbcTemplate.update(insertUserSql, username, password_hash, ssRole) == 1);
     }
 
     private User mapRowToUser(SqlRowSet rs) {
