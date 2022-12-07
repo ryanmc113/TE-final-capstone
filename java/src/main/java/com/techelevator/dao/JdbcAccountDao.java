@@ -16,20 +16,43 @@ public class JdbcAccountDao implements AccountDao {
     }
 
     @Override
+    public boolean createAccount(int userId) {
+        String sql = "INSERT INTO account (user_id, first_name, last_name, email, goal, media_url)" +
+                    "VALUES (?,?,?,?,?,?) RETURNING account_id;";
+        Integer newAccountId = jdbcTemplate.queryForObject(sql, Integer.class, userId);
+        return newAccountId != null;
+    }
+
+    @Override
+    public Account getAccountByUserId(int userId) {
+        String sql = "Select account_id, user_id, first_name, last_name, email, goal, media_url from account where user_id = ?;";
+        try {
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql,userId);
+        if (results.next()) {
+            return mapRowToAccount(results);
+        } else {
+            return null;
+        }
+    }
+
+
+    @Override
     public Account findUserByName(String firstName, String lastName) {
-        String sql = "SELECT * FROM users WHERE firstName = ? AND lastName = ?;";
+        Account account = null;
+            String sql = "SELECT * FROM users WHERE firstName = ? AND lastName = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, firstName, lastName);
         if(results.next()){
-            return mapRowToAccount(results);
+            account = mapRowToAccount(results);
         }else {
 
-            return null;
+            if (singleTransfer == null) {
+                throw new IllegalArgumentException("Could not locate transfer id" + transferId)
         }
     }
 
     private Account mapRowToAccount(SqlRowSet rs) {
         Account account = new Account();
-        account.setAccountID(rs.getAccountID("account_id"));
+        account.setAccountId(rs.getAccountID("account_id"));
         account.setFirstName(rs.getString("first_name"));
         account.setLastName(rs.getString("last_name"));
 
