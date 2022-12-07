@@ -18,8 +18,6 @@ public class RegisterUserDto {
     @NotEmpty(message = "Please select a role for this user.")
     private String role;
 
-    private Account account;
-
     public String getUsername() {
         return username;
     }
@@ -50,13 +48,5 @@ public class RegisterUserDto {
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
     }
 }

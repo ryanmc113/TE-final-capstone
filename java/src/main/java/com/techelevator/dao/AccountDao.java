@@ -5,13 +5,7 @@ import com.techelevator.model.User;
 
 public interface AccountDao {
 
-    boolean createAccount(Account account);
-
-    Account findAccountByName(String firstName, String lastName);
-
-    Account findAccountByUserId(int userId);
+    Account findUserByName(String firstName, String lastName);
 
 
-    }
-
-
+}

@@ -2,8 +2,8 @@ package com.techelevator.model;
 
 public class Account {
 
-    private int accountId;
-    private int userId;
+    private int accountID;
+    private int userID;
     private String role;
     private String firstName;
     private String lastName;
@@ -11,20 +11,20 @@ public class Account {
     private String goals;
     private String mediaURL;
 
-    public int getAccountId() {
-        return accountId;
+    public int getAccountID() {
+        return accountID;
     }
 
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
+    public void setAccountID(int accountID) {
+        this.accountID = accountID;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
     public String getRole() {
