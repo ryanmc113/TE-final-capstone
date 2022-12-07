@@ -6,5 +6,8 @@ export default {
       },
       createLogInDatabase(log){
             return axios.post(`/employee/user/log`, log)
+      },
+      getMachineMetrics(){
+            return axios.get(`/employee/machines`)
       }
 }

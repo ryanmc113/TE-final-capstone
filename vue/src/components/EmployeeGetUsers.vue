@@ -1,5 +1,6 @@
 <template>
   <div>
+      <h1 class = "is-size-2">Search Users</h1>
     <table id="tblUsers">
       <thead>
         <tr>
@@ -35,7 +36,7 @@
 </template>
 
 <script>
-import userService from "../services/UserService";
+import employeeService from "../services/EmployeeService";
 export default {
   name: "employeeAccount",
   data() {
@@ -65,7 +66,9 @@ export default {
           lastName: "noh",
           status: "Check Out",
         },
+       
       ],
+       errorMsg: "",
       findUser: {
         firstName: "",
         lastName: "",
@@ -95,7 +98,7 @@ export default {
   },
   methods: {
     getUsers() {
-      userService.getUsers();
+      employeeService.getUsers();
     },
     flipStatus(id) {
       this.allUsers.forEach((user) => {
@@ -141,8 +144,19 @@ export default {
      
       }
     },
-    postLog(newLogInDatabase) {
-      userService.createLogInDatabase(newLogInDatabase).then().catch();
+    postLog(userLeavingLog) {
+      employeeService.createLogInDatabase(userLeavingLog)
+      .then((response) =>{
+          if(response.status === 201){
+              alert("Wish them a good rest of the day!")
+          }
+          
+      })
+      .catch((error)=>{
+          if(error.response){
+              this.errorMsg = "Error submitting workout"
+          }
+      });
     },
     getTime() {
       var today = new Date();
