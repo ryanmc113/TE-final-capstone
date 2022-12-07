@@ -1,8 +1,11 @@
 package com.techelevator.controller;
 
 import com.techelevator.model.WorkoutMetrics;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
+
+@CrossOrigin
 public class WorkoutController {
 
     //log workout (post to workout table, param will be the workoutlog object)
