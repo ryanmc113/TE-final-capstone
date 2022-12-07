@@ -1,21 +1,30 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.WorkoutLog;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
-public class JdbcWorkoutLogDao {
+import java.util.ArrayList;
+import java.util.List;
+
+public class JdbcWorkoutLogDao implements WorkoutLogDao{
+
+    private final JdbcTemplate jdbcTemplate;
+
+    public JdbcWorkoutLogDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
 
+    @Override
+    public List<WorkoutLog> listAllWorkoutLogsForUser() {
+        return null;
+    }
 
-
-
-
-
-
-
-
-
-
+    @Override
+    public WorkoutLog getWorkoutLogById(int workoutId) {
+        return null;
+    }
 
 
     private WorkoutLog mapRowToWorkoutLog(SqlRowSet rs){
@@ -31,6 +40,4 @@ public class JdbcWorkoutLogDao {
 
         return newLog;
     }
-
-
 }
