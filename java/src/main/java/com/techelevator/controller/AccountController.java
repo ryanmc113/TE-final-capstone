@@ -19,7 +19,7 @@ public class AccountController {
     }
 
     //create an account (same for member/employee)
-    @GetMapping(path = "/")
+ //   @GetMapping(path = "/")
 
     //get account by id
 
