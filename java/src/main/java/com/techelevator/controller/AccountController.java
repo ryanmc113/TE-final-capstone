@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
 @PreAuthorize("isAuthenticated()")
 @RequestMapping("/account/")
 public class AccountController {
