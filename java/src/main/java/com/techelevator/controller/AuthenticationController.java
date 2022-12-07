@@ -1,5 +1,6 @@
 package com.techelevator.controller;
 
+import javax.security.auth.login.AccountNotFoundException;
 import javax.validation.Valid;
 
 import com.techelevator.dao.AccountDao;
@@ -60,14 +61,9 @@ public class AuthenticationController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User Already Exists.");
         } catch (UsernameNotFoundException e) {
             userDao.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
+            accountDao.createAccount(newUser.getAccount());
         }
-    }   try {
-        Account account = accountDao.findByUserId(newUser.getUserId());
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Account Already Exists.");
-    } catch (UsernameNotFoundException e) {
-        accountDao.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
     }
 }
 
-}
 
