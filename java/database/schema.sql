@@ -1,19 +1,13 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS class_schedule;
-DROP TABLE IF EXISTS workout_log;
-DROP TABLE IF EXISTS exercise;
-DROP TABLE IF EXISTS visit_log;
-DROP TABLE IF EXISTS account;
-DROP TABLE IF EXISTS users;
-
+DROP TABLE IF EXISTS class_schedule, workout_log, exercise, visit_log, account, users;
 
 CREATE TABLE users (
 
 	user_id SERIAL,
 	username varchar(50) NOT NULL UNIQUE,
 	password_hash varchar(200) NOT NULL,
-	role varchar(50) NOT NULL default 'Member',
+	role varchar(50) NOT NULL DEFAULT 'Member',
 
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 
@@ -21,7 +15,7 @@ CREATE TABLE users (
 
 CREATE TABLE account (
 	account_id SERIAL,
-	user_id integer NOT NULL,
+	user_id int NOT NULL,
 	first_name varchar(50) NOT NULL,
 	last_name varchar (50) NOT NULL,
 	email varchar(60) NOT NULL UNIQUE,
@@ -35,13 +29,12 @@ CREATE TABLE account (
 
 CREATE TABLE visit_log (
     visit_id SERIAL,
-    account_id integer NOT NULL,
+    account_id int NOT NULL,
     check_in timestamp,
-    --may need to change the default thingy
     check_out timestamp default CURRENT_TIMESTAMP,
 
     CONSTRAINT PK_visit PRIMARY KEY (visit_id),
-    CONSTRAINT FK_user FOREIGN KEY (account_id) references account
+    CONSTRAINT FK_account FOREIGN KEY (account_id) references account
 
 );
 
@@ -53,39 +46,37 @@ CREATE TABLE exercise (
     media_url varchar(400) NOT NULL,
 
     CONSTRAINT PK_exercise PRIMARY KEY (exercise_id)
-);
+	);
 
 CREATE TABLE workout_log (
     workout_id SERIAL,
-    visit_id integer NOT NULL,
-    exercise_id integer NOT NULL,
+    visit_id int NOT NULL,
+    exercise_id int NOT NULL,
     workout_date timestamp default CURRENT_DATE,
-    sets integer,
-    reps integer,
+    sets int,
+    reps int,
     weight DECIMAL(5, 2),
     timer time,
 
-    CONSTRAINT PK_workout_id PRIMARY KEY (workout_id),
-    CONSTRAINT FK_exercise FOREIGN KEY (exercise_id) references exercise,
-	CONSTRAINT FK_visit_id FOREIGN KEY (visit_id) references visit_log,
+    CONSTRAINT PK_workout PRIMARY KEY(workout_id),
+	CONSTRAINT FK_visit FOREIGN KEY (visit_id) references visit_log,
+    CONSTRAINT FK_exercise FOREIGN KEY(exercise_id) references exercise,
     CONSTRAINT sets_limit CHECK (weight >= 0),
     CONSTRAINT reps_limit CHECK (weight >= 0),
     CONSTRAINT weight_limit CHECK (weight >= 0)
 );
 
-
  CREATE TABLE class_schedule (
      class_id SERIAL,
-	 visit_id integer NOT NULL,
+	 visit_id int NOT NULL,
      class_name varchar(50) NOT NULL,
      class_instructor varchar(50) NOT NULL,
      class_description varchar(200),
      class_time time NOT NULL,
      class_day varchar(10) NOT NULL,
 
-
-     CONSTRAINT PK_class_schedule PRIMARY KEY (class_id),
-	 CONSTRAINT FK_visit_log FOREIGN KEY (visit_id) references visit_log
+    CONSTRAINT PK_class_schedule PRIMARY KEY (class_id),
+	CONSTRAINT FK_visit_log FOREIGN KEY (visit_id) REFERENCES visit_log(visit_id)
 
 );
 
