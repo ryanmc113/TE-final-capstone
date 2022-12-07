@@ -1,7 +1,9 @@
 package com.techelevator.controller;
 
+import javax.security.auth.login.AccountNotFoundException;
 import javax.validation.Valid;
 
+import com.techelevator.dao.AccountDao;
 import com.techelevator.model.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -25,11 +27,13 @@ public class AuthenticationController {
     private final TokenProvider tokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private UserDao userDao;
+    private AccountDao accountDao;
 
-    public AuthenticationController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, UserDao userDao) {
+    public AuthenticationController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder, UserDao userDao, AccountDao accountDao) {
         this.tokenProvider = tokenProvider;
         this.authenticationManagerBuilder = authenticationManagerBuilder;
         this.userDao = userDao;
+        this.accountDao = accountDao;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -57,8 +61,9 @@ public class AuthenticationController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User Already Exists.");
         } catch (UsernameNotFoundException e) {
             userDao.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
+            accountDao.createAccount(newUser.getAccount());
         }
     }
-
 }
+
 

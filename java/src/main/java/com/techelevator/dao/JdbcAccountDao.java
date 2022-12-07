@@ -16,15 +16,45 @@ public class JdbcAccountDao implements AccountDao {
     }
 
     @Override
-    public Account findUserByName(String firstName, String lastName) {
-        String sql = "SELECT * FROM users WHERE firstName = ? AND lastName = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, firstName, lastName);
-        if(results.next()){
-            return mapRowToAccount(results);
-        }else {
+    public boolean createAccount(Account account) {
+        String sql = "INSERT INTO account (user_id, first_name, last_name, email, goal, media_url)" +
+                    "VALUES (?,?,?,?,?,?) RETURNING account_id;";
 
-            return null;
+        return jdbcTemplate.update(sql, account.getUserId(), account.getFirstName(), account.getLastName(), account.getEmail(),
+                    account.getGoals(), account.getMediaURL()) == 1;
         }
+
+
+    //used for authorization login.
+    @Override
+    public Account findAccountByUserId(int userId) {
+        Account account = null;
+        String sql = "Select account_id, user_id, first_name, last_name, email, goal, media_url from account where user_id = ?;";
+        try {
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql,userId);
+            if (results.next()) {
+                account = mapRowToAccount(results);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return account;
+    }
+
+
+    @Override
+    public Account findAccountByName(String firstName, String lastName) {
+        Account account = null;
+            String sql = "SELECT account_id, user_id, first_name, last_name, email, goal, media_url FROM account WHERE firstName = ? AND lastName = ?;";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, firstName, lastName);
+            if (results.next()) {
+                account = mapRowToAccount(results);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return account;
     }
 
     private Account mapRowToAccount(SqlRowSet rs) {
