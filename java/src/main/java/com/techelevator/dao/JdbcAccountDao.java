@@ -4,9 +4,10 @@ import com.techelevator.model.Account;
 import com.techelevator.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.util.Objects;
-
+@Component
 public class JdbcAccountDao implements AccountDao {
 
     private final JdbcTemplate jdbcTemplate;
@@ -21,7 +22,7 @@ public class JdbcAccountDao implements AccountDao {
                     "VALUES (?,?,?,?,?,?) RETURNING account_id;";
 
         return jdbcTemplate.update(sql, account.getUserId(), account.getFirstName(), account.getLastName(), account.getEmail(),
-                    account.getGoals(), account.getMediaURL()) == 1;
+                    account.getGoal(), account.getMediaURL()) == 1;
         }
 
 
@@ -61,7 +62,7 @@ public class JdbcAccountDao implements AccountDao {
     public void updateAccount(Account account) {
         String sql = "UPDATE account SET first_name = ?, last_name = ?, email = ?, goal = ?, media_url = ? where user_id = ?;";
         try {
-            jdbcTemplate.update(sql, account.getFirstName(), account.getLastName(), account.getEmail(), account.getGoals(), account.getMediaURL(), account.getUserId());
+            jdbcTemplate.update(sql, account.getFirstName(), account.getLastName(), account.getEmail(), account.getGoal(), account.getMediaURL(), account.getUserId());
         } catch (Exception e) {
             throw e;
         }
@@ -75,7 +76,7 @@ public class JdbcAccountDao implements AccountDao {
         account.setFirstName(rs.getString("first_name"));
         account.setLastName(rs.getString("last_name"));
         account.setEmail(rs.getString("email"));
-        account.setGoals(rs.getString("goals"));
+        account.setGoal(rs.getString("goal"));
         account.setMediaURL(rs.getString("media_url"));
 
         return account;
