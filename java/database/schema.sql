@@ -52,7 +52,6 @@ CREATE TABLE workout_log (
     workout_id SERIAL,
     visit_id int NOT NULL,
     exercise_id int NOT NULL,
-    workout_date timestamp default CURRENT_DATE,
     sets int,
     reps int,
     weight DECIMAL(5, 2),

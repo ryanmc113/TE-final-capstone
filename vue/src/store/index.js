@@ -27,6 +27,7 @@ export default new Vuex.Store({
       localStorage.setItem('token', token);
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
     },
+
     SET_USER(state, user) {
       state.user = user;
       localStorage.setItem('user',JSON.stringify(user));
@@ -37,6 +38,17 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
-    }
+    },
+    SET_EMPLOYEE(state, EMPLOYEE) {
+      state.user = EMPLOYEE;
+      localStorage.setItem('employee',JSON.stringify(EMPLOYEE));
+    },
+    LOGOUT_EMPLOYEE(state) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('employee');
+      state.token = '';
+      state.user = {};
+      axios.defaults.headers.common = {};
+    },
   }
 })

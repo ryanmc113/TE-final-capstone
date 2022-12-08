@@ -1,6 +1,6 @@
 <template>
-  <div class ="main">
-      <h1 class = "is-size-2">Search Users</h1>
+  <div >
+  <h1 class = "is-size-2">Search Users</h1>
     <table id="tblUsers">
       <thead>
         <tr>
@@ -51,20 +51,38 @@ export default {
       allUsers: [
         {
           id: "1",
-          firstName: "david",
-          lastName: "sikes",
+          firstName: "David",
+          lastName: "Sikes",
           status: "Check Out",
         },
         {
           id: "2",
-          firstName: "ryan",
-          lastName: "mcumber",
+          firstName: "Ryan",
+          lastName: "McUmber",
           status: "Check Out",
         },
         {
           id: "3",
-          firstName: "sarah",
-          lastName: "noh",
+          firstName: "Sarah",
+          lastName: "Noh",
+          status: "Check Out",
+        },
+        {
+          id: "4",
+          firstName: "John",
+          lastName: "Wayne",
+          status: "Check Out",
+        },
+        {
+          id: "5",
+          firstName: "Deborah",
+          lastName: "Lorde",
+          status: "Check Out",
+        },
+        {
+          id: "6",
+          firstName: "John",
+          lastName: "Shouldre",
           status: "Check Out",
         },
        
@@ -139,8 +157,8 @@ export default {
         this.flipStatus(id);
       } else if (userStatus == "Check In") {
         let userLeavingLog = this.updateLog(id);
+        this.postLog(userLeavingLog);
         this.clearUserLog(id);
-         this.postLog(userLeavingLog);
         this.flipStatus(id);
      
       }
@@ -177,6 +195,7 @@ export default {
 </script>
 
 <style scoped>
+
 .button2 {
   background-color: white; 
   color: black; 

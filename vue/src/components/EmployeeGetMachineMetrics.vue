@@ -12,6 +12,7 @@
       <tbody>
         <tr v-for="machine in allMachines" v-bind:key="machine.machineName">
           <td>{{ machine.machineName }}</td>
+          <br>
           <td>{{ machine.machineUsers }}</td>
         </tr>
       </tbody>
@@ -28,16 +29,33 @@ export default {
       allMachines: [
         {
           machineName: "Leg Press",
-          machineUsers: "1000",
+          machineUsers: "240",
         },
-        { machineName: "Arm Press", machineUsers: "1000" },
+        { 
+          machineName: "Arm Press", 
+          machineUsers: "213" 
+          },
+          { 
+          machineName: "Shoulder Press Machine", 
+          machineUsers: "198" 
+          },
+          { 
+          machineName: "Dip Machine", 
+          machineUsers: "173" 
+          },
+          { 
+          machineName: "Leg Extension Machine", 
+          machineUsers: "170" 
+          },
       ],
     };
   },
 
   methods: {
     getMachines() {
-      employeeService.getMachineMetrics();
+      employeeService.getMachineMetrics().then((response) => {
+        this.allMachines = response.data;
+      });
     },
   },
 };
