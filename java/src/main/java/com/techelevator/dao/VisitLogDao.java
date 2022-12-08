@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface VisitLogDao {
 
-    boolean logVisit( VisitLog visit);
+    boolean logVisit(VisitLog visit);
 
     List<VisitLog> listAllVisits();
 
