@@ -13,7 +13,7 @@
         v-if="this.$route.query.registration"
       >Thank you for registering, please sign in.</div>
       <div class = "field">
-      <label for="username" class="sr-only label">Username</label>
+      <label for="username" class=" label">Username</label>
       </div>
       <input
         type="text"
@@ -24,8 +24,10 @@
         required
         autofocus
       />
+      <br>
+    
       <div class = "field">
-      <label for="password" class="sr-only label">Password</label>
+      <label for="password" class="label">Password</label>
       </div>
       <div class = "field">
       <input
@@ -101,8 +103,10 @@ export default {
 }
 
 .form-signin{
-  /* display: flex;
+  flex-direction: column;
+  display: flex;
   align-items:center;
-  justify-content: center; */
+  justify-content: center;
+  
 }
 </style>

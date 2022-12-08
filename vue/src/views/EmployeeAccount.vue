@@ -19,7 +19,7 @@ export default {
 <style scoped>
 .main{
   display: flex;
-  align-items:center;
+  align-items:flex-start;
   justify-content: space-around;
 }
 </style>
