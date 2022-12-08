@@ -66,8 +66,8 @@
         />
       </div>
 
-      <label for="goals" class="sr-only">Goal</label>
-      <div>
+      <label for="goals" class="sr-only">Goal</label>&nbsp;
+      <div class="select">
         <select name="goal" id="goal">
           <option value="Activity">Increase Activity</option>
           <option value="gainMuscle">Gain Muscle</option>
@@ -77,7 +77,7 @@
         </select>
       </div>
       <br />
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
+      <button class="btn btn-lg btn-primary btn-block button is-primary" type="submit">
         Create Account
       </button>
     </form>
@@ -140,4 +140,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+</style>

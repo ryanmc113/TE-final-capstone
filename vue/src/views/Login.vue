@@ -84,8 +84,8 @@ export default {
 
 <style>
 .text-center{
-  background-color:lightblue ;
-  border: 10px solid yellow;
+  background-color:#A7BBC3 ;
+  border: 10px solid #012F63;
   border-radius: 20px;
   max-width: 700px;
   margin: auto;
@@ -94,6 +94,10 @@ export default {
   display: flex;
   align-items:center;
   justify-content: center;
+}
+
+.button{
+  background-color: #FE6678 !important;
 }
 
 .form-signin{
