@@ -21,12 +21,18 @@ public class WorkoutController {
         this.workoutLogDao = workoutLogDao;
     }
 
-    // log visit (post to visitlog table)
-    //*****may need to remove default current_times
-    @PostMapping(path = "log-visit")
-    public void logVisit(@RequestParam VisitLog visit) {
-        visitLogDao.logVisit(visit);
+    // log check-in and return visit_id, which is needed to log individual exercises
+    @PostMapping(path = "check-in")
+    public int logVisitCheckIn(@RequestParam VisitLog visit) {
+      //@RequestParam int account_id, @RequestParam String checkInTime
+        return visitLogDao.logCheckIn(visit);
     }
+
+    @PutMapping(path = "check-out")
+    public void logVisitCheckOut(@RequestParam VisitLog visit) {
+        visitLogDao.logCheckOut(visit);
+    }
+
 
 
     //log workout (post to workout table, param will be the workoutlog object)

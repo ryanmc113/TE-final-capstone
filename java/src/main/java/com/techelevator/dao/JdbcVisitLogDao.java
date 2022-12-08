@@ -16,11 +16,22 @@ public class JdbcVisitLogDao implements VisitLogDao {
 
 
     @Override
-    public boolean logVisit(VisitLog visit) {
-
+    public int logCheckIn(VisitLog visit) {
+        Integer visitId;
         String sql = "INSERT INTO visit_log (account_id,check_in,check_out) " +
-                "VALUES (?,?,?);";
-        return jdbcTemplate.update(sql, visit.getAccountId(), visit.getCheckIn(), visit.getCheckOut()) == 1;
+                "VALUES (?,?) RETURNING visit_id;";
+        try {
+            visitId = jdbcTemplate.queryForObject(sql, Integer.class, visit.getAccountId(), visit.getCheckIn());
+        } catch (NullPointerException e) {
+            throw e;
+        }
+        return visitId;
+    }
+
+    @Override
+    public boolean logCheckOut(VisitLog visit) {
+        String sql = "UPDATE visit_log SET check_out = ? WHERE visit_id = ?;";
+        return jdbcTemplate.update(sql, visit.getCheckOut(), visit.getWorkoutId()) == 1;
     }
 
 
