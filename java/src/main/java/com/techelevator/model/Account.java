@@ -8,7 +8,7 @@ public class Account {
     private String firstName;
     private String lastName;
     private String email;
-    private String goals;
+    private String goal;
     private String mediaURL;
 
     public int getAccountId() {
@@ -59,12 +59,12 @@ public class Account {
         this.email = email;
     }
 
-    public String getGoals() {
-        return goals;
+    public String getGoal() {
+        return goal;
     }
 
-    public void setGoals(String goals) {
-        this.goals = goals;
+    public void setGoal(String goals) {
+        this.goal = goals;
     }
 
     public String getMediaURL() {

@@ -45,6 +45,7 @@
           id="firstName"
           class="form-control"
           placeholder="Deborah"
+          v-model="user.account.firstName"
         />
       </div>
       <label for="lastName" class="sr-only">Last Name</label>
@@ -54,6 +55,7 @@
           id="lastName"
           class="form-control"
           placeholder="Lorde"
+          v-model="user.account.lastName"
         />
       </div>
       <label for="email" class="sr-only">Email</label>
@@ -63,12 +65,13 @@
           id="email"
           class="form-control"
           placeholder="john.doe@gmail.com"
+          v-model="user.account.email"
         />
       </div>
 
-      <label for="goals" class="sr-only">Goal</label>&nbsp;
-      <div class="select">
-        <select name="goal" id="goal">
+      <label for="goals" class="sr-only">Goal</label>
+      <div>
+        <select name="goal" id="goal" v-model="user.account.goal">
           <option value="Activity">Increase Activity</option>
           <option value="gainMuscle">Gain Muscle</option>
           <option value="loseWeight">Lose Weight</option>
