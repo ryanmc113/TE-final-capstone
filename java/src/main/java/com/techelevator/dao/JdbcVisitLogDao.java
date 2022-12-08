@@ -9,7 +9,7 @@ public class JdbcVisitLogDao implements VisitLogDao {
 
     @Override
     public List<VisitLog> listAllVisits() {
-        
+
         return null;
     }
 
