@@ -83,9 +83,9 @@ public class JdbcUserDao implements UserDao {
 
         String sql = "INSERT INTO account (user_id, first_name, last_name, email, goal, media_url)" +
                 "VALUES (?,?,?,?,?,?) RETURNING account_id;";
-    
+
         return (jdbcTemplate.update(sql, account.getUserId(), account.getFirstName(), account.getLastName(), account.getEmail(),
-            account.getGoals(), account.getMediaURL()) == 1) && (jdbcTemplate.update(insertUserSql, username, password_hash, ssRole) == 1);
+            account.getGoal(), account.getMediaURL()) == 1) && (jdbcTemplate.update(insertUserSql, username, password_hash, ssRole) == 1);
     }
 
     private User mapRowToUser(SqlRowSet rs) {
