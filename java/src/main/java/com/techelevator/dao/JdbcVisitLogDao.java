@@ -33,7 +33,7 @@ public class JdbcVisitLogDao implements VisitLogDao {
     @Override
     public boolean logCheckOut(VisitLog visit) {
         String sql = "UPDATE visit_log SET check_out = ? WHERE visit_id = ?;";
-        return jdbcTemplate.update(sql, visit.getCheckOut(), visit.getWorkoutId()) == 1;
+        return jdbcTemplate.update(sql, visit.getCheckOut(), visit.getVisitId()) == 1;
     }
 
 
