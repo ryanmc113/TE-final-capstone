@@ -1,18 +1,30 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
+
+    <div class="btn-first-home"><check-in-button-for-users/></div>
+    <!-- <check-in-button-for-users/> -->
     <todays-workout/>
-    <p>You must be authenticated to see this</p>
+    <workout-assistance/>
   </div>
 </template>
 
 <script>
+import checkInButtonForUsers from "../components/CheckInButtonForUsers.vue"
 import todaysWorkout from "../components/TodaysWorkout.vue"
+import workoutAssistance from "../components/WorkoutAssistance.vue"
 export default {
   components:{
-    todaysWorkout
-
+    todaysWorkout,
+    workoutAssistance,
+    checkInButtonForUsers
   },
   name: "home"
 };
 </script>
+<style scoped>
+.btn-first-home{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+</style>
