@@ -7,9 +7,7 @@ import java.util.List;
 
 public interface VisitLogDao {
 
-    int logCheckIn( VisitLog visit);
-
-    boolean logCheckOut( VisitLog visit);
+    boolean logVisit(VisitLog visit);
 
     List<VisitLog> listAllVisits();
 
