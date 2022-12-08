@@ -46,6 +46,7 @@ public class JdbcVisitLogDao implements VisitLogDao {
         List<VisitLog> visitLogs = new ArrayList<>();
 
         String sql = "SELECT * FROM visit_log WHERE account_id = ?;";
+
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId);
         if (result.next()){
             visitLogs.add(mapRowToVisitLog(result));
