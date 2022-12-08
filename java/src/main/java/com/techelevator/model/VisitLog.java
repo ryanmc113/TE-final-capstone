@@ -2,18 +2,19 @@ package com.techelevator.model;
 
 public class VisitLog {
 
-    private int workoutId;
+    private int visitId;
     private int accountId;
     private String checkIn;
     private String checkOut;
 
-    public int getWorkoutId() {
-        return workoutId;
+    public int getVisitId() {
+        return visitId;
     }
 
-    public void setWorkoutId(int workoutId) {
-        this.workoutId = workoutId;
+    public void setVisitId(int visitId) {
+        this.visitId = visitId;
     }
+
 
     public int getAccountId() {
         return accountId;
