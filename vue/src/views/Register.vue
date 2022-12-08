@@ -6,7 +6,7 @@
         {{ registrationErrorMsg }}
       </div>
       <div>
-        <label for="username" class="sr-only">Username</label>
+        <label for="username" class="">Username</label>
       </div>
       <input
         type="text"
@@ -18,7 +18,7 @@
         autofocus
       />
       <div>
-        <label for="password" class="sr-only">Password</label>
+        <label for="password" class="">Password</label>
       </div>
       <input
         type="password"
@@ -38,7 +38,7 @@
           required
         />
       </div>
-      <label for="firstName" class="sr-only">First Name</label>
+      <label for="firstName" class="">First Name</label>
       <div>
         <input
           type="firstName"
@@ -48,7 +48,7 @@
           v-model="user.account.firstName"
         />
       </div>
-      <label for="lastName" class="sr-only">Last Name</label>
+      <label for="lastName" class="">Last Name</label>
       <div>
         <input
           type="lastName"
@@ -58,7 +58,7 @@
           v-model="user.account.lastName"
         />
       </div>
-      <label for="email" class="sr-only">Email</label>
+      <label for="email" class="">Email</label>
       <div>
         <input
           type="Email"
@@ -69,7 +69,7 @@
         />
       </div>
 
-      <label for="goals" class="sr-only">Goal</label>
+      <label for="goals" class="">Goal</label>
       <div>
         <select name="goal" id="goal" v-model="user.account.goal">
           <option value="Activity">Increase Activity</option>
