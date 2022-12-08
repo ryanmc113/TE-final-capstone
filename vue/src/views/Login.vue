@@ -24,6 +24,7 @@
         required
         autofocus
       />
+      <br>
       <div class = "field">
       <label for="password" class="sr-only label">Password</label>
       </div>
@@ -101,8 +102,10 @@ export default {
 }
 
 .form-signin{
-  /* display: flex;
+  flex-direction: column;
+  display: flex;
   align-items:center;
-  justify-content: center; */
+  justify-content: center;
+  
 }
 </style>
