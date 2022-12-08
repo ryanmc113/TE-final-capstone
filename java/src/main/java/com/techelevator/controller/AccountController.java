@@ -2,13 +2,16 @@ package com.techelevator.controller;
 
 
 import com.techelevator.dao.AccountDao;
+import com.techelevator.model.Account;
+import com.techelevator.model.WorkoutMetrics;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("")
+@CrossOrigin
+@PreAuthorize("isAuthenticated()")
+@RequestMapping("/account/")
 public class AccountController {
 
 
@@ -18,8 +21,14 @@ public class AccountController {
         this.accountDao = accountDao;
     }
 
-    //create an account (same for member/employee)
-    @GetMapping(path = "/")
+
+    @PutMapping(path = "profile")
+    public void updateProfile(@RequestBody Account account) {
+        accountDao.updateAccount(account);
+    }
+
+
+        //if Principal user
 
     //get account by id
 

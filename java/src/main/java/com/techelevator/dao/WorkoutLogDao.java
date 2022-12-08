@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface WorkoutLogDao {
 
-    List<WorkoutLog> listAllEquipment();
+    List<WorkoutLog> listAllWorkoutLogs();
 
-    WorkoutLog getEquipmentById(int EquipmentId);
+    WorkoutLog getWorkoutLogById(int workoutId);
 
-    int logEquipmentUsage(WorkoutLog input);
+
 
 
 

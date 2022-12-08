@@ -20,7 +20,7 @@ CREATE TABLE account (
 	last_name varchar (50) NOT NULL,
 	email varchar(60) NOT NULL UNIQUE,
 	goal varchar(50) NOT NULL,
-	media_url varchar(500) NOT NULL UNIQUE,
+	media_url varchar(500),
 
 	CONSTRAINT PK_account PRIMARY KEY (account_id),
 	CONSTRAINT FK_account FOREIGN KEY (user_id) References users
