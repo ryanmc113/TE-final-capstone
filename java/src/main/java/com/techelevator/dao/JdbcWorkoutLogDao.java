@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.VisitLog;
 import com.techelevator.model.WorkoutLog;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -13,6 +14,13 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
 
     public JdbcWorkoutLogDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+    }
+
+    @Override
+    public boolean logWorkout(WorkoutLog workoutLog) {
+        String sql = "INSERT INTO workout_log (visit_id, exercise_id, workout_date, sets, reps, weight, timer) " +
+                "VALUES (?, ?, ?, ?, ?, ?);";
+        return jdbcTemplate.update(sql, workoutLog.getExerciseId()) == 1;
     }
 
 
