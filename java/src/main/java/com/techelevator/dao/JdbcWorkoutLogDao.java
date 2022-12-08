@@ -17,12 +17,30 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
 
 
     @Override
-    public List<WorkoutLog> listAllWorkoutLogsForUser() {
-        return null;
+    public List<WorkoutLog> listAllWorkoutLogs() {
+        List<WorkoutLog> workoutLog = new ArrayList<>();
+
+        String sql = "SELECT * FROM workout_log;";
+        SqlRowSet results = null;
+        try {
+            results = jdbcTemplate.queryForRowSet(sql);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }while (results.next()){
+            workoutLog.add(mapRowToWorkoutLog(results));
+        }
+        return workoutLog;
     }
 
     @Override
     public WorkoutLog getWorkoutLogById(int workoutId) {
+
+        String sql = "SELECT * FROM workout_log WHERE workout_id = ?;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, workoutId);
+
+        if (result.next()){
+            return mapRowToWorkoutLog(result);
+        }
         return null;
     }
 

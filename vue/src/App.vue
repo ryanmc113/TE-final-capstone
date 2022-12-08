@@ -8,7 +8,7 @@
       <router-link class = "button is-primary" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     </div>
     <router-view />
-    <div id="footer">
+    <div class="content has-text-centered">
     &copy;The Jenn Company
     <router-link :to="{ name: 'employee-login'}" v-if="$store.state.token == ''"> Employee Login</router-link>
   </div>
@@ -21,4 +21,14 @@
   display: flex;
   justify-content: flex-end;
 }
+
+/* .footer{
+   position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+} */
 </style>

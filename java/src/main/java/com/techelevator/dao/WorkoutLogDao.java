@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface WorkoutLogDao {
 
-    List<WorkoutLog> listAllWorkoutLogsForUser();
+    List<WorkoutLog> listAllWorkoutLogs();
 
     WorkoutLog getWorkoutLogById(int workoutId);
 

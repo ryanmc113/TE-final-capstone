@@ -59,11 +59,11 @@ public class Account {
         this.email = email;
     }
 
-    public String getGoals() {
+    public String getGoal() {
         return goal;
     }
 
-    public void setGoals(String goals) {
+    public void setGoal(String goals) {
         this.goal = goals;
     }
 

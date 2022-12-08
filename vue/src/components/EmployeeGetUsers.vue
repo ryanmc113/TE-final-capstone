@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class ="main">
       <h1 class = "is-size-2">Search Users</h1>
     <table id="tblUsers">
       <thead>
@@ -13,19 +13,20 @@
           <!-- need to add v-model to bind data refer to event handling hw  -->
           <input
             type="text"
+            class="input"
             id="firstNameFilter"
             v-model="findUser.firstName"
-          />
+          />&nbsp;
         </td>
         <td>
-          <input type="text" id="lastNameFilter" v-model="findUser.lastName" />
+          <input class="input" type="text" id="lastNameFilter" v-model="findUser.lastName" />
         </td>
         <!-- need to ad v-for to filter through list. look at userlist hw - event handling -->
         <tr v-for="user in filteredList" v-bind:key="user.id">
           <td>{{ user.firstName }}</td>
           <td>{{ user.lastName }}</td>
           <td>
-            <button class="" v-on:click="logging(user.status, user.id)">
+            <button class="button" v-on:click="logging(user.status, user.id)">
               {{ user.status === "Check In" ? "Check Out" : "Check In" }}
             </button>
           </td>
@@ -174,3 +175,17 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.button2 {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+
+.button2:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
+</style>

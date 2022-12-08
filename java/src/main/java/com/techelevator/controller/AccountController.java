@@ -5,6 +5,7 @@ import com.techelevator.dao.AccountDao;
 import com.techelevator.model.Account;
 import com.techelevator.model.WorkoutMetrics;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

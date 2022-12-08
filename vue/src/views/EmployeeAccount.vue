@@ -7,7 +7,7 @@
 </template>
 
 <script>
-    import EmployeeGetUsers from "../components/EmployeeGetUsers.vue";
+import EmployeeGetUsers from "../components/EmployeeGetUsers.vue";
 import EmployeeGetMachineMetrics from "../components/EmployeeGetMachineMetrics.vue"
 export default {
  components:{
@@ -19,8 +19,8 @@ export default {
 <style scoped>
 .main{
   display: flex;
-
   align-items:center;
   justify-content: space-around;
 }
 </style>
+
