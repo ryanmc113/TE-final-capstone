@@ -80,7 +80,7 @@
         </select>
       </div>
       <br />
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
+      <button class="btn btn-lg btn-primary btn-block button is-primary" type="submit">
         Create Account
       </button>
     </form>
@@ -143,4 +143,5 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+</style>
