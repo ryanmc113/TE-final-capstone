@@ -19,7 +19,7 @@ public class JdbcAccountDao implements AccountDao {
     @Override
     public boolean createAccount(Account account) {
         String sql = "INSERT INTO account (user_id, first_name, last_name, email, goal, media_url)" +
-                    "VALUES (?,?,?,?,?,?) RETURNING account_id;";
+                    "VALUES (?,?,?,?,?,?);";
 
         return jdbcTemplate.update(sql, account.getUserId(), account.getFirstName(), account.getLastName(), account.getEmail(),
                     account.getGoal(), account.getMediaURL()) == 1;
