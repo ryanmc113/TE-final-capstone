@@ -3,6 +3,8 @@ package com.techelevator.dao;
 import com.techelevator.model.Account;
 import com.techelevator.model.User;
 
+import java.util.List;
+
 public interface AccountDao {
 
     boolean createAccount(Account account);
@@ -12,6 +14,8 @@ public interface AccountDao {
     Account findAccountByName(String firstName, String lastName);
 
     Account findAccountByUserId(int userId);
+
+    List<Account> listUserAccount();
 
 
     }
