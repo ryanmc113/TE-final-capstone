@@ -19,6 +19,8 @@ public interface VisitLogDao {
 
     VisitLog getVisitLogById(int visitId);
 
+    List<VisitLog> getUsersVisitsByDate(int accountId);
+
 
 
 }
