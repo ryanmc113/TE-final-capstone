@@ -18,7 +18,7 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
 
     @Override
     public boolean logWorkout(WorkoutLog workoutLog) {
-        String sql = "INSERT INTO workout_log (visit_id, exercise_id, workout_date, sets, reps, weight, timer) " +
+        String sql = "INSERT INTO workout_log (visit_id, exercise_id, sets, reps, weight, minutes) " +
                 "VALUES (?, ?, ?, ?, ?, ?);";
         return jdbcTemplate.update(sql, workoutLog.getExerciseId()) == 1;
     }
@@ -52,17 +52,18 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
         return null;
     }
 
+    //List workouts by visit (for account page) also employees can use it.
+
 
     private WorkoutLog mapRowToWorkoutLog(SqlRowSet rs){
         WorkoutLog newLog = new WorkoutLog();
         newLog.setWorkoutId(rs.getInt("workout_id"));
         newLog.setVisitId(rs.getInt("visit_id"));
         newLog.setExerciseId(rs.getInt("exercise_id"));
-        newLog.setWorkoutDate(String.valueOf(rs.getDate("workout_date")));
         newLog.setSets(rs.getInt("sets"));
         newLog.setReps(rs.getInt("reps"));
         newLog.setWeight(rs.getDouble("weight"));
-        newLog.setTimer(String.valueOf(rs.getTime("timer")));
+        newLog.setMinutes(rs.getInt("minutes"));
 
         return newLog;
     }
