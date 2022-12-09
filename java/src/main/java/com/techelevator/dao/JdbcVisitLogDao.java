@@ -20,7 +20,7 @@ public class JdbcVisitLogDao implements VisitLogDao {
     @Override
     public int logCheckIn(VisitLog visit) {
         Integer visitId;
-        String sql = "INSERT INTO visit_log (account_id,check_in,check_out) " +
+        String sql = "INSERT INTO visit_log (account_id,check_in) " +
                 "VALUES (?,?) RETURNING visit_id;";
         try {
             visitId = jdbcTemplate.queryForObject(sql, Integer.class, visit.getAccountId(), visit.getCheckIn());
@@ -34,6 +34,23 @@ public class JdbcVisitLogDao implements VisitLogDao {
     public boolean logCheckOut(VisitLog visit) {
         String sql = "UPDATE visit_log SET check_out = ? WHERE visit_id = ?;";
         return jdbcTemplate.update(sql, visit.getCheckOut(), visit.getVisitId()) == 1;
+    }
+
+
+    //Use twice at beginning to alert user of unfinished workout or just return ?
+    @Override
+    public List<VisitLog> isVisitCompleted(int accountId) {
+        List<VisitLog> visit = new ArrayList<>();
+        String sql = "SELECT visit_id from visit_log where date(check_in) = CURRENT_DATE and check_out IS NULL and account_id = ?;";
+        try {
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId);
+        while(result.next()) {
+            visit.add(mapRowToVisitLog(result));
+        }
+        } catch (NullPointerException e) {
+            throw e;
+        }
+        return visit;
     }
 
 

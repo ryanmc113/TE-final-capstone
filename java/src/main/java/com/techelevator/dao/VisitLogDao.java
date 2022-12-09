@@ -11,6 +11,8 @@ public interface VisitLogDao {
 
     boolean logCheckOut( VisitLog visit);
 
+    List<VisitLog> isVisitCompleted(int accountId);
+
     List<VisitLog> listAllVisits();
 
     List<VisitLog> listAllVisitsByAccountId(int accountId);
