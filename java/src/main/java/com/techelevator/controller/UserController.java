@@ -37,9 +37,9 @@ public class UserController {
 
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN)")
-    @RequestMapping(path = "/employee/account/{id}/visit/workout/{id}", method = RequestMethod.GET)
-    public List<>
+//    @PreAuthorize("hasAnyRole('ROLE_ADMIN)")
+//    @RequestMapping(path = "/employee/account/{id}/visit/workout/{id}", method = RequestMethod.GET)
+//    public List<>
 
 
 

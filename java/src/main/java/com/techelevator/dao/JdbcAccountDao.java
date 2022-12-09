@@ -37,8 +37,8 @@ public class JdbcAccountDao implements AccountDao {
         try {
             SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
             while (result.next()) {
-                accountList.add(mapRowToAccount(result));
-            }
+                accountList.add(result.getString("first_name"), result.getString("last_name"), result.getInt("user_id"));
+            }//can't use mapper function need to map each field
         } catch (Exception e) {
             throw e;
     }
@@ -51,7 +51,7 @@ public class JdbcAccountDao implements AccountDao {
     @Override
     public Account findAccountByUserId(int userId) {
         Account account = null;
-        String sql = "Select account_id, user_id, first_name, last_name, email, goal, media_url from account where user_id = ?;";
+        String sql = "Select account_id, user_id, first_name, last_name, role, email, goal, media_url from account where user_id = ?;";
         try {
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql,userId);
             if (results.next()) {
@@ -67,7 +67,7 @@ public class JdbcAccountDao implements AccountDao {
     @Override
     public Account findAccountByName(String firstName, String lastName) {
         Account account = null;
-            String sql = "SELECT account_id, user_id, first_name, last_name, email, goal, media_url FROM account WHERE firstName = ? AND lastName = ?;";
+            String sql = "SELECT account_id, user_id, first_name, last_name, role, email, goal, media_url FROM account WHERE firstName = ? AND lastName = ?;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, firstName, lastName);
             if (results.next()) {
@@ -77,6 +77,17 @@ public class JdbcAccountDao implements AccountDao {
             throw e;
         }
         return account;
+    }
+
+    @Override
+    public Account findAccountByUsername(String username){
+        String sql = "SELECT account_id, user_id, first_name, last_name, email, goal, role, media_url FROM account JOIN users using (user_id) WHERE username = ?;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, username);
+
+        if(result.next()){
+            return mapRowToAccount(result);
+        }
+        return null;
     }
 
     @Override

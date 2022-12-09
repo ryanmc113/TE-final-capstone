@@ -30,8 +30,9 @@ CREATE TABLE account (
 CREATE TABLE visit_log (
     visit_id SERIAL,
     account_id int NOT NULL,
-    check_in timestamp,
-    check_out timestamp,
+    visit_date date CURRENT_DATE,
+    check_in varchar(20),
+    check_out varchar(20),
 
     CONSTRAINT PK_visit PRIMARY KEY (visit_id),
     CONSTRAINT FK_account FOREIGN KEY (account_id) references account
