@@ -31,13 +31,14 @@ CREATE TABLE visit_log (
     visit_id SERIAL,
     account_id int NOT NULL,
     check_in timestamp,
-    check_out timestamp default CURRENT_TIMESTAMP,
+    check_out timestamp,
 
     CONSTRAINT PK_visit PRIMARY KEY (visit_id),
     CONSTRAINT FK_account FOREIGN KEY (account_id) references account
 
 );
 
+--assist help
 CREATE TABLE exercise (
     exercise_id SERIAL,
     machine boolean DEFAULT false,
@@ -46,6 +47,7 @@ CREATE TABLE exercise (
     media_url varchar(400) NOT NULL,
 
     CONSTRAINT PK_exercise PRIMARY KEY (exercise_id)
+
 	);
 
 CREATE TABLE workout_log (
@@ -55,7 +57,7 @@ CREATE TABLE workout_log (
     sets int,
     reps int,
     weight DECIMAL(5, 2),
-    timer time,
+    minutes int,
 
     CONSTRAINT PK_workout PRIMARY KEY(workout_id),
 	CONSTRAINT FK_visit FOREIGN KEY (visit_id) references visit_log,
