@@ -67,7 +67,7 @@ CREATE TABLE workout_log (
 
  CREATE TABLE class_schedule (
      class_id SERIAL,
-	 visit_id int NOT NULL,
+	 visit_id int,
      class_name varchar(50) NOT NULL,
      class_instructor varchar(50) NOT NULL,
      class_description varchar(200),
