@@ -67,7 +67,7 @@ CREATE TABLE workout_log (
 
  CREATE TABLE class_schedule (
      class_id SERIAL,
-	 visit_id int,
+	 exercise_id int,
      class_name varchar(50) NOT NULL,
      class_instructor varchar(50) NOT NULL,
      class_description varchar(200),
@@ -75,7 +75,7 @@ CREATE TABLE workout_log (
      class_day varchar(10) NOT NULL,
 
     CONSTRAINT PK_class_schedule PRIMARY KEY (class_id),
-	CONSTRAINT FK_visit_log FOREIGN KEY (visit_id) REFERENCES visit_log(visit_id)
+	CONSTRAINT FK_exercise FOREIGN KEY (exercise_id) REFERENCES exercise(exercise_id)
 
 );
 
