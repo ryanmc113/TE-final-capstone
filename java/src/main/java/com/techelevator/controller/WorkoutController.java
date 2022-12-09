@@ -34,7 +34,6 @@ public class WorkoutController {
     }
 
 
-
     //log workout (post to workout table, param will be the workoutlog object)
     @PostMapping(path = "log-workout")
     public void logWorkout(@RequestParam WorkoutLog workout) {

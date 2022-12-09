@@ -39,9 +39,18 @@ public class JdbcVisitLogDao implements VisitLogDao {
 
     //Use twice at beginning to alert user of unfinished workout or just return ?
     @Override
-    boolean isVisitComplete(int accountId) {
-        String sql = "SELECT visit_id from visit_log where check_out is null and account_id = ?;";
-
+    public List<VisitLog> isVisitCompleted(int accountId) {
+        List<VisitLog> visit = new ArrayList<>();
+        String sql = "SELECT visit_id from visit_log where date(check_in) = CURRENT_DATE and check_out IS NULL and account_id = ?;";
+        try {
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId);
+        while(result.next()) {
+            visit.add(mapRowToVisitLog(result));
+        }
+        } catch (NullPointerException e) {
+            throw e;
+        }
+        return visit;
     }
 
 

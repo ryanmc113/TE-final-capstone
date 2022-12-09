@@ -5,11 +5,10 @@ public class WorkoutLog {
     private int workoutId;
     private int visitId;
     private int exerciseId;
-    private String workoutDate;
     private int sets;
     private int reps;
     private double weight;
-    private String timer;
+    private int minutes;
 
     public int getWorkoutId() {
         return workoutId;
@@ -33,14 +32,6 @@ public class WorkoutLog {
 
     public void setExerciseId(int exerciseId) {
         this.exerciseId = exerciseId;
-    }
-
-    public String getWorkoutDate() {
-        return workoutDate;
-    }
-
-    public void setWorkoutDate(String workoutDate) {
-        this.workoutDate = workoutDate;
     }
 
     public int getSets() {
@@ -67,11 +58,11 @@ public class WorkoutLog {
         this.weight = weight;
     }
 
-    public String getTimer() {
-        return timer;
+    public int getMinutes() {
+        return minutes;
     }
 
-    public void setTimer(String timer) {
-        this.timer = timer;
+    public void setMinutes(int minutes) {
+        this.minutes = minutes;
     }
 }
