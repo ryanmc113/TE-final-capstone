@@ -7,7 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import EmployeeLogin from '../views/EmployeeLogin.vue'
 import EmployeeAccount from '../views/EmployeeAccount.vue'
-
+import MyAccountPersonal from '../views/MyAccountPersonal.vue'
 Vue.use(Router)
 
 /**
@@ -23,6 +23,15 @@ const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+    {
+      path: '/userid/personal',
+      name: "usersInfo",
+      component: MyAccountPersonal,
+      meta: {
+        requiresAuth: true
+      }
+
+    },
     {
       path: '/',
       name: 'home',

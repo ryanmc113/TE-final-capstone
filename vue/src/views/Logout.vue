@@ -5,7 +5,7 @@
 <script>
 export default {
   created() {
-    this.$store.commit("LOGOUT", "LOGOUT_EMPLOYEE");
+    this.$store.commit("LOGOUT");
     this.$router.push("/login");
   }
 };

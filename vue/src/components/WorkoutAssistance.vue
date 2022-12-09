@@ -2,7 +2,7 @@
    <div class="tile is-parent">
       <article class="tile is-child notification is-danger">
         <p class="title">Assistance</p>
-        <p class="subtitle">Aligned with the right tile</p>
+        <p class="subtitle">You got this!</p>
         <div class="content">
           <!-- Content -->
         </div>

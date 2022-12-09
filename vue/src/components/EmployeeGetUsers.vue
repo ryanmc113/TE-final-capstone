@@ -23,7 +23,7 @@
         </td>
         <!-- need to ad v-for to filter through list. look at userlist hw - event handling -->
         <tr v-for="user in filteredList" v-bind:key="user.id">
-          <td>{{ user.firstName }}</td>
+          <td>{{ user.firstName }} </td>
           <td>{{ user.lastName }}</td>
           <td>
             <button class="button" v-on:click="logging(user.status, user.id)">
@@ -85,6 +85,13 @@ export default {
           lastName: "Shouldre",
           status: "Check Out",
         },
+        {
+          id: "7",
+          firstName: "Jenn",
+          lastName: "O'Brien",
+          status: "Check Out",
+        },
+
        
       ],
        errorMsg: "",
@@ -117,7 +124,7 @@ export default {
   },
   methods: {
     getUsers() {
-      employeeService.getUsers();
+      employeeService.getUsers().then;
     },
     flipStatus(id) {
       this.allUsers.forEach((user) => {

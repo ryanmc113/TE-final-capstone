@@ -49,7 +49,7 @@ import ClassSchedule from "../components/ClassSchedule.vue";
 export default {
   components: { ClassSchedule },
   name: "todays-workout",
-  data() {},
+  
 };
 </script>
 <style scoped>
@@ -59,6 +59,7 @@ export default {
 .display {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .btn-first {
   background-color: #58d9eb !important;
