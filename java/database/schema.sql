@@ -31,7 +31,7 @@ CREATE TABLE visit_log (
     visit_id SERIAL,
     account_id int NOT NULL,
     check_in timestamp,
-    check_out timestamp default CURRENT_TIMESTAMP,
+    check_out timestamp,
 
     CONSTRAINT PK_visit PRIMARY KEY (visit_id),
     CONSTRAINT FK_account FOREIGN KEY (account_id) references account

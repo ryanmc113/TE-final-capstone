@@ -52,6 +52,8 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
         return null;
     }
 
+    //List workouts by visit (for account page) also employees can use it.
+
 
     private WorkoutLog mapRowToWorkoutLog(SqlRowSet rs){
         WorkoutLog newLog = new WorkoutLog();
