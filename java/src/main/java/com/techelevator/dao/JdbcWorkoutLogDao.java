@@ -40,6 +40,7 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
         return workoutLog;
     }
 
+    //List workouts by visit (for account page) also employees can use it.
     @Override
     public WorkoutLog getWorkoutLogById(int workoutId) {
 
@@ -52,7 +53,14 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
         return null;
     }
 
-    //List workouts by visit (for account page) also employees can use it.
+    @Override
+    public List<WorkoutLog> listAllWorkoutLogsByUserId(int userId) {
+
+
+        return null;
+    }
+
+
 
 
     private WorkoutLog mapRowToWorkoutLog(SqlRowSet rs){

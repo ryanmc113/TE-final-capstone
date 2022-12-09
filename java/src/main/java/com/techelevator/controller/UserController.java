@@ -31,11 +31,15 @@ public class UserController {
     //pulling user's visit history
     //getting all employees
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    @RequestMapping(path = "/employee/user/{id}/visit", method = RequestMethod.GET)
+    @RequestMapping(path = "/employee/account/{id}/visit", method = RequestMethod.GET)
     public List<VisitLog> getAllVisits(@PathVariable int id){
-      //  return visitDao.getVisitLogById(id);
+        return visitDao.listAllVisits();
 
     }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN)")
+    @RequestMapping(path = "/employee/account/{id}/visit/workout/{id}", method = RequestMethod.GET)
+    public List<>
 
 
 

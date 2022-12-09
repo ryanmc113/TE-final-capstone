@@ -6,6 +6,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 @Component
 public class JdbcAccountDao implements AccountDao {
@@ -24,6 +26,20 @@ public class JdbcAccountDao implements AccountDao {
         return jdbcTemplate.update(sql, account.getUserId(), account.getFirstName(), account.getLastName(), account.getEmail(),
                     account.getGoal(), account.getMediaURL()) == 1;
         }
+
+
+
+//Front-end doesn't need all info - may want to add media_url
+    @Override
+    public List<Account> listUserAccount(){
+        List <Account> accountList = new ArrayList<>();
+        String sql = "SELECT first_name, last_name, user_id FROM account;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
+        if(result.next()) {
+             accountList.add(mapRowToAccount(result));
+        }return accountList;
+    }
+
 
 
     //used for authorization login.
