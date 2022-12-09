@@ -34,10 +34,15 @@ public class JdbcAccountDao implements AccountDao {
     public List<Account> listUserAccount(){
         List <Account> accountList = new ArrayList<>();
         String sql = "SELECT first_name, last_name, user_id FROM account;";
-        SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
-        if(result.next()) {
-             accountList.add(mapRowToAccount(result));
-        }return accountList;
+        try {
+            SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
+            while (result.next()) {
+                accountList.add(mapRowToAccount(result));
+            }
+        } catch (Exception e) {
+            throw e;
+    }
+        return accountList;
     }
 
 
