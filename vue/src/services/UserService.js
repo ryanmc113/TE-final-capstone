@@ -5,7 +5,7 @@ import axios from "axios";
         axios.get(`${userId}/account`)
     },
     updateUsersInfo(user){
-        axios.put(`/account`, user)
+        axios.put("/account", user)
     },
     getVisitLog(userId){
         axios.get(`${userId}/visit-history`)
