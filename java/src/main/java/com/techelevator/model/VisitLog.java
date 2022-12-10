@@ -6,7 +6,7 @@ import java.util.Date;
 public class VisitLog {
 
     private int visitId;
-    private int accountId;
+    private int userId;
     private LocalDate visitDate;
     private String checkIn;
     private String checkOut;
@@ -27,13 +27,12 @@ public class VisitLog {
         this.visitId = visitId;
     }
 
-
-    public int getAccountId() {
-        return accountId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getCheckIn() {

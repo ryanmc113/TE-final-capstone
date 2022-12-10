@@ -22,10 +22,10 @@ public class JdbcVisitLogDao implements VisitLogDao {
     @Override
     public int logCheckIn(VisitLog visit) {
         Integer visitId;
-        String sql = "INSERT INTO visit_log (account_id,check_in) " +
-                "VALUES (?,?) RETURNING visit_id;";
+        String sql = "INSERT INTO visit_log (user_id, check_in)  " +
+                "VALUES (?, ?) RETURNING visit_id;";
         try {
-            visitId = jdbcTemplate.queryForObject(sql, Integer.class, visit.getAccountId(), visit.getCheckIn());
+            visitId = jdbcTemplate.queryForObject(sql, Integer.class, visit.getUserId(), visit.getCheckIn());
         } catch (NullPointerException e) {
             throw e;
         }
@@ -116,7 +116,7 @@ public class JdbcVisitLogDao implements VisitLogDao {
     private VisitLog mapRowToVisitLog(SqlRowSet rowSet){
         VisitLog visit = new VisitLog();
         visit.setVisitId(rowSet.getInt("visit_id"));
-        visit.setAccountId(rowSet.getInt("account_id"));
+        visit.setUserId(rowSet.getInt("user_id"));
         visit.setCheckIn(String.valueOf(rowSet.getTimestamp("check_in")));
         visit.setCheckOut(String.valueOf(rowSet.getTimestamp("check)out")));
         Date visitDateColumn = rowSet.getDate("visit_date");

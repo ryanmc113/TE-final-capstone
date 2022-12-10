@@ -18,4 +18,6 @@ public interface UserDao {
     int findIdByUsername(String username);
 
     int create(String username, String password, String role);
+
+
 }
