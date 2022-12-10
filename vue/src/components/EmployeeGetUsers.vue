@@ -45,6 +45,9 @@
 import employeeService from "../services/EmployeeService";
 export default {
   name: "employeeAccount",
+  created(){
+      this.getAllUsers()
+    },
   data() {
     return {
       allLogs: [],
@@ -82,10 +85,9 @@ export default {
       return filteredUsers;
     },
   },
+  
   methods: {
-    created(){
-      this.getAllUsers()
-    },
+    
     getAllUsers() {
       employeeService.getUsers().then(response =>
       this.allUsers = response.data);
