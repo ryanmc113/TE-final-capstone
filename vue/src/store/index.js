@@ -38,17 +38,17 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
-    },
-    SET_EMPLOYEE(state, EMPLOYEE) {
-      state.user = EMPLOYEE;
-      localStorage.setItem('employee',JSON.stringify(EMPLOYEE));
-    },
-    LOGOUT_EMPLOYEE(state) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('employee');
-      state.token = '';
-      state.user = {};
-      axios.defaults.headers.common = {};
-    },
+    }
+    // SET_EMPLOYEE(state, EMPLOYEE) {
+    //   state.user = EMPLOYEE;
+    //   localStorage.setItem('employee',JSON.stringify(EMPLOYEE));
+    // },
+    // LOGOUT_EMPLOYEE(state) {
+    //   localStorage.removeItem('token');
+    //   localStorage.removeItem('employee');
+    //   state.token = '';
+    //   state.user = {};
+    //   axios.defaults.headers.common = {};
+    // },
   }
 })
