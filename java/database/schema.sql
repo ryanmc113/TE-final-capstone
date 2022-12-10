@@ -29,13 +29,12 @@ CREATE TABLE account (
 
 CREATE TABLE visit_log (
     visit_id SERIAL,
-    account_id int NOT NULL,
-    visit_date date CURRENT_DATE,
-    check_in time,
-    check_out time,
+    user_id int NOT NULL,
+    check_in timestamp,
+    check_out timestamp,
 
     CONSTRAINT PK_visit PRIMARY KEY (visit_id),
-    CONSTRAINT FK_account FOREIGN KEY (account_id) references account
+    CONSTRAINT FK_user FOREIGN KEY (user_id) references users
 
 );
 

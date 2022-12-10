@@ -47,7 +47,7 @@ public class AccountController {
     }
 
     //show workout for a certain date
-    @GetMapping(path = "/{id}/visit-history/day")
+    @GetMapping(path = "/visit-history/{id}")
     public List<VisitLog> getUsersVisitsByDate(@PathVariable int id){
         return visitLogDao.getUsersVisitsByDate(id);
     }

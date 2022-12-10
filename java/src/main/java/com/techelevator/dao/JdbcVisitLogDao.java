@@ -22,10 +22,10 @@ public class JdbcVisitLogDao implements VisitLogDao {
     @Override
     public int logCheckIn(VisitLog visit) {
         Integer visitId;
-        String sql = "INSERT INTO visit_log (account_id,check_in) " +
-                "VALUES (?,?) RETURNING visit_id;";
+        String sql = "INSERT INTO visit_log (user_id, check_in)  " +
+                "VALUES (?, ?) RETURNING visit_id;";
         try {
-            visitId = jdbcTemplate.queryForObject(sql, Integer.class, visit.getAccountId(), visit.getCheckIn());
+            visitId = jdbcTemplate.queryForObject(sql, Integer.class, visit.getUserId(), visit.getCheckIn());
         } catch (NullPointerException e) {
             throw e;
         }
@@ -43,7 +43,7 @@ public class JdbcVisitLogDao implements VisitLogDao {
     @Override
     public List<VisitLog> isVisitCompleted(int accountId) {
         List<VisitLog> visit = new ArrayList<>();
-        String sql = "SELECT visit_id from visit_log where visit_date = CURRENT_DATE and check_out IS NULL and account_id = ?;";
+        String sql = "SELECT visit_id from visit_log where time(check-in) = CURRENT_DATE and check_out IS NULL and account_id = ?;";
         try {
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId);
         while(result.next()) {
@@ -101,7 +101,7 @@ public class JdbcVisitLogDao implements VisitLogDao {
     public List<VisitLog> getUsersVisitsByDate(int accountId){
         List<VisitLog> visitsByDate = new ArrayList<>();
 
-        String sql = "SELECT visit_id, account_id, check_in, check_out, visit_date FROM visit_log WHERE account_id = ? ORDER BY visit_date DESC ;";
+        String sql = "SELECT visit_id, account_id, check_in, check_out FROM visit_log WHERE account_id = ? ORDER BY date(check_in) DESC ;";
 
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId);
 
@@ -116,7 +116,7 @@ public class JdbcVisitLogDao implements VisitLogDao {
     private VisitLog mapRowToVisitLog(SqlRowSet rowSet){
         VisitLog visit = new VisitLog();
         visit.setVisitId(rowSet.getInt("visit_id"));
-        visit.setAccountId(rowSet.getInt("account_id"));
+        visit.setUserId(rowSet.getInt("user_id"));
         visit.setCheckIn(String.valueOf(rowSet.getTimestamp("check_in")));
         visit.setCheckOut(String.valueOf(rowSet.getTimestamp("check)out")));
         Date visitDateColumn = rowSet.getDate("visit_date");
