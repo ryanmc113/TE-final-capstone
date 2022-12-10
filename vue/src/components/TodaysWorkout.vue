@@ -22,13 +22,15 @@
                 class="input int2"
                 type="text"
                 placeholder="Sets"
+                v-model="exercise.sets"
               />&nbsp;X&nbsp;
               <input
                 class="input int2"
                 type="text"
                 placeholder="Reps"
+                v-model="exercise.reps"
               />&nbsp;:&nbsp;
-              <input class="input int2" type="text" placeholder="weight/time" />
+              <input class="input int2" type="text" placeholder="weight/time" v-model="exercise.metric" />
             </div>
           </div>
           <button class="button is-link btn-first">Add</button>
@@ -55,7 +57,8 @@ export default {
       exercise:{
         name:"",
         sets:"",
-        reps:""
+        reps:"",
+        metric:""
       }
     }
   },

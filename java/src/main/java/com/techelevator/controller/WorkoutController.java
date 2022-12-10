@@ -38,7 +38,7 @@ public class WorkoutController {
     public int logVisitCheckIn(@RequestBody VisitLog visit, Principal principal) {
       //@RequestParam int account_id, @RequestParam String checkInTime
         Account memberAccount = accountDao.findAccountByUsername(principal.getName());
-        if (memberAccount == null || memberAccount.getAccountId() != visit.getAccountId()){
+        if (memberAccount == null){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Log in to your account");
         }
         return visitLogDao.logCheckIn(visit);
