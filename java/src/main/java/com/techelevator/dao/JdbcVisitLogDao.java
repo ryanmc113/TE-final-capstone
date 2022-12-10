@@ -43,7 +43,7 @@ public class JdbcVisitLogDao implements VisitLogDao {
     @Override
     public List<VisitLog> isVisitCompleted(int accountId) {
         List<VisitLog> visit = new ArrayList<>();
-        String sql = "SELECT visit_id from visit_log where visit_date = CURRENT_DATE and check_out IS NULL and account_id = ?;";
+        String sql = "SELECT visit_id from visit_log where time(check-in) = CURRENT_DATE and check_out IS NULL and account_id = ?;";
         try {
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId);
         while(result.next()) {
@@ -101,7 +101,7 @@ public class JdbcVisitLogDao implements VisitLogDao {
     public List<VisitLog> getUsersVisitsByDate(int accountId){
         List<VisitLog> visitsByDate = new ArrayList<>();
 
-        String sql = "SELECT visit_id, account_id, check_in, check_out, visit_date FROM visit_log WHERE account_id = ? ORDER BY visit_date DESC ;";
+        String sql = "SELECT visit_id, account_id, check_in, check_out FROM visit_log WHERE account_id = ? ORDER BY date(check_in) DESC ;";
 
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId);
 
