@@ -1,19 +1,19 @@
 import axios from "axios";
 
 export default{
-    getWorkouts(userId, workoutId){
-        axios.get(`${userId}/visit-history/${workoutId}`)
-    },
-    addCheckInTime(user){
-        return axios.post("/log/visit", user)
+    // addCheckInTime(id, checkInTime){
+    //     return axios.post(`/log/visit/${id}`, checkInTime)
+    // },
+    addCheckInTime(checkInTime){
+        return axios.post(`workouts/check-in`, checkInTime)
     },
     
     //the path to add an exercise to a visit(do we need userID or visitID)
-    addExercise(){
-        return axios.post("/")
+    addExercise(exercise, id){
+        return axios.post('workouts/log-workout', exercise,id)
     },
 
-    updateCheckOut(){
-        return axios.put("/")
+    updateCheckOut(checkOutTime){
+        return axios.put('workouts/check-out', checkOutTime)
     }
 }
