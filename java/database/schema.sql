@@ -53,7 +53,7 @@ CREATE TABLE exercise (
 CREATE TABLE workout_log (
     workout_id SERIAL,
     visit_id int NOT NULL,
-    name varchar(50) NOT NULL,
+    exercise_id int,
     sets int,
     reps int,
     weight DECIMAL(5, 2),
