@@ -22,12 +22,17 @@
           <input class="input" type="text" id="lastNameFilter" v-model="findUser.lastName" />
         </td>
         <!-- need to ad v-for to filter through list. look at userlist hw - event handling -->
-        <tr v-for="user in filteredList" v-bind:key="user.id">
-          <td>{{ user.firstName }} </td>
-          <td>{{ user.lastName }}</td>
+        <tr v-for="account in filteredList" v-bind:key="account.userId">
+          <td>{{ account.firstName }} </td>
+          <td>{{ account.lastName }}</td>
           <td>
             <button class="button" v-on:click="logging(user.status, user.id)">
               {{ user.status === "Check In" ? "Check Out" : "Check In" }}
+            </button>
+          </td>
+           <td>
+            <button class="button">
+              <router-link v-bind:to="{ name: 'employee-view-user-history' }"> View Workouts</router-link>
             </button>
           </td>
         </tr>
@@ -40,6 +45,9 @@
 import employeeService from "../services/EmployeeService";
 export default {
   name: "employeeAccount",
+  created(){
+      this.getAllUsers()
+    },
   data() {
     return {
       allLogs: [],
@@ -48,52 +56,7 @@ export default {
         timeIn: null,
         timeOut: null,
       },
-      allUsers: [
-        {
-          id: "1",
-          firstName: "David",
-          lastName: "Sikes",
-          status: "Check Out",
-        },
-        {
-          id: "2",
-          firstName: "Ryan",
-          lastName: "McUmber",
-          status: "Check Out",
-        },
-        {
-          id: "3",
-          firstName: "Sarah",
-          lastName: "Noh",
-          status: "Check Out",
-        },
-        {
-          id: "4",
-          firstName: "John",
-          lastName: "Wayne",
-          status: "Check Out",
-        },
-        {
-          id: "5",
-          firstName: "Deborah",
-          lastName: "Lorde",
-          status: "Check Out",
-        },
-        {
-          id: "6",
-          firstName: "John",
-          lastName: "Shouldre",
-          status: "Check Out",
-        },
-        {
-          id: "7",
-          firstName: "Jenn",
-          lastName: "O'Brien",
-          status: "Check Out",
-        },
-
-       
-      ],
+      allUsers: [],
        errorMsg: "",
       findUser: {
         firstName: "",
@@ -122,8 +85,10 @@ export default {
       return filteredUsers;
     },
   },
+  
   methods: {
-    getUsers() {
+    
+    getAllUsers() {
       employeeService.getUsers().then(response =>
       this.allUsers = response.data);
     },

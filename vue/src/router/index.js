@@ -9,6 +9,8 @@ import EmployeeLogin from '../views/EmployeeLogin.vue'
 import EmployeeAccount from '../views/EmployeeAccount.vue'
 import MyAccountPersonal from '../views/MyAccountPersonal.vue'
 import MyAccountWorkoutHistory from '../views/MyAccountWorkoutHistory.vue'
+import EmployeeGetDays from '../views/EmployeeGetDays.vue'
+import EmployeeGetWorkouts from '../views/EmployeeGetWorkouts.vue'
 Vue.use(Router)
 
 /**
@@ -24,8 +26,9 @@ const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+    
     {
-      path: '/account/history',
+      path: '/history',
       name: "userHistory",
       component: MyAccountWorkoutHistory,
       meta: {
@@ -34,7 +37,7 @@ const router = new Router({
 
     },
     {
-      path: '/account/personal',
+      path: '/personal',
       name: "usersInfo",
       component: MyAccountPersonal,
       meta: {
@@ -47,7 +50,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -87,8 +90,27 @@ const router = new Router({
       name:"employee-account",
       component: EmployeeAccount,
       meta:{
-        requiresAuth: true
+        requiresAuth: true,
+        requiresRole: false
       }
+    },
+    {
+      path:"/employee/:id/history",
+      name:"employee-view-user-history",
+      component: EmployeeGetDays,
+      meta: {
+        requiresAuth: true,
+        requiresRole: false
+      }
+    },
+    {
+    path:"employee/:id/history:id",
+    name: "employee-view-user-workout",
+    component: EmployeeGetWorkouts,
+    meta: {
+      requiresAuth: true,
+      requiresRole: false
+    }
     }
   ]
 })
@@ -96,11 +118,18 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   // Determine if the route requires Authentication
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
+  const requiresRole = to.matched.some(x => x.meta.requiresRole);
+  // const requiredRole = to.matched.some(x => x.meta.requiredRole);
 
   // If it does and they are not logged in, send the user to "/login"
+  //also requires a role redirect to login && role ===''
   if (requiresAuth && store.state.token === '') {
     next("/login");
-  } else {
+   } 
+  else if (requiresRole && !store.state.user.role.includes("EMPLOYEE")) {
+    next('/login');
+  } 
+  else {
     // Else let them go to their next destination
     next();
   }
