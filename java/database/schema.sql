@@ -34,7 +34,7 @@ CREATE TABLE visit_log (
     check_out timestamp,
 
     CONSTRAINT PK_visit PRIMARY KEY (visit_id),
-    CONSTRAINT FK_account FOREIGN KEY (user_id) references users
+    CONSTRAINT FK_user FOREIGN KEY (user_id) references users
 
 );
 
