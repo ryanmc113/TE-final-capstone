@@ -37,8 +37,12 @@ public class JdbcAccountDao implements AccountDao {
         try {
             SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
             while (result.next()) {
-                accountList.add(result.getString("first_name"), result.getString("last_name"), result.getInt("user_id"));
-            }//can't use mapper function need to map each field
+                Account newAccount = new Account();
+                newAccount.setFirstName(result.getString("first_name"));
+                newAccount.setLastName(result.getString("last_name"));
+                newAccount.setUserId(result.getInt("user_id"));
+                accountList.add(newAccount);
+            }
         } catch (Exception e) {
             throw e;
     }
@@ -67,7 +71,7 @@ public class JdbcAccountDao implements AccountDao {
     @Override
     public Account findAccountByName(String firstName, String lastName) {
         Account account = null;
-            String sql = "SELECT account_id, user_id, first_name, last_name, role, email, goal, media_url FROM account WHERE firstName = ? AND lastName = ?;";
+            String sql = "SELECT account_id, user_id, first_name, last_name, email, goal, media_url FROM account WHERE firstName = ? AND lastName = ?;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, firstName, lastName);
             if (results.next()) {
@@ -81,7 +85,7 @@ public class JdbcAccountDao implements AccountDao {
 
     @Override
     public Account findAccountByUsername(String username){
-        String sql = "SELECT account_id, user_id, first_name, last_name, email, goal, role, media_url FROM account JOIN users using (user_id) WHERE username = ?;";
+        String sql = "SELECT account_id, user_id, first_name, last_name, email, goal, media_url FROM account JOIN users using (user_id) WHERE username = ?;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, username);
 
         if(result.next()){
@@ -89,6 +93,7 @@ public class JdbcAccountDao implements AccountDao {
         }
         return null;
     }
+
 
     @Override
     public void updateAccount(Account account) {
@@ -104,7 +109,6 @@ public class JdbcAccountDao implements AccountDao {
         Account account = new Account();
         account.setAccountId(rs.getInt("account_id"));
         account.setUserId(rs.getInt("user_id"));
-        account.setRole(rs.getString("role"));
         account.setFirstName(rs.getString("first_name"));
         account.setLastName(rs.getString("last_name"));
         account.setEmail(rs.getString("email"));

@@ -11,7 +11,7 @@ public interface UserDao {
 
     User getUserById(int userId);
 
-
+    public void updateUserToEmployee(User user, int userId);
 
     User findByUsername(String username);
 

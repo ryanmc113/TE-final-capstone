@@ -5,6 +5,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 @Component
@@ -36,12 +38,12 @@ public class JdbcVisitLogDao implements VisitLogDao {
         return jdbcTemplate.update(sql, visit.getCheckOut(), visit.getVisitId()) == 1;
     }
 
-
+//Method needs to map all fields to use mapper method
     //Use twice at beginning to alert user of unfinished workout or just return ?
     @Override
     public List<VisitLog> isVisitCompleted(int accountId) {
         List<VisitLog> visit = new ArrayList<>();
-        String sql = "SELECT visit_id from visit_log where date(check_in) = CURRENT_DATE and check_out IS NULL and account_id = ?;";
+        String sql = "SELECT visit_id from visit_log where visit_date = CURRENT_DATE and check_out IS NULL and account_id = ?;";
         try {
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId);
         while(result.next()) {
@@ -114,10 +116,14 @@ public class JdbcVisitLogDao implements VisitLogDao {
     private VisitLog mapRowToVisitLog(SqlRowSet rowSet){
         VisitLog visit = new VisitLog();
         visit.setVisitId(rowSet.getInt("visit_id"));
-        //add date here!!!
         visit.setAccountId(rowSet.getInt("account_id"));
         visit.setCheckIn(String.valueOf(rowSet.getTimestamp("check_in")));
         visit.setCheckOut(String.valueOf(rowSet.getTimestamp("check)out")));
+        Date visitDateColumn = rowSet.getDate("visit_date");
+        if (visitDateColumn != null){
+            LocalDate visitDate = visitDateColumn.toLocalDate();
+            visit.setVisitDate(visitDate);
+        }
 
         return visit;
     }
