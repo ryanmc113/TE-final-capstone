@@ -38,8 +38,8 @@ public class WorkoutController {
     @PostMapping(path = "check-in")
     public int logVisitCheckIn(@RequestBody VisitLog visit, Principal principal) {
       //@RequestParam int account_id, @RequestParam String checkInTime
-        User memberAccount = userDao.findByUsername(principal.getName());
-        if (memberAccount == null || memberAccount.getId() != visit.getUserId()){
+        User member = userDao.findByUsername(principal.getName());
+        if (member == null){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Log in to your account");
         }
         return visitLogDao.logCheckIn(visit);
