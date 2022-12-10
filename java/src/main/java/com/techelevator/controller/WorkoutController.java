@@ -1,37 +1,66 @@
 package com.techelevator.controller;
 
+import com.techelevator.dao.AccountDao;
 import com.techelevator.dao.VisitLogDao;
 import com.techelevator.dao.WorkoutLogDao;
+import com.techelevator.model.Account;
 import com.techelevator.model.VisitLog;
 import com.techelevator.model.WorkoutLog;
 import com.techelevator.model.WorkoutMetrics;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.security.Principal;
 
 
 @CrossOrigin
+@PreAuthorize("isAuthenticated()")
 @RequestMapping("/workouts/")
+@RestController
+
 public class WorkoutController {
 
 
     VisitLogDao visitLogDao;
     WorkoutLogDao workoutLogDao;
+    AccountDao accountDao;
 
-    public WorkoutController( VisitLogDao visitLogDao, WorkoutLogDao workoutLogDao) {
+    public WorkoutController( VisitLogDao visitLogDao, WorkoutLogDao workoutLogDao, AccountDao accountDao) {
         this.visitLogDao = visitLogDao;
         this.workoutLogDao = workoutLogDao;
+        this.accountDao = accountDao;
     }
 
-    // log visit (post to visitlog table)
-    //*****may need to remove default current_times
-    @PostMapping(path = "log-visit")
-    public void logVisit(@RequestParam VisitLog visit) {
-        visitLogDao.logVisit(visit);
+    // log check-in and return visit_id, which is needed to log individual exercises
+    @PostMapping(path = "check-in")
+    public int logVisitCheckIn(@RequestBody VisitLog visit, Principal principal) {
+      //@RequestParam int account_id, @RequestParam String checkInTime
+        Account memberAccount = accountDao.findAccountByUsername(principal.getName());
+        if (memberAccount == null || memberAccount.getAccountId() != visit.getAccountId()){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Log in to your account");
+        }
+        return visitLogDao.logCheckIn(visit);
+    }
+
+    @PutMapping(path = "check-out")
+    public void logVisitCheckOut(@RequestBody VisitLog visit, Principal principal) {
+        Account memberAccount = accountDao.findAccountByUsername(principal.getName());
+        if(memberAccount == null || memberAccount.getAccountId() != visit.getAccountId()){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Log in for access!");
+        }
+        visitLogDao.logCheckOut(visit);
     }
 
 
     //log workout (post to workout table, param will be the workoutlog object)
     @PostMapping(path = "log-workout")
-    public void logWorkout(@RequestParam WorkoutLog workout) {
+    public void logWorkout(@RequestBody WorkoutLog workout, Principal principal) {
+        Account memberAccount = accountDao.findAccountByUsername(principal.getName());
+        if(memberAccount == null || memberAccount.getAccountId() != workout.getVisitId()){
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Log in to record workout!");
+        }
         workoutLogDao.logWorkout(workout);
     }
 

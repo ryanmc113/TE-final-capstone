@@ -30,14 +30,16 @@ CREATE TABLE account (
 CREATE TABLE visit_log (
     visit_id SERIAL,
     account_id int NOT NULL,
-    check_in timestamp,
-    check_out timestamp default CURRENT_TIMESTAMP,
+    visit_date date CURRENT_DATE,
+    check_in time,
+    check_out time,
 
     CONSTRAINT PK_visit PRIMARY KEY (visit_id),
     CONSTRAINT FK_account FOREIGN KEY (account_id) references account
 
 );
 
+--assist help
 CREATE TABLE exercise (
     exercise_id SERIAL,
     machine boolean DEFAULT false,
@@ -46,6 +48,7 @@ CREATE TABLE exercise (
     media_url varchar(400) NOT NULL,
 
     CONSTRAINT PK_exercise PRIMARY KEY (exercise_id)
+
 	);
 
 CREATE TABLE workout_log (
@@ -55,7 +58,7 @@ CREATE TABLE workout_log (
     sets int,
     reps int,
     weight DECIMAL(5, 2),
-    timer time,
+    minutes int,
 
     CONSTRAINT PK_workout PRIMARY KEY(workout_id),
 	CONSTRAINT FK_visit FOREIGN KEY (visit_id) references visit_log,
@@ -66,8 +69,9 @@ CREATE TABLE workout_log (
 );
 
  CREATE TABLE class_schedule (
+
      class_id SERIAL,
-	 visit_id int NOT NULL,
+	 exercise_id int,
      class_name varchar(50) NOT NULL,
      class_instructor varchar(50) NOT NULL,
      class_description varchar(200),
@@ -75,7 +79,7 @@ CREATE TABLE workout_log (
      class_day varchar(10) NOT NULL,
 
     CONSTRAINT PK_class_schedule PRIMARY KEY (class_id),
-	CONSTRAINT FK_visit_log FOREIGN KEY (visit_id) REFERENCES visit_log(visit_id)
+	CONSTRAINT FK_exercise FOREIGN KEY (exercise_id) REFERENCES exercise(exercise_id)
 
 );
 

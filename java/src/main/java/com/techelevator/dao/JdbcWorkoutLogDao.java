@@ -4,10 +4,11 @@ import com.techelevator.model.VisitLog;
 import com.techelevator.model.WorkoutLog;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class JdbcWorkoutLogDao implements WorkoutLogDao{
 
     private final JdbcTemplate jdbcTemplate;
@@ -18,10 +19,11 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
 
     @Override
     public boolean logWorkout(WorkoutLog workoutLog) {
-        String sql = "INSERT INTO workout_log (visit_id, exercise_id, workout_date, sets, reps, weight, timer) " +
+        String sql = "INSERT INTO workout_log (visit_id, exercise_id, sets, reps, weight, minutes) " +
                 "VALUES (?, ?, ?, ?, ?, ?);";
         return jdbcTemplate.update(sql, workoutLog.getExerciseId()) == 1;
     }
+
 
 
     @Override
@@ -40,6 +42,7 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
         return workoutLog;
     }
 
+    //List workouts by visit (for account page) also employees can use it.
     @Override
     public WorkoutLog getWorkoutLogById(int workoutId) {
 
@@ -52,17 +55,33 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
         return null;
     }
 
+    //Listing workouts by accountId to show all workouts
+
+    @Override
+    public List<WorkoutLog> listAllWorkoutLogsByAccountId(int accountId) {
+        List <WorkoutLog> workout = new ArrayList<>();
+        String sql = "SELECT * FROM workout_log JOIN exercise USING (exercise_id)" +
+                "JOIN visit_log USING (visit_id) WHERE account_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, accountId);
+
+        if (results.next()){
+             workout.add(mapRowToWorkoutLog(results));
+        }
+        return workout;
+    }
+
+
+
 
     private WorkoutLog mapRowToWorkoutLog(SqlRowSet rs){
         WorkoutLog newLog = new WorkoutLog();
         newLog.setWorkoutId(rs.getInt("workout_id"));
         newLog.setVisitId(rs.getInt("visit_id"));
         newLog.setExerciseId(rs.getInt("exercise_id"));
-        newLog.setWorkoutDate(String.valueOf(rs.getDate("workout_date")));
         newLog.setSets(rs.getInt("sets"));
         newLog.setReps(rs.getInt("reps"));
         newLog.setWeight(rs.getDouble("weight"));
-        newLog.setTimer(String.valueOf(rs.getTime("timer")));
+        newLog.setMinutes(rs.getInt("minutes"));
 
         return newLog;
     }

@@ -1,19 +1,32 @@
 package com.techelevator.model;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 public class VisitLog {
 
-    private int workoutId;
+    private int visitId;
     private int accountId;
+    private LocalDate visitDate;
     private String checkIn;
     private String checkOut;
 
-    public int getWorkoutId() {
-        return workoutId;
+    public LocalDate getVisitDate() {
+        return visitDate;
     }
 
-    public void setWorkoutId(int workoutId) {
-        this.workoutId = workoutId;
+    public void setVisitDate(LocalDate visitDate) {
+        this.visitDate = visitDate;
     }
+
+    public int getVisitId() {
+        return visitId;
+    }
+
+    public void setVisitId(int visitId) {
+        this.visitId = visitId;
+    }
+
 
     public int getAccountId() {
         return accountId;

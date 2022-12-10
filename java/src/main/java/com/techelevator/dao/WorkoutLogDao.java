@@ -12,7 +12,7 @@ public interface WorkoutLogDao {
 
     WorkoutLog getWorkoutLogById(int workoutId);
 
-
+    List<WorkoutLog> listAllWorkoutLogsByAccountId(int accountId);
 
 
 

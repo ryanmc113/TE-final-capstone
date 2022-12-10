@@ -15,6 +15,7 @@ public class User {
    @JsonIgnore
    private boolean activated;
    private Set<Authority> authorities = new HashSet<>();
+   private String role;
 
    public User() { }
 
@@ -28,6 +29,14 @@ public class User {
 
    public int getId() {
       return id;
+   }
+
+   public String getRole() {
+      return role;
+   }
+
+   public void setRole(String role) {
+      this.role = role;
    }
 
    public void setId(int id) {
