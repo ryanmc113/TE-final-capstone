@@ -18,11 +18,11 @@ export default {
         return{
             workoutDays: [
                 {id: "1",
-                time: ""},
+                time: "January 1st"},
                  {id: "2",
-                time: " "},
+                time: " january 2nd"},
                  {id: "3",
-                time: ""}
+                time: "january 9th"}
             ]
         }
     },
