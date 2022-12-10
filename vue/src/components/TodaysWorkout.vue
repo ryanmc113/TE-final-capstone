@@ -45,11 +45,31 @@
 
 <script>
 import ClassSchedule from "../components/ClassSchedule.vue";
+import workoutService from "../services/WorkoutService"
 // import userService from '@vue/composition-api'
 export default {
   components: { ClassSchedule },
   name: "todays-workout",
-  data() {},
+  data() {
+    return{
+      exercise:{
+        name:"",
+        sets:"",
+        reps:""
+      }
+    }
+  },
+  methods:{
+    addCurrentExercise(){
+      workoutService
+      .addExercise(this.exercise)
+      .then((response)=>{
+        if(response.status == 200){
+          this.exercise = response.data;
+        }
+      })
+    }
+  }
 };
 </script>
 <style scoped>

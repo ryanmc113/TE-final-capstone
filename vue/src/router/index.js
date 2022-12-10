@@ -28,7 +28,7 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
     {
@@ -68,7 +68,8 @@ const router = new Router({
       name:"employee-account",
       component: EmployeeAccount,
       meta:{
-        requiresAuth: true
+        requiresAuth: true,
+        requiredRole: 'ROLE_EMPLOYEE'
       }
     }
   ]
@@ -77,11 +78,17 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   // Determine if the route requires Authentication
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
+  // const requiredRole = to.matched.some(x => x.meta.requiredRole);
 
   // If it does and they are not logged in, send the user to "/login"
+  //also requires a role redirect to login && role ===''
   if (requiresAuth && store.state.token === '') {
     next("/login");
-  } else {
+  } 
+  // else if (requiredRole && !store.state.user.authorities.includes()) {
+  //   next('/login');
+  // } 
+  else {
     // Else let them go to their next destination
     next();
   }
