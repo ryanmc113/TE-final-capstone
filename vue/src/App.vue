@@ -1,7 +1,15 @@
 
 <template>
   <div id="app">
+    
     <div id="nav" class="to-the-right">
+      <router-link
+    id="to-the-left"
+        class="button is-primary"
+        v-bind:to="{ name: 'logout' }"
+        v-if="$store.state.token != ''"
+        >Logout</router-link
+      >
       <router-link
         class="button is-warning"
         v-bind:to="{ name: 'home' }"
@@ -21,13 +29,13 @@
         v-if="$store.state.token == ''"
         >Need an account?</router-link
       >
-
       <router-link
         class="button is-primary"
-        v-bind:to="{ name: 'logout' }"
+        v-bind:to="{ name: 'usersInfo' }"
         v-if="$store.state.token != ''"
-        >Logout</router-link
+        >My Account</router-link
       >
+      
     </div>
     <router-view />
     <div class="content has-text-centered" id="theFoot">
@@ -43,6 +51,12 @@
 </template>
 
 <style>
+
+.to-the-left {
+  
+  justify-content: flex-start !important;
+  
+}
 .to-the-right {
   display: flex;
   justify-content: flex-end;

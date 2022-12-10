@@ -124,7 +124,8 @@ export default {
   },
   methods: {
     getUsers() {
-      employeeService.getUsers().then;
+      employeeService.getUsers().then(response =>
+      this.allUsers = response.data);
     },
     flipStatus(id) {
       this.allUsers.forEach((user) => {
