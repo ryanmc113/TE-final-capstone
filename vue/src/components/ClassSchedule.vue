@@ -3,8 +3,8 @@
       <div class="calendar">
         <div class="front">
           <div class="current-date">
-            <h1>Friday 15th</h1>
-            <h1>January 2016</h1> 
+            <h1>Thursday 8th</h1>
+            <h1>December 2022</h1> 
           </div>
 
           <div class="current-month">
@@ -20,10 +20,11 @@
 
             <div class="weeks">
               <div class="first">
+                <span class="last-month">27</span>
                 <span class="last-month">28</span>
                 <span class="last-month">29</span>
                 <span class="last-month">30</span>
-                <span class="last-month">31</span>
+              
                 <span>01</span>
                 <span>02</span>
                 <span>03</span>
@@ -34,7 +35,7 @@
                 <span>05</span>
                 <span class="event">06</span>
                 <span>07</span>
-                <span>08</span>
+                <span >08</span>
                 <span>09</span>
                 <span>10</span>
               </div>
@@ -44,7 +45,7 @@
                 <span>12</span>
                 <span>13</span>
                 <span>14</span>
-                <span class="active">15</span>
+                <span>15</span>
                 <span>16</span>
                 <span>17</span>
               </div>

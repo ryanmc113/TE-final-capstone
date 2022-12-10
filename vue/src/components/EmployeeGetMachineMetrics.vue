@@ -12,7 +12,9 @@
       <tbody>
         <tr v-for="machine in allMachines" v-bind:key="machine.machineName">
           <td>{{ machine.machineName }}</td>
-          <br>
+          &nbsp;
+          &nbsp;
+          &nbsp;
           <td>{{ machine.machineUsers }}</td>
         </tr>
       </tbody>

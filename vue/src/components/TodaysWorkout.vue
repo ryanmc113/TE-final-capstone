@@ -79,6 +79,7 @@ export default {
 .display {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .btn-first {
   background-color: #58d9eb !important;
