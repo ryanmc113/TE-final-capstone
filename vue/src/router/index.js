@@ -24,8 +24,9 @@ const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+    
     {
-      path: '/account/history',
+      path: '/history',
       name: "userHistory",
       component: MyAccountWorkoutHistory,
       meta: {
@@ -34,7 +35,7 @@ const router = new Router({
 
     },
     {
-      path: '/account/personal',
+      path: '/personal',
       name: "usersInfo",
       component: MyAccountPersonal,
       meta: {
