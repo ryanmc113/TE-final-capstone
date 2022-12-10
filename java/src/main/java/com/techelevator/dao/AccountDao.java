@@ -17,6 +17,9 @@ public interface AccountDao {
 
     List<Account> listUserAccount();
 
+    Account findAccountByUsername(String username);
+
+
 
     }
 

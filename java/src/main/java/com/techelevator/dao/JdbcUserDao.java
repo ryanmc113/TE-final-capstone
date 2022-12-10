@@ -89,6 +89,18 @@ public class JdbcUserDao implements UserDao {
         return userId;
     }
 
+
+    @Override
+    public void updateUserToEmployee(User user, int userId){
+        String sql = "UPDATE users SET role = 'Employee' where user_id = ?;";
+        try{
+            jdbcTemplate.update(sql, userId, user.getRole());
+        } catch (Exception e){
+            throw e;
+        }
+    }
+
+
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
         user.setId(rs.getInt("user_id"));
@@ -96,6 +108,7 @@ public class JdbcUserDao implements UserDao {
         user.setPassword(rs.getString("password_hash"));
         user.setAuthorities(Objects.requireNonNull(rs.getString("role")));
         user.setActivated(true);
+        user.setRole(rs.getString("role"));
         return user;
     }
 }

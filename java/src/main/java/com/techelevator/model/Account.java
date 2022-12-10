@@ -4,7 +4,6 @@ public class Account {
 
     private int accountId;
     private int userId;
-    private String role;
     private String firstName;
     private String lastName;
     private String email;
@@ -19,6 +18,7 @@ public class Account {
         this.accountId = accountId;
     }
 
+
     public int getUserId() {
         return userId;
     }
@@ -27,13 +27,6 @@ public class Account {
         this.userId = userId;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     public String getFirstName() {
         return firstName;
