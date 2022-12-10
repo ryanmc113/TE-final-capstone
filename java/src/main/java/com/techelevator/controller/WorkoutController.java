@@ -1,12 +1,10 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.AccountDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.dao.VisitLogDao;
 import com.techelevator.dao.WorkoutLogDao;
-import com.techelevator.model.Account;
-import com.techelevator.model.VisitLog;
-import com.techelevator.model.WorkoutLog;
-import com.techelevator.model.WorkoutMetrics;
+import com.techelevator.model.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -25,11 +23,14 @@ public class WorkoutController {
 
     VisitLogDao visitLogDao;
     WorkoutLogDao workoutLogDao;
+    UserDao userDao;
     AccountDao accountDao;
 
-    public WorkoutController( VisitLogDao visitLogDao, WorkoutLogDao workoutLogDao, AccountDao accountDao) {
+
+    public WorkoutController( VisitLogDao visitLogDao, WorkoutLogDao workoutLogDao, UserDao userDao, AccountDao accountDao) {
         this.visitLogDao = visitLogDao;
         this.workoutLogDao = workoutLogDao;
+        this.userDao = userDao;
         this.accountDao = accountDao;
     }
 
@@ -37,8 +38,8 @@ public class WorkoutController {
     @PostMapping(path = "check-in")
     public int logVisitCheckIn(@RequestBody VisitLog visit, Principal principal) {
       //@RequestParam int account_id, @RequestParam String checkInTime
-        Account memberAccount = accountDao.findAccountByUsername(principal.getName());
-        if (memberAccount == null || memberAccount.getAccountId() != visit.getAccountId()){
+        User memberAccount = userDao.findByUsername(principal.getName());
+        if (memberAccount == null || memberAccount.getId() != visit.getUserId()){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Log in to your account");
         }
         return visitLogDao.logCheckIn(visit);
@@ -46,8 +47,8 @@ public class WorkoutController {
 
     @PutMapping(path = "check-out")
     public void logVisitCheckOut(@RequestBody VisitLog visit, Principal principal) {
-        Account memberAccount = accountDao.findAccountByUsername(principal.getName());
-        if(memberAccount == null || memberAccount.getAccountId() != visit.getAccountId()){
+        User memberAccount = userDao.findByUsername(principal.getName());
+        if (memberAccount == null || memberAccount.getId() != visit.getUserId()){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Log in for access!");
         }
         visitLogDao.logCheckOut(visit);
