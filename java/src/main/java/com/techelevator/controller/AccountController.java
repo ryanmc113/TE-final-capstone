@@ -62,5 +62,9 @@ public class AccountController {
     //save calendar event
 
     // list all accounts
+    @GetMapping(path = "/employee/users")
+    public List<Account> getUsers(){
+        return accountDao.listUserAccount();
+    }
 
 }

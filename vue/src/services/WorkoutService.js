@@ -1,6 +1,9 @@
 import axios from "axios";
 
 export default{
+    getWorkouts(userId, workoutId){
+        axios.get(`${userId}/visit-history/${workoutId}`)
+    },
     addCheckInTime(user){
         return axios.post('/log/visit', user)
     },
