@@ -11,12 +11,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
 @CrossOrigin
 @PreAuthorize("isAuthenticated()")
-@RequestMapping("/account/")
+@RequestMapping("/account")
 public class AccountController {
 
 
@@ -29,13 +30,13 @@ public class AccountController {
     }
 
 
-    @PutMapping(path = "profile")
+    @PutMapping(path = "/profile")
     public void updateProfile(@RequestBody Account account) {
         accountDao.updateAccount(account);
     }
 
 
-    @GetMapping(path = "{id}")
+    @GetMapping(path = "/x{id}")
     public String stop(){
         return null;
     }
@@ -56,7 +57,11 @@ public class AccountController {
         //if Principal user
 
     //get account by id
+@GetMapping(path = "")
+public Account getInfo(Principal principal){
+    return accountDao.findAccountByUsername(principal.getName());
 
+}
     //get calendar events
 
     //save calendar event

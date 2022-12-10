@@ -1,14 +1,14 @@
 import axios from "axios";
 
  export default{
-    getUserAccountInfo(userId){
-        axios.get(`${userId}/account`)
+    getUserAccountInfo(){
+        return axios.get(`/account`)
     },
     updateUsersInfo(user){
-        axios.put("/account", user)
+      return  axios.put("/account", user)
     },
     getVisitLog(userId){
-        axios.get(`${userId}/visit-history`)
+      return  axios.get(`${userId}/visit-history`)
     },
   
 }

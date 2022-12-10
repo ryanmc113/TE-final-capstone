@@ -5,12 +5,23 @@
             <form >
             <div>
                 <label for="firstName">First Name: </label>
-                <input type="text"  v-model="user.firstName" >
+                <input type="text"  v-model="userInfo.firstName" >
             </div>
             <div>
                 <label for="lastName">Last Name: </label>
-                <input type="text"  v-model="user.lastName" >
+                <input type="text"  v-model="userInfo.lastName" >
             </div>
+            <div>
+                <label for="Goal">Goal: </label>
+        <select name="goal" id="goal" v-model="userInfo.goal">
+          <option value="Activity">Increase Activity</option>
+          <option value="gainMuscle">Gain Muscle</option>
+          <option value="loseWeight">Lose Weight</option>
+          <option value="Endurance">Increase Endurance</option>
+          <option value="Flexibility">Increased Flexibility</option>
+        </select>
+      </div>
+            
             <div>
         
                 <!-- insert picture -->
@@ -19,7 +30,7 @@
             
             <div>
                 <label for="email">Email: </label>
-                <input type="text"  v-model="user.email" >
+                <input type="text"  v-model="userInfo.email" >
             </div>
             <button type="submit">Update Account</button>
             </form>
@@ -41,16 +52,14 @@
 </template>
 
 <script>
-import UserService from '../services/UserService.js';
+import userService from '../services/UserService';
 
 
 export default {
 data(){
     return{
-        user :{
-firstName: "David",
-lastName: "Sikes",
-email: "david.sikes@aol.com"
+        userInfo :{
+
         },
         password: {
 newPassword: "",
@@ -58,10 +67,13 @@ confirmPassword: ""
         }
     }
 },
+created(){
+this.getUsersInfo()
+},
 methods: {
  getUsersInfo() {
-     UserService.getUserAccountInfo().then(response =>{
-         this.user = response.data
+     userService.getUserAccountInfo().then(response =>{
+         this.userInfo = response.data
      });
  },
 //  updateUsersInfo(){
