@@ -6,12 +6,14 @@
         <!-- <p class="subtitle">Top tile</p> -->
         <div class="field">
           <label class="label">Exercise</label>
-          <div class="control">
+          <div class="control display">
             <input
               class="input"
               type="text"
               placeholder="Name of Machine/Exercise"
-            />
+              v-model ="exercise.name"
+            />&nbsp;:&nbsp;
+            <input class="input" type="text" placeholder="time" v-model="exercise.time">
           </div>
           <div class="field">
             <label class="label">Exercise Data</label>
@@ -30,10 +32,10 @@
                 placeholder="Reps"
                 v-model="exercise.reps"
               />&nbsp;:&nbsp;
-              <input class="input int2" type="text" placeholder="weight/time" v-model="exercise.metric" />
+              <input class="input int2" type="text" placeholder="weight" v-model="exercise.weight" />
             </div>
           </div>
-          <button class="button is-link btn-first">Add</button>
+          <button class="button is-link btn-first" v-on:click="addCurrentExercise()" >Add</button>
         </div>
       </article>
     </div>
@@ -52,23 +54,29 @@ import workoutService from "../services/WorkoutService"
 export default {
   components: { ClassSchedule },
   name: "todays-workout",
+  props:["visitId", "userId"],
   data() {
     return{
+      exercisesForThatDay:[],
       exercise:{
+        workoutId:"",
+        visitId: this.visitId,
+        exerciseId:"",
         name:"",
         sets:"",
         reps:"",
-        metric:""
+        time:""
       }
     }
   },
   methods:{
     addCurrentExercise(){
       workoutService
-      .addExercise(this.exercise)
+      .addExercise(this.exercise, this.userId)
       .then((response)=>{
-        if(response.status == 200){
+        if(response.status == 201){
           this.exercise = response.data;
+          
         }
       })
     }

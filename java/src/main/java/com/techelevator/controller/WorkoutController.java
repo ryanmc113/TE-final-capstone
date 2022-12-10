@@ -58,8 +58,8 @@ public class WorkoutController {
     //log workout (post to workout table, param will be the workoutlog object)
     @PostMapping(path = "log-workout")
     public void logWorkout(@RequestBody WorkoutLog workout, Principal principal) {
-        Account memberAccount = accountDao.findAccountByUsername(principal.getName());
-        if(memberAccount == null || memberAccount.getAccountId() != workout.getVisitId()){
+        User memberAccount = userDao.findByUsername(principal.getName());
+        if(memberAccount == null){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Log in to record workout!");
         }
         workoutLogDao.logWorkout(workout);

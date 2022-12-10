@@ -4,9 +4,14 @@
       class="button is-link btn-first"
       type="submit"
       v-on:click="addCheckInTimeFirst()"
+      v-show="user.visitId == '' " 
     >
       Check In
     </button>
+    <button class ="button is-link btn-first"
+    type = "submit"
+    v-on:click ="updateCheckoutTimeSecond()" 
+    v-show="user.visitId !== '' ">Check Out</button>
   </div>
 </template>
 
@@ -30,7 +35,7 @@ export default {
     /* use this method on a v-on:click=""*/
     addCheckInTimeFirst() {
       const newCheckInTime = {
-        id: this.$store.state.user.id, //this needs to grab id from the parent = view
+        userId: this.$store.state.user.id, //this needs to grab id from the parent = view
         checkInTime: this.getTime(),
       };
       workoutService
@@ -38,7 +43,7 @@ export default {
         .then((response) => {
           if (response.status === 200) {
             this.user.visitId = response.data;
-            
+            // this.$router.push({ new: "Home" });
           }
         })
         .catch((error) => {
@@ -48,12 +53,16 @@ export default {
         });
     },
     updateCheckoutTimeSecond() {
-      const checkOutTime = { id: this.userId, checkOutTime: this.getTime() };
+      const checkOutTime = { 
+        userId: this.$store.state.user.id, 
+      checkOutTime: this.getTime() 
+      };
       workoutService
-        .updateCheckOut(checkOutTime.id, checkOutTime)
+        .updateCheckOut(checkOutTime)
         .then((response) => {
           if (response.status === 200) {
-            this.$router.push({ new: "Home" });
+            // this.$router.push({ new: "Home" });
+            this.resetVisitId();
           }
         })
         .catch((error) => {
@@ -75,6 +84,9 @@ export default {
       var dateTime = date + " " + time;
       return dateTime;
     },
+    resetVisitId(){
+      this.user.visitId = "";
+    }
   },
 };
 </script>
