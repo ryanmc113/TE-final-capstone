@@ -22,12 +22,12 @@
           <input class="input" type="text" id="lastNameFilter" v-model="findUser.lastName" />
         </td>
         <!-- need to ad v-for to filter through list. look at userlist hw - event handling -->
-        <tr v-for="account in filteredList" v-bind:key="account.userId">
-          <td>{{ account.firstName }} </td>
-          <td>{{ account.lastName }}</td>
+        <tr v-for="user in filteredList" v-bind:key="user.userId">
+          <td>{{ user.firstName }} </td>
+          <td>{{ user.lastName }}</td>
           <td>
             <button class="button" v-on:click="logging(user.status, user.id)">
-              {{ user.status === "Check In" ? "Check Out" : "Check In" }}
+              {{ allLogs.userId === "Check In" ? "Check Out" : "Check In" }}
             </button>
           </td>
            <td>
@@ -93,9 +93,9 @@ export default {
       this.allUsers = response.data);
     },
     flipStatus(id) {
-      this.allUsers.forEach((user) => {
-        if (user.id == id) {
-          user.status = user.status === "Check In" ? "Check Out" : "Check In";
+      this.allLogs.forEach((log) => {
+        if (log.userId == id) {
+          log.userId = log.userId === null ? "Check Out" : "Check In";
         }
       });
     },
