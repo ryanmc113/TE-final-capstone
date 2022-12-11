@@ -102,6 +102,7 @@ export default {
     addLog(id) {
       this.newLog.userId = id;
       this.newLog.timeIn = this.getTime();
+      //add COMMIT
       this.allLogs.push(this.newLog);
       this.clearNewLog();
     },
