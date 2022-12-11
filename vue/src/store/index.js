@@ -11,6 +11,9 @@ Vue.use(Vuex)
  */
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user'));
+const currentVisitID = localStorage.getItem('visitId');
+//const currentLogs = localStorage.getItem('logs')
+
 
 if(currentToken != null) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${currentToken}`;
@@ -18,10 +21,30 @@ if(currentToken != null) {
 
 export default new Vuex.Store({
   state: {
+    employeeUserLogging: [],
+    visitId: currentVisitID || "",
     token: currentToken || '',
     user: currentUser || {}
   },
   mutations: {
+    SET_EMPLOYEE_LOGGING(state, newLog){
+      state.employeeUserLogging.push(newLog)
+      //localStorage.setItem('logs', state.employeeUserLogging)
+    },
+    DELETE_EMPLOYEE_LOG(state, id){
+      state.employeeUserLogging = state.employeeUserLogging.filter((user) =>{
+return user.userId != id 
+      })
+    },
+    SET_VISIT_ID(state, id){
+      state.visitId = id;
+      localStorage.setItem('visitId', id);
+
+    },
+    DELETE_VISIT_ID(state){
+      state.visitId = ''
+      localStorage.removeItem('visitId')
+    },
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
       localStorage.setItem('token', token);
@@ -35,6 +58,7 @@ export default new Vuex.Store({
     LOGOUT(state) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
+      
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};

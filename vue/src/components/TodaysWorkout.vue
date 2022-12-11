@@ -90,13 +90,12 @@ import workoutService from "../services/WorkoutService";
 export default {
   components: { ClassSchedule },
   name: "todays-workout",
-  props: ["visitId", "userId"],
   data() {
     return {
       exercisesForThatDay: [],
       exercise: {
         workoutId: "",
-        visitId: this.visitId,
+        visitId: this.$store.state.visitId,
         exerciseId: "",
         name: "",
         sets: "",
@@ -108,7 +107,7 @@ export default {
   methods: {
     addCurrentExercise() {
       workoutService
-        .addExercise(this.exercise, this.userId)
+        .addExercise(this.exercise, this.$store.state.user.id)
         .then((response) => {
           if (response.status == 201) {
             this.exercise = response.data;

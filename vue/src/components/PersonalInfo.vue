@@ -2,7 +2,7 @@
     <div>
         <div id="basicInfo"> 
             <h1>Basic Info</h1>
-            <form >
+            <form>
             <div>
                 <label for="firstName">First Name: </label>
                 <input type="text"  v-model="userInfo.firstName" >
@@ -32,7 +32,7 @@
                 <label for="email">Email: </label>
                 <input type="text"  v-model="userInfo.email" >
             </div>
-            <button type="submit">Update Account</button>
+            <button type="submit"  v-on:click="updateUsersInfo()">Update Account</button>
             </form>
             <h1>Privacy</h1>
             <form @submit.prevent>
@@ -76,18 +76,22 @@ methods: {
          this.userInfo = response.data
      });
  },
-//  updateUsersInfo(){
-//      const updateUser = {
-
-//      }
-//      UserService.updateUsersInfo(user).then(response=>{
-//      if (response.status == 200){
-//      // say your account has been updated
+ updateUsersInfo(){
+     const updateUser = {
+         userId: this.$store.state.user.id,
+         firstName: this.userInfo.firstName,
+         lastName: this.userInfo.lastName,
+         goal: this.userInfo.goal,
+         email: this.userInfo.email
+     }
+     userService.updateUsersInfo(updateUser).then(response=>{
+     if (response.status == 200){
+     alert("Your Account has been updated!")
      
-//      })
-//      }
-  }
+     }
+     })
+   }
 
-
+}
 }
 </script>
