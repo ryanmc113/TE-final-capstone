@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
+import java.util.List;
 
 
 @CrossOrigin
@@ -27,7 +28,7 @@ public class WorkoutController {
     AccountDao accountDao;
 
 
-    public WorkoutController( VisitLogDao visitLogDao, WorkoutLogDao workoutLogDao, UserDao userDao, AccountDao accountDao) {
+    public WorkoutController(VisitLogDao visitLogDao, WorkoutLogDao workoutLogDao, UserDao userDao, AccountDao accountDao) {
         this.visitLogDao = visitLogDao;
         this.workoutLogDao = workoutLogDao;
         this.userDao = userDao;
@@ -69,12 +70,28 @@ public class WorkoutController {
 
 
     //get list of logged workouts (to view metrics of logged workouts and visits returns a workoutmetrics log)
-    @GetMapping(path = "workouts")
-    public WorkoutMetrics getWorkoutHistory(int accountId) {
-        return null;
+//    @GetMapping(path = "workouts")
+//    public WorkoutMetrics getWorkoutHistory(@RequestParam(defaultValue = 0, required = false) int userId ) {
+//        if (userId == 0) {
+//            return workoutLogDao.
+//        }
+//    }
+
+
+    @GetMapping(path="exercises")
+    public List<Exercise> listExercises() {
+        return workoutLogDao.listAllExercises();
     }
 
+    @GetMapping(path="/all-exercise-history")
+    public List<WorkoutLog> listMemberExercises() {
+        return workoutLogDao.listAllWorkoutLogs();
+    }
 
+    @GetMapping(path="{id}/exercise-history")
+    public List<WorkoutLog> listExercisesByUserId(@PathVariable int id) {
+        return workoutLogDao.listAllWorkoutLogsByUserId(id);
+    }
 
     //get exercise by id (will bring back exercise object for assistance button)
 

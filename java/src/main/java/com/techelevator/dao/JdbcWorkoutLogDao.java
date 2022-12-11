@@ -1,6 +1,6 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.VisitLog;
+import com.techelevator.model.Exercise;
 import com.techelevator.model.WorkoutLog;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 @Component
-public class JdbcWorkoutLogDao implements WorkoutLogDao{
+public class JdbcWorkoutLogDao implements WorkoutLogDao {
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -19,10 +19,9 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
 
     @Override//*************************************************
     public boolean logWorkout(WorkoutLog workoutLog) {
-        String exerciseId = "SELECT exercise_id from exercise where name ILIKE %bicep%;" ;
         String sql = "INSERT INTO workout_log ((SELECT visit_id from visit_log where check_out IS NULL), (SELECT exercise_id from exercise where name ILIKE %%), name, sets, reps, weight, minutes) " +
                 "VALUES (?, ?, ?, ?, ?);";
-        return jdbcTemplate.update(sql, workoutLog.getExerciseId()) == 1;
+        return jdbcTemplate.update(sql, workoutLog.getWorkoutId()) == 1;
     }
 
 
@@ -59,17 +58,51 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
     //Listing workouts by accountId to show all workouts
 
     @Override
-    public List<WorkoutLog> listAllWorkoutLogsByAccountId(int accountId) {
+    public List<WorkoutLog> listAllWorkoutLogsByUserId(int userId) {
         List <WorkoutLog> workout = new ArrayList<>();
         String sql = "SELECT * FROM workout_log JOIN exercise USING (exercise_id)" +
-                "JOIN visit_log USING (visit_id) WHERE account_id = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, accountId);
-
-        if (results.next()){
-             workout.add(mapRowToWorkoutLog(results));
+                "JOIN visit_log USING (visit_id) WHERE user_id = ?;";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, "%"+userId + "%" );
+            while (results.next()) {
+                workout.add(mapRowToWorkoutLog(results));
+            }
+        } catch (Exception e) {
+            throw e;
         }
         return workout;
-    }
+    };
+
+    @Override
+    public List<Exercise> listAllExercises() {
+        List<Exercise> exerciseList = new ArrayList<>();
+        String sql = "SELECT exercise_id, machine, name, muscle, media_url FROM exercise;";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            while (results.next()) {
+                Exercise exercise = new Exercise();
+                exercise.setExerciseID(results.getInt("exercise_id"));
+                exercise.setMachine(results.getBoolean("machine"));
+                exercise.setName(results.getString("name"));
+                exercise.setMuscle(results.getString("muscle"));
+                exercise.setMedia_url(results.getString("media_url"));
+                exerciseList.add(exercise);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return exerciseList;
+    };
+
+//    @Override
+//    public List<Exercise> searchByMuscle(String searchMuscle) {
+//        List<Exercise> matchMuscles = new ArrayList<>();
+//        String sql = "SELECT exercise_id, machine, name, muscle, media_url FROM exercise " +
+//                "WHERE muscle ILIKE ? '%?%';"
+//        if (!searchMuscle.isEmpty()) {
+//
+//        }
+//    }
 
 
 

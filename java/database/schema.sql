@@ -43,7 +43,7 @@ CREATE TABLE exercise (
     exercise_id SERIAL,
     machine boolean DEFAULT false,
     name varchar(50) NOT NULL,
-    muscle varchar(50) NOT NULL,
+    muscle varchar(400) NOT NULL,
     media_url varchar(400) NOT NULL,
 
     CONSTRAINT PK_exercise PRIMARY KEY (exercise_id)
@@ -53,8 +53,7 @@ CREATE TABLE exercise (
 CREATE TABLE workout_log (
     workout_id SERIAL,
     visit_id int NOT NULL,
-    exercise_id int,
-    name varchar(50),
+    exercise_id int NOT NULL,
     sets int,
     reps int,
     weight DECIMAL(5, 2),

@@ -1,7 +1,6 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.VisitLog;
-import com.techelevator.model.WorkoutLog;
 
 import java.util.List;
 

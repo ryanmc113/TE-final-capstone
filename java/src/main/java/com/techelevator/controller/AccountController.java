@@ -5,10 +5,7 @@ import com.techelevator.dao.AccountDao;
 import com.techelevator.dao.VisitLogDao;
 import com.techelevator.model.Account;
 import com.techelevator.model.VisitLog;
-import com.techelevator.model.WorkoutLog;
-import com.techelevator.model.WorkoutMetrics;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -45,6 +42,11 @@ public class AccountController {
     @GetMapping(path = "/{id}/visit-history")
     public List<VisitLog> getVisitsByAccountId(@PathVariable int id){
         return visitLogDao.listAllVisitsByAccountId(id);
+    }
+
+    @GetMapping(path = "/visit-history")
+    public List<VisitLog> getAllVisits() {
+        return visitLogDao.listAllVisits();
     }
 
     //show workout for a certain date

@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Exercise;
 import com.techelevator.model.WorkoutLog;
 
 import java.util.List;
@@ -12,7 +13,11 @@ public interface WorkoutLogDao {
 
     WorkoutLog getWorkoutLogById(int workoutId);
 
-    List<WorkoutLog> listAllWorkoutLogsByAccountId(int accountId);
+    List<WorkoutLog> listAllWorkoutLogsByUserId(int accountId);
+
+    List<Exercise> listAllExercises();
+
+//    List<Exercise> searchByMuscle(String searchMuscle);
 
 
 
