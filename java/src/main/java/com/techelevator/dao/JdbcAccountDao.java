@@ -1,14 +1,13 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Account;
-import com.techelevator.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
 @Component
 public class JdbcAccountDao implements AccountDao {
 
@@ -26,7 +25,6 @@ public class JdbcAccountDao implements AccountDao {
         return jdbcTemplate.update(sql, account.getUserId(), account.getFirstName(), account.getLastName(), account.getEmail(),
                     account.getGoal(), account.getMediaURL()) == 1;
         }
-
 
 
 //Front-end doesn't need all info - may want to add media_url
@@ -49,6 +47,21 @@ public class JdbcAccountDao implements AccountDao {
         return accountList;
     }
 
+    //gets a list of all users with role = employee - should only be used by admin
+    @Override
+    public List<Account> getAllEmployees(){
+        List<Account> employees = new ArrayList<>();
+        String sql = "SELECT user_id, first_name, last_name from account JOIN users using (user_id) WHERE role = 'Employee';";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
+        while (result.next()) {
+            Account employee = new Account();
+            employee.setUserId(result.getInt("user_id"));
+            employee.setFirstName(result.getString("first_name"));
+            employee.setLastName(result.getString("last_name"));
+            employees.add(employee);
+        }
+        return employees;
+    }
 
 
     //used for authorization login.

@@ -13,6 +13,8 @@ public interface AccountDao {
 
     Account findAccountByName(String firstName, String lastName);
 
+    List<Account> getAllEmployees();
+
     Account findAccountByUserId(int userId);
 
     List<Account> listUserAccount();

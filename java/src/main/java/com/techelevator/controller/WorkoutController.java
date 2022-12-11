@@ -38,8 +38,9 @@ public class WorkoutController {
     @PostMapping(path = "check-in")
     public int logVisitCheckIn(@RequestBody VisitLog visit, Principal principal) {
       //@RequestParam int account_id, @RequestParam String checkInTime
+        //Principal contains username then compares userId from that user and from visit
         User member = userDao.findByUsername(principal.getName());
-        if (member == null){
+        if (member == null || member.getId() != visit.getUserId()){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Log in to your account");
         }
         return visitLogDao.logCheckIn(visit);
@@ -47,15 +48,16 @@ public class WorkoutController {
 
     @PutMapping(path = "check-out")
     public void logVisitCheckOut(@RequestBody VisitLog visit, Principal principal) {
-        User memberAccount = userDao.findByUsername(principal.getName());
-        if (memberAccount == null || memberAccount.getId() != visit.getUserId()){
+        //Gets username from principal and finds user then checks if user is null or if that user's id does not match userId from visit
+        User member = userDao.findByUsername(principal.getName());
+        if (member == null || member.getId() != visit.getUserId()){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Log in for access!");
         }
         visitLogDao.logCheckOut(visit);
     }
 
 
-    //log workout (post to workout table, param will be the workoutlog object)
+    //log workout (post to workout table, param will be the workoutlog object)//HAS VISIT_ID
     @PostMapping(path = "log-workout")
     public void logWorkout(@RequestBody WorkoutLog workout, Principal principal) {
         User memberAccount = userDao.findByUsername(principal.getName());
