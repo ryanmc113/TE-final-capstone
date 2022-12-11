@@ -11,9 +11,14 @@
               class="input"
               type="text"
               placeholder="Name of Machine/Exercise"
-              v-model ="exercise.name"
+              v-model="exercise.name"
             />&nbsp;:&nbsp;
-            <input class="input" type="text" placeholder="time" v-model="exercise.time">
+            <input
+              class="input"
+              type="text"
+              placeholder="time"
+              v-model="exercise.time"
+            />
           </div>
           <div class="field">
             <label class="label">Exercise Data</label>
@@ -32,11 +37,37 @@
                 placeholder="Reps"
                 v-model="exercise.reps"
               />&nbsp;:&nbsp;
-              <input class="input int2" type="text" placeholder="weight" v-model="exercise.weight" />
+              <input
+                class="input int2"
+                type="text"
+                placeholder="weight"
+                v-model="exercise.weight"
+              />
             </div>
           </div>
-          <button class="button is-link btn-first" v-on:click="addCurrentExercise()" >Add</button>
+          <!-- possibly need a submit.prevent on this add so it wont refresh to display the exercise at the bottom -->
+          <button
+            class="button is-link btn-first"
+            v-on:click="addCurrentExercise()"
+          >
+            Add
+          </button>
         </div>
+        <!-- <div
+          v-for="exercisesDisplayed in exerciseForThatDay"
+          v-bind:key="exerciseForThatDay.id"
+        > -->
+          <div class="field">
+            <!-- needs to have a v-show if it has something in the array that i made. v-show time if reps and weight are empty -->
+            <div class="control display">
+               <div class="input int2">Exercises</div>&nbsp;:&nbsp;
+            <div class="input int2">Sets</div>&nbsp;:&nbsp;
+            <div class="input int2">Reps</div>&nbsp;:&nbsp;
+            <div class="input int2">Weight</div>&nbsp;:&nbsp;
+            <div class="input int2">Time</div>
+            </div>
+          </div>
+        <!-- </div> -->
       </article>
     </div>
     <div class="tile is-parent">
@@ -49,38 +80,37 @@
 
 <script>
 import ClassSchedule from "../components/ClassSchedule.vue";
-import workoutService from "../services/WorkoutService"
+import workoutService from "../services/WorkoutService";
 // import userService from '@vue/composition-api'
 export default {
   components: { ClassSchedule },
   name: "todays-workout",
-  props:["visitId", "userId"],
+  props: ["visitId", "userId"],
   data() {
-    return{
-      exercisesForThatDay:[],
-      exercise:{
-        workoutId:"",
+    return {
+      exercisesForThatDay: [],
+      exercise: {
+        workoutId: "",
         visitId: this.visitId,
-        exerciseId:"",
-        name:"",
-        sets:"",
-        reps:"",
-        time:""
-      }
-    }
+        exerciseId: "",
+        name: "",
+        sets: "",
+        reps: "",
+        time: "",
+      },
+    };
   },
-  methods:{
-    addCurrentExercise(){
+  methods: {
+    addCurrentExercise() {
       workoutService
-      .addExercise(this.exercise, this.userId)
-      .then((response)=>{
-        if(response.status == 201){
-          this.exercise = response.data;
-          
-        }
-      })
-    }
-  }
+        .addExercise(this.exercise, this.userId)
+        .then((response) => {
+          if (response.status == 201) {
+            this.exercise = response.data;
+          }
+        });
+    },
+  },
 };
 </script>
 <style scoped>
@@ -96,5 +126,8 @@ export default {
   background-color: #58d9eb !important;
   border: 2px solid #317680 !important;
   display: flex;
+}
+.exDisplayed{
+  background-color: darkcyan;
 }
 </style>

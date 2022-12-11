@@ -18,7 +18,6 @@
           <td>{{workout.reps}}</td>
           <td>{{workout.weight}}</td>
           <td>{{workout.minutes}}</td>
-          
         </tr>
       </tbody>
     </table>
