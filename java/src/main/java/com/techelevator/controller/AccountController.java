@@ -54,7 +54,6 @@ public class AccountController {
     }
 
 
-        //if Principal user
 
     //get account by id
 @GetMapping(path = "")
@@ -67,9 +66,13 @@ public Account getInfo(Principal principal){
     //save calendar event
 
     // list all accounts
+
+
     @GetMapping(path = "/employee/users")
     public List<Account> getUsers(){
         return accountDao.listUserAccount();
     }
+
+
 
 }

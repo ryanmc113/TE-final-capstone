@@ -17,10 +17,11 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @Override
+    @Override//*************************************************
     public boolean logWorkout(WorkoutLog workoutLog) {
-        String sql = "INSERT INTO workout_log (visit_id, exercise_id, sets, reps, weight, minutes) " +
-                "VALUES (?, ?, ?, ?, ?, ?);";
+        String exerciseId = "SELECT exercise_id from exercise where name ILIKE %bicep%;" ;
+        String sql = "INSERT INTO workout_log ((SELECT visit_id from visit_log where check_out IS NULL), (SELECT exercise_id from exercise where name ILIKE %%), name, sets, reps, weight, minutes) " +
+                "VALUES (?, ?, ?, ?, ?);";
         return jdbcTemplate.update(sql, workoutLog.getExerciseId()) == 1;
     }
 

@@ -23,13 +23,13 @@ CREATE TABLE account (
 	media_url varchar(500),
 
 	CONSTRAINT PK_account PRIMARY KEY (account_id),
-	CONSTRAINT FK_account FOREIGN KEY (user_id) References users
+	CONSTRAINT FK_user FOREIGN KEY (user_id) References users
 
 );
 
 CREATE TABLE visit_log (
     visit_id SERIAL,
-    user_id int,
+    user_id int NOT NULL,
     check_in timestamp,
     check_out timestamp,
 
@@ -48,12 +48,13 @@ CREATE TABLE exercise (
 
     CONSTRAINT PK_exercise PRIMARY KEY (exercise_id)
 
-	);
+);
 
 CREATE TABLE workout_log (
     workout_id SERIAL,
     visit_id int NOT NULL,
     exercise_id int,
+    name varchar(50),
     sets int,
     reps int,
     weight DECIMAL(5, 2),
@@ -61,7 +62,7 @@ CREATE TABLE workout_log (
 
     CONSTRAINT PK_workout PRIMARY KEY(workout_id),
 	CONSTRAINT FK_visit FOREIGN KEY (visit_id) references visit_log,
-    CONSTRAINT FK_exercise FOREIGN KEY(name) references exercise,
+    CONSTRAINT FK_exercise FOREIGN KEY(exercise_id) references exercise,
     CONSTRAINT sets_limit CHECK (weight >= 0),
     CONSTRAINT reps_limit CHECK (weight >= 0),
     CONSTRAINT weight_limit CHECK (weight >= 0)
