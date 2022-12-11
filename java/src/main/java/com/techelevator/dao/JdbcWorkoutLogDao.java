@@ -1,11 +1,12 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.VisitLog;
+import com.techelevator.model.ClassSchedule;
 import com.techelevator.model.WorkoutLog;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 @Component
@@ -17,11 +18,11 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @Override//*************************************************
+    @Override//
     public boolean logWorkout(WorkoutLog workoutLog) {
-        String exerciseId = "SELECT exercise_id from exercise where name ILIKE %bicep%;" ;
-        String sql = "INSERT INTO workout_log ((SELECT visit_id from visit_log where check_out IS NULL), (SELECT exercise_id from exercise where name ILIKE %%), name, sets, reps, weight, minutes) " +
-                "VALUES (?, ?, ?, ?, ?);";
+
+        String sql = "INSERT INTO workout_log (visit_id, name, sets, reps, weight, minutes) " +
+                "VALUES (?, ?, ?, ?, ?, ?);";
         return jdbcTemplate.update(sql, workoutLog.getExerciseId()) == 1;
     }
 
@@ -56,14 +57,14 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
         return null;
     }
 
-    //Listing workouts by accountId to show all workouts
+    //Listing workouts by userId to show all workouts
 
     @Override
-    public List<WorkoutLog> listAllWorkoutLogsByAccountId(int accountId) {
+    public List<WorkoutLog> listAllWorkoutLogsByUserId(int userId) {
         List <WorkoutLog> workout = new ArrayList<>();
         String sql = "SELECT * FROM workout_log JOIN exercise USING (exercise_id)" +
-                "JOIN visit_log USING (visit_id) WHERE account_id = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, accountId);
+                "JOIN visit_log USING (visit_id) WHERE user_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
 
         if (results.next()){
              workout.add(mapRowToWorkoutLog(results));

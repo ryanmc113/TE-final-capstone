@@ -49,8 +49,10 @@
 
 <script>
 import ClassSchedule from "../components/ClassSchedule.vue";
-import workoutService from "../services/WorkoutService"
+import workoutService from "../services/WorkoutService";
+
 // import userService from '@vue/composition-api'
+// get the visitId from checkInButtonForUsers in order to put it in 
 export default {
   components: { ClassSchedule },
   name: "todays-workout",
