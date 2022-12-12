@@ -33,7 +33,7 @@ public class UserController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @RequestMapping(path = "/employee/account/{id}/visit", method = RequestMethod.GET)
     public List<VisitLog> getAllVisits(@PathVariable int id){
-        return visitDao.listAllVisits();
+        return visitDao.listAllVisits(id);
 
     }
 

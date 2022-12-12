@@ -55,7 +55,8 @@ export default {
     return {
       user: {
         username: "",
-        password: ""
+        password: "",
+        employeeLogin: true
       },
       invalidCredentials: false
     };

@@ -1,37 +1,40 @@
 <template>
-    <div>
-        <table><thead><tr><th>Days in the gym</th></tr></thead><tbody>
-            <tr v-for="day in workoutDays" v-bind:key="day.id">
-                <router-link :to="{ name: 'workouts', params: { id: day.id } }"> {{day.time}}</router-link>
-                </tr>
-                </tbody>
-                </table>
-        
-    </div>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Days in the gym</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="day in workoutDays" v-bind:key="day.visitId">
+          <router-link :to="{ name: 'usersWorkoutsThatDay', params: { id: day.visitId} }">
+            {{ day.checkIn }}</router-link
+          >
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>
-import UserService from '../services/UserService.js'
+import UserService from "../services/UserService.js";
 
 export default {
-    data(){
-        return{
-            workoutDays: [
-                {id: "1",
-                time: "January 1st"},
-                 {id: "2",
-                time: " january 2nd"},
-                 {id: "3",
-                time: "january 9th"}
-            ]
-        }
+  data() {
+    return {
+      workoutDays: [],
+    };
+  },
+  created() {
+    this.getDaysAtGym();
+  },
+  methods: {
+    getDaysAtGym() {
+      UserService.getVisitLog().then((response) => {
+        this.workoutDays = response.data;
+      });
     },
-    methods: {
-        getDaysAtGym(){
-            UserService.getVisitLog().then(response=>{
-this.workoutDays = response.data
-            })
-        }
-    }
-}
+  },
+};
 </script>
