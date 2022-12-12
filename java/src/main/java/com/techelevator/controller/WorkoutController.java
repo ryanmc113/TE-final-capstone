@@ -73,9 +73,17 @@ public class WorkoutController {
     }
    
     @GetMapping(path = "workouts")
-    List<WorkoutLog> listAllWorkoutLogsByUserId(int userId) {
+    public List<WorkoutLog> listAllWorkoutLogsByUserId(int userId) {
         return workoutLogDao.listAllWorkoutLogsByUserId(userId);
     }
+
+    @GetMapping(path = "visit")
+    public List<WorkoutLog> listWorkoutsForAVisit(int visitId){
+        return workoutLogDao.listWorkoutsForAVisit(visitId);
+    }
+
+
+
 
     @GetMapping(path = "classes")
     public List <ClassSchedule> listAllClasses(){
@@ -91,6 +99,8 @@ public class WorkoutController {
     public List<WorkoutLog> listExercisesByUserId(@PathVariable int id) {
         return workoutLogDao.listAllWorkoutLogsByUserId(id);
     }
+
+
 
     //get exercise by id (will bring back exercise object for assistance button)
 

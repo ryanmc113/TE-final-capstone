@@ -64,7 +64,7 @@ public class JdbcVisitLogDao implements VisitLogDao {
         String sql = "SELECT * FROM visit_log;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
 
-        if (results.next()){
+        while (results.next()){
             visits.add(mapRowToVisitLog(results));
         }
         return visits;
@@ -78,7 +78,7 @@ public class JdbcVisitLogDao implements VisitLogDao {
         String sql = "SELECT * FROM visit_log WHERE account_id = ?;";
 
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId);
-        if (result.next()){
+        while (result.next()){
             visitLogs.add(mapRowToVisitLog(result));
         }
         return visitLogs;
@@ -105,7 +105,7 @@ public class JdbcVisitLogDao implements VisitLogDao {
 
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId);
 
-        if(result.next()){
+        while (result.next()){
             visitsByDate.add(mapRowToVisitLog(result));
         }
         return visitsByDate;

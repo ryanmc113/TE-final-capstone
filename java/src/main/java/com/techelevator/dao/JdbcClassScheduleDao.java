@@ -38,6 +38,7 @@ public class JdbcClassScheduleDao implements ClassScheduleDao{
             if (classTimeColumn != null){
                 LocalTime classTimes = classTimeColumn.toLocalTime();
                 newClass.setClassTime(classTimes);
+
             }
             classes.add(newClass);
         }
