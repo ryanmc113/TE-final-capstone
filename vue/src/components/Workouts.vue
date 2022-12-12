@@ -27,10 +27,16 @@
 <script>
 import WorkoutService from "../services/WorkoutService.js";
 export default {
+  props: {
+    visitId: { type: Number}
+  },
   data() {
     return {
       myWorkouts: [],
     };
+  },
+  create(){
+    this.getWorkouts()
   },
   methods: {
       //add visitid

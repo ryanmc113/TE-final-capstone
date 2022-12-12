@@ -11,6 +11,7 @@ import MyAccountPersonal from '../views/MyAccountPersonal.vue'
 import MyAccountWorkoutHistory from '../views/MyAccountWorkoutHistory.vue'
 import EmployeeGetDays from '../views/EmployeeGetDays.vue'
 import EmployeeGetWorkouts from '../views/EmployeeGetWorkouts.vue'
+import Workouts from '../views/workouts.vue'
 Vue.use(Router)
 
 /**
@@ -29,7 +30,7 @@ const router = new Router({
     {
       path: '/history/:id',
       name: "usersWorkoutsThatDay",
-      component: MyAccountWorkoutHistory,
+      component: Workouts,
       meta: {
         requiresAuth: true
       }
@@ -99,7 +100,7 @@ const router = new Router({
       component: EmployeeAccount,
       meta:{
         requiresAuth: true,
-        requiresRole: false
+        requiresRole: true
       }
     },
     {

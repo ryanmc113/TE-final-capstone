@@ -9,6 +9,15 @@ public class LoginDto {
 
    private String username;
    private String password;
+   private boolean employeeLogin;
+
+   public boolean isEmployeeLogin() {
+      return employeeLogin;
+   }
+
+   public void setEmployeeLogin(boolean employeeLogin) {
+      this.employeeLogin = employeeLogin;
+   }
 
    public String getUsername() {
       return username;

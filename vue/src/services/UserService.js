@@ -7,8 +7,8 @@ import axios from "axios";
     updateUsersInfo(user){
       return  axios.put("/account", user)
     },
-    getVisitLog(userId){
-      return  axios.get(`${userId}/visit-history`)
+    getVisitLog(){
+      return  axios.get(`/account/visit-history`)
     },
   
 }

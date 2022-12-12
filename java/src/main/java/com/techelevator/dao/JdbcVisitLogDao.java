@@ -1,20 +1,25 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.VisitLog;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
 @Component
 public class JdbcVisitLogDao implements VisitLogDao {
-
+    private final DateTimeFormatter formatter;
     JdbcTemplate jdbcTemplate;
 
     public JdbcVisitLogDao( JdbcTemplate jdbcTemplate) {
+        formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -25,7 +30,7 @@ public class JdbcVisitLogDao implements VisitLogDao {
         String sql = "INSERT INTO visit_log (user_id, check_in)  " +
                 "VALUES (?, ?) RETURNING visit_id;";
         try {
-            visitId = jdbcTemplate.queryForObject(sql, Integer.class, visit.getUserId(), visit.getCheckIn());
+            visitId = jdbcTemplate.queryForObject(sql, Integer.class, visit.getUserId(), LocalDateTime.parse(visit.getCheckIn(), formatter));
         } catch (NullPointerException e) {
             throw e;
         }
@@ -35,7 +40,7 @@ public class JdbcVisitLogDao implements VisitLogDao {
     @Override
     public boolean logCheckOut(VisitLog visit) {
         String sql = "UPDATE visit_log SET check_out = ? WHERE visit_id = ?;";
-        return jdbcTemplate.update(sql, visit.getCheckOut(), visit.getVisitId()) == 1;
+        return jdbcTemplate.update(sql, LocalDateTime.parse(visit.getCheckOut(), formatter), visit.getVisitId()) == 1;
     }
 
 //Method needs to map all fields to use mapper method
@@ -58,11 +63,11 @@ public class JdbcVisitLogDao implements VisitLogDao {
 
 
     @Override
-    public List<VisitLog> listAllVisits() {
+    public List<VisitLog> listAllVisits(int id) {
         List<VisitLog> visits = new ArrayList<>();
 
-        String sql = "SELECT * FROM visit_log;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        String sql = "SELECT * FROM visit_log WHERE user_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
 
         while (results.next()){
             visits.add(mapRowToVisitLog(results));
@@ -98,15 +103,20 @@ public class JdbcVisitLogDao implements VisitLogDao {
     }
 
     @Override
-    public List<VisitLog> getUsersVisitsByDate(int accountId){
+    public List<VisitLog> getUsersVisitsByDate(int userId){
         List<VisitLog> visitsByDate = new ArrayList<>();
 
-        String sql = "SELECT visit_id, account_id, check_in, check_out FROM visit_log WHERE account_id = ? ORDER BY date(check_in) DESC ;";
+        String sql = "SELECT visit_id, check_in, check_out FROM visit_log WHERE user_id = ? ORDER BY date(check_in) DESC ;";
 
-        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId);
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, userId);
 
         while (result.next()){
-            visitsByDate.add(mapRowToVisitLog(result));
+            VisitLog visit = new VisitLog();
+            visit.setVisitId(result.getInt("visit_id"));
+            visit.setCheckIn(String.valueOf(result.getTimestamp("check_in")));
+            visit.setCheckOut(String.valueOf(result.getTimestamp("check_out")));
+
+            visitsByDate.add(visit);
         }
         return visitsByDate;
     }
@@ -118,12 +128,8 @@ public class JdbcVisitLogDao implements VisitLogDao {
         visit.setVisitId(rowSet.getInt("visit_id"));
         visit.setUserId(rowSet.getInt("user_id"));
         visit.setCheckIn(String.valueOf(rowSet.getTimestamp("check_in")));
-        visit.setCheckOut(String.valueOf(rowSet.getTimestamp("check)out")));
-        Date visitDateColumn = rowSet.getDate("visit_date");
-        if (visitDateColumn != null){
-            LocalDate visitDate = visitDateColumn.toLocalDate();
-            visit.setVisitDate(visitDate);
-        }
+        visit.setCheckOut(String.valueOf(rowSet.getTimestamp("check_out")));
+
 
         return visit;
     }

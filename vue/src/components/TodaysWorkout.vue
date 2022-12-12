@@ -51,7 +51,7 @@
           <button
           type= "submit"
             class="button is-link btn-first"
-            type="submit"
+          
             v-on:click="addCurrentExercise()"
           >
             Add
