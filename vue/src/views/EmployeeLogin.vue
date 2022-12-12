@@ -56,7 +56,7 @@ export default {
       user: {
         username: "",
         password: "",
-        employeeLogin: true
+        // employeeLogin: true
       },
       invalidCredentials: false
     };

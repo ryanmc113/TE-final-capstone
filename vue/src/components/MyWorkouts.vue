@@ -13,11 +13,17 @@
       </thead>
       <tbody>
         <tr v-for="workout in myWorkouts" v-bind:key="workout.workout_id">
-          <td>{{ workout.name }}</td>
-          <td>{{ workout.sets }}</td>
-          <td>{{ workout.reps }}</td>
-          <td>{{ workout.weight }}</td>
-          <td>{{ workout.minutes }}</td>
+          <div class="input int2">{{workout.name}}</div>
+            &nbsp;:&nbsp;
+            <div class="input int2">{{workout.sets}}</div>
+            &nbsp;:&nbsp;
+            <div class="input int2">{{workout.reps}}</div>
+            &nbsp;:&nbsp;
+            <div class="input int2">{{workout.weight}}</div>
+            &nbsp;:&nbsp;
+            <div class="input int2">{{workout.minutes}}</div>
+          
+     
         </tr>
       </tbody>
     </table>
