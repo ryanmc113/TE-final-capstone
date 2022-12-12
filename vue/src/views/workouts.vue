@@ -1,7 +1,7 @@
 <template>
     <div>
 <my-account-nav/>
-<my-workouts />
+<my-workouts v-bind:visitId="parseInt($route.params.id)"/>
     </div>
 </template>
 

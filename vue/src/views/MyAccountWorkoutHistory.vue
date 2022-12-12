@@ -1,7 +1,7 @@
 <template>
     <div>
         <my-account-nav/>
-        <workout-history/>
+        <workout-history :visitId="parseInt($route.params.id)"/>
     </div>
 </template>
 
