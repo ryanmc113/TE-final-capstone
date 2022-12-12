@@ -95,7 +95,7 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
         return workout;
     }
 
-    
+
 
 
 
