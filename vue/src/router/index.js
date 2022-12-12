@@ -26,7 +26,15 @@ const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    
+    {
+      path: '/history/:id',
+      name: "usersWorkoutsThatDay",
+      component: MyAccountWorkoutHistory,
+      meta: {
+        requiresAuth: true
+      }
+
+    },
     {
       path: '/history',
       name: "userHistory",
@@ -127,7 +135,8 @@ router.beforeEach((to, from, next) => {
     next("/login");
    } 
   else if (requiresRole && !store.state.user.role.includes("EMPLOYEE")) {
-    next('/login');
+    // don't leave
+    alert('You are not authorized. Please login as an EMPLOYEE');
   } 
   else {
     // Else let them go to their next destination

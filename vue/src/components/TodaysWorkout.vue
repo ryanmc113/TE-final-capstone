@@ -5,7 +5,7 @@
         <p class="title">Workout for the Day</p>
         <!-- <p class="subtitle">Top tile</p> -->
         <div class="field">
-          <label class="label">Exercise</label>
+          <label class="label" for="exerciseName">Exercise</label>
           <div class="control display">
             <input
               class="input"
@@ -14,6 +14,7 @@
               v-model="exercise.name"
             />&nbsp;:&nbsp;
             <input
+            
               class="input"
               type="text"
               placeholder="time"
@@ -47,6 +48,7 @@
           </div>
           <!-- possibly need a submit.prevent on this add so it wont refresh to display the exercise at the bottom -->
           <button
+          type= "submit"
             class="button is-link btn-first"
             v-on:click="addCurrentExercise()"
           >
@@ -107,7 +109,7 @@ export default {
   methods: {
     addCurrentExercise() {
       workoutService
-        .addExercise(this.exercise, this.$store.state.user.id)
+        .addExercise(this.exercise)
         .then((response) => {
           if (response.status == 201) {
             this.exercise = response.data;

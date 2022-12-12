@@ -35,7 +35,7 @@ export default {
   methods: {
       //add visitid
     getWorkouts() {
-      WorkoutService.getWorkouts(this.$store.state.user.id).then((response) => {
+      WorkoutService.getWorkouts().then((response) => {
         this.myWorkouts = response.data;
       });
     },

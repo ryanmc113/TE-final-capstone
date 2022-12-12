@@ -9,8 +9,8 @@ export default{
     },
     
     //the path to add an exercise to a visit(do we need userID or visitID)
-    addExercise(exercise, id){
-        return axios.post('workouts/log-workout', exercise,id)
+    addExercise(exercise){
+        return axios.post('workouts/log-workout', exercise)
     },
 
     updateCheckOut(checkOutTime){
