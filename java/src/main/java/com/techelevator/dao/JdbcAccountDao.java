@@ -71,7 +71,7 @@ public class JdbcAccountDao implements AccountDao {
         String sql = "Select account_id, user_id, first_name, last_name, role, email, goal, media_url from account where user_id = ?;";
         try {
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql,userId);
-            if (results.next()) {
+            while (results.next()) {
                 account = mapRowToAccount(results);
             }
         } catch (Exception e) {
@@ -87,7 +87,7 @@ public class JdbcAccountDao implements AccountDao {
             String sql = "SELECT account_id, user_id, first_name, last_name, email, goal, media_url FROM account WHERE firstName = ? AND lastName = ?;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, firstName, lastName);
-            if (results.next()) {
+            while (results.next()) {
                 account = mapRowToAccount(results);
             }
         } catch (Exception e) {
@@ -101,7 +101,7 @@ public class JdbcAccountDao implements AccountDao {
         String sql = "SELECT account_id, user_id, first_name, last_name, email, goal, media_url FROM account JOIN users using (user_id) WHERE username = ?;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, username);
 
-        if(result.next()){
+        while(result.next()){
             return mapRowToAccount(result);
         }
         return null;

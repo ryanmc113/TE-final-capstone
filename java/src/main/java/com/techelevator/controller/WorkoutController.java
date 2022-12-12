@@ -70,7 +70,7 @@ public class WorkoutController {
 
     //get list of logged workouts (to view metrics of logged workouts and visits returns a workoutmetrics log)
     @GetMapping(path = "workouts")
-    List<WorkoutLog> listAllWorkoutLogsByUserId(int userId) {
+    public List<WorkoutLog> listAllWorkoutLogsByUserId(int userId) {
         return workoutLogDao.listAllWorkoutLogsByUserId(userId);
     }
 

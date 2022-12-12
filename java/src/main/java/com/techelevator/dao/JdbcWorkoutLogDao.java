@@ -51,7 +51,7 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
         String sql = "SELECT * FROM workout_log WHERE workout_id = ?;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, workoutId);
 
-        if (result.next()){
+        while (result.next()){
             return mapRowToWorkoutLog(result);
         }
         return null;
@@ -66,7 +66,7 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
                 "JOIN visit_log USING (visit_id) WHERE user_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
 
-        if (results.next()){
+        while (results.next()){
              workout.add(mapRowToWorkoutLog(results));
         }
         return workout;

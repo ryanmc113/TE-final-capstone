@@ -25,10 +25,10 @@ public class JdbcClassScheduleDao implements ClassScheduleDao{
     public List<ClassSchedule> listAllClasses() {
         List<ClassSchedule> classes = new ArrayList<>();
 
-        String sql = "SELECT class_id, class_name, class_instructor, class_time, class_day FROM class_schedule;";
+        String sql = "SELECT class_id, class_name, class_instructor, class_time, class_day FROM class_schedule ORDER BY class_day;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
 
-        if (results.next()){
+        while (results.next()){
             ClassSchedule newClass = new ClassSchedule();
             newClass.setClassId(results.getInt("class_id"));
             newClass.setClassName(results.getString("class_name"));
