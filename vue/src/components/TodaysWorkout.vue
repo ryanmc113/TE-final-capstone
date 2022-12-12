@@ -6,7 +6,7 @@
         <!-- <p class="subtitle">Top tile</p> -->
         <form @submit.prevent> 
         <div class="field">
-          <label class="label">Exercise</label>
+          <label class="label" for="exerciseName">Exercise</label>
           <div class="control display">
             <input
               class="input"
@@ -15,6 +15,7 @@
               v-model="exercise.name"
             />&nbsp;:&nbsp;
             <input
+            
               class="input"
               type="text"
               placeholder="time"
@@ -48,8 +49,9 @@
           </div>
           <!-- possibly need a submit.prevent on this add so it wont refresh to display the exercise at the bottom -->
           <button
+          type= "submit"
             class="button is-link btn-first"
-            type="submit"
+          
             v-on:click="addCurrentExercise()"
           >
             Add
