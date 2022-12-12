@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.security.Principal;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,6 +94,8 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
         }
         return workout;
     }
+
+    
 
 
 
