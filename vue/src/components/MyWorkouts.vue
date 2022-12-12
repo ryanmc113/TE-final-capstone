@@ -12,12 +12,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="workout in myWorkouts" v-bind:key="workout.id">
-          <td>{{workout.name}}</td>
-          <td>{{workout.sets}}</td>
-          <td>{{workout.reps}}</td>
-          <td>{{workout.weight}}</td>
-          <td>{{workout.minutes}}</td>
+        <tr v-for="workout in myWorkouts" v-bind:key="workout.workout_id">
+          <td>{{ workout.name }}</td>
+          <td>{{ workout.sets }}</td>
+          <td>{{ workout.reps }}</td>
+          <td>{{ workout.weight }}</td>
+          <td>{{ workout.minutes }}</td>
         </tr>
       </tbody>
     </table>
@@ -25,24 +25,23 @@
 </template>
 
 <script>
-//import WorkoutService from "../services/WorkoutService.js";
+import WorkoutService from "../services/WorkoutService.js";
 export default {
-  props: ['visit'],
+  props: { visitId: Number },
   data() {
     return {
       myWorkouts: [],
     };
   },
-  created(){
-//    this.getWorkouts()
+  created() {
+    this.getMyWorkouts();
   },
   methods: {
-      //add visitid
-    // getWorkouts() {
-    //   WorkoutService.getWorkouts().then((response) => {
-    //     this.myWorkouts = response.data;
-//      });
-  //  },
+    getMyWorkouts() {
+      WorkoutService.getExercisesLogged(this.visitId).then((response) => {
+        this.myWorkouts = response.data;
+      });
+    },
   },
 };
 </script>

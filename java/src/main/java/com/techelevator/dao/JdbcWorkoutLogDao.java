@@ -67,6 +67,7 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
 
         while (result.next()) {
             WorkoutLog newLog = new WorkoutLog();
+            newLog.setWorkoutId(result.getInt("workout_id"));
             newLog.setVisitId(result.getInt("visit_id"));
             newLog.setName(result.getString("name"));
             newLog.setSets(result.getInt("sets"));

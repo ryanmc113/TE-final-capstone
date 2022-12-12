@@ -1,9 +1,7 @@
 import axios from "axios";
 
 export default{
-  getWorkout(){
-      return axios.get(`workouts/`)
-  },
+  
     addCheckInTime(checkInTime){
         return axios.post(`workouts/check-in`, checkInTime)
     },

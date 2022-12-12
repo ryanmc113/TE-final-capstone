@@ -55,6 +55,7 @@ export default {
     updateCheckoutTimeSecond() {
       const checkOutTime = { 
         userId: this.$store.state.user.id, 
+        visitId: this.$store.state.visitId,
       checkOut: this.getTime() 
       };
       workoutService
