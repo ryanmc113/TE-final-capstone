@@ -36,7 +36,7 @@ export default {
     addCheckInTimeFirst() {
       const newCheckInTime = {
         userId: this.$store.state.user.id, //this needs to grab id from the parent = view
-        checkInTime: this.getTime(),
+        checkIn: this.getTime(),
       };
       workoutService
         .addCheckInTime(newCheckInTime)
@@ -55,7 +55,7 @@ export default {
     updateCheckoutTimeSecond() {
       const checkOutTime = { 
         userId: this.$store.state.user.id, 
-      checkOutTime: this.getTime() 
+      checkOut: this.getTime() 
       };
       workoutService
         .updateCheckOut(checkOutTime)

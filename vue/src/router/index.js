@@ -11,6 +11,7 @@ import MyAccountPersonal from '../views/MyAccountPersonal.vue'
 import MyAccountWorkoutHistory from '../views/MyAccountWorkoutHistory.vue'
 import EmployeeGetDays from '../views/EmployeeGetDays.vue'
 import EmployeeGetWorkouts from '../views/EmployeeGetWorkouts.vue'
+import Workouts from '../views/workouts.vue'
 Vue.use(Router)
 
 /**
@@ -26,7 +27,15 @@ const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    
+    {
+      path: '/history/:id',
+      name: "usersWorkoutsThatDay",
+      component: Workouts,
+      meta: {
+        requiresAuth: true
+      }
+
+    },
     {
       path: '/history',
       name: "userHistory",
@@ -91,7 +100,7 @@ const router = new Router({
       component: EmployeeAccount,
       meta:{
         requiresAuth: true,
-        requiresRole: false
+        requiresRole: true
       }
     },
     {
@@ -127,7 +136,8 @@ router.beforeEach((to, from, next) => {
     next("/login");
    } 
   else if (requiresRole && !store.state.user.role.includes("EMPLOYEE")) {
-    next('/login');
+    // don't leave
+    alert('You are not authorized. Please login as an EMPLOYEE');
   } 
   else {
     // Else let them go to their next destination
