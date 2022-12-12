@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import WorkoutService from "../services/WorkoutService.js";
+//import WorkoutService from "../services/WorkoutService.js";
 export default {
   props: ['visit'],
   data() {
@@ -34,15 +34,15 @@ export default {
     };
   },
   created(){
-    this.getWorkouts()
+//    this.getWorkouts()
   },
   methods: {
       //add visitid
-    getWorkouts() {
-      WorkoutService.getWorkouts().then((response) => {
-        this.myWorkouts = response.data;
-      });
-    },
+    // getWorkouts() {
+    //   WorkoutService.getWorkouts().then((response) => {
+    //     this.myWorkouts = response.data;
+//      });
+  //  },
   },
 };
 </script>
