@@ -15,5 +15,9 @@ export default{
 
     updateCheckOut(checkOutTime){
         return axios.put('workouts/check-out', checkOutTime)
+    },
+
+    getClassSch(){
+        return axios.get('workouts/classes')
     }
 }

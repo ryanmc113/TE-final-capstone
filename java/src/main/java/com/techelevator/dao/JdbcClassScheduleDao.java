@@ -28,7 +28,7 @@ public class JdbcClassScheduleDao implements ClassScheduleDao{
         String sql = "SELECT class_id, class_name, class_instructor, class_time, class_day FROM class_schedule;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
 
-        if(results.next()){
+        while (results.next()){
             ClassSchedule newClass = new ClassSchedule();
             newClass.setClassId(results.getInt("class_id"));
             newClass.setClassName(results.getString("class_name"));
@@ -38,7 +38,9 @@ public class JdbcClassScheduleDao implements ClassScheduleDao{
             if (classTimeColumn != null){
                 LocalTime classTimes = classTimeColumn.toLocalTime();
                 newClass.setClassTime(classTimes);
+
             }
+            classes.add(newClass);
         }
         return classes;
     }

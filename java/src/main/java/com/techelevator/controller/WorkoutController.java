@@ -70,14 +70,24 @@ public class WorkoutController {
 
     //get list of logged workouts (to view metrics of logged workouts and visits returns a workoutmetrics log)
     @GetMapping(path = "workouts")
-    public WorkoutMetrics getWorkoutHistory(int accountId) {
-        return null;
+    public List<WorkoutLog> listAllWorkoutLogsByUserId(int userId) {
+        return workoutLogDao.listAllWorkoutLogsByUserId(userId);
     }
+
+    @GetMapping(path = "visit")
+    public List<WorkoutLog> listWorkoutsForAVisit(int visitId){
+        return workoutLogDao.listWorkoutsForAVisit(visitId);
+    }
+
+
+
 
     @GetMapping(path = "classes")
     public List <ClassSchedule> listAllClasses(){
         return classScheduleDao.listAllClasses();
     }
+
+
 
 
 

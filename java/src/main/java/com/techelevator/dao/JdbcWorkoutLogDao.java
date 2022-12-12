@@ -23,7 +23,7 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
 
         String sql = "INSERT INTO workout_log (visit_id, name, sets, reps, weight, minutes) " +
                 "VALUES (?, ?, ?, ?, ?, ?);";
-        return jdbcTemplate.update(sql, workoutLog.getExerciseId(), workoutLog.ge) == 1;
+        return jdbcTemplate.update(sql, workoutLog.getVisitId(), workoutLog.getName(), workoutLog.getSets(), workoutLog.getReps(), workoutLog.getWeight(), workoutLog.getMinutes()) == 1;
     }
 
 
@@ -51,10 +51,24 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
         String sql = "SELECT * FROM workout_log WHERE workout_id = ?;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, workoutId);
 
-        if (result.next()){
+        while (result.next()){
             return mapRowToWorkoutLog(result);
         }
         return null;
+    }
+
+    @Override
+    public List<WorkoutLog> listWorkoutsForAVisit(int visitId){
+        List<WorkoutLog> exercisesByVisit = new ArrayList<>();
+        String sql = "SELECT * FROM work_out WHERE visit_id = ?;";
+
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, visitId);
+
+        while (result.next()){
+            exercisesByVisit.add(mapRowToWorkoutLog(result));
+
+        }return exercisesByVisit;
+
     }
 
     //Listing workouts by userId to show all workouts
@@ -66,7 +80,7 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
                 "JOIN visit_log USING (visit_id) WHERE user_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
 
-        if (results.next()){
+        while (results.next()){
              workout.add(mapRowToWorkoutLog(results));
         }
         return workout;

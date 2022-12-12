@@ -4,6 +4,7 @@
       <article class="tile is-child notification is-primary">
         <p class="title">Workout for the Day</p>
         <!-- <p class="subtitle">Top tile</p> -->
+        <form @submit.prevent> 
         <div class="field">
           <label class="label" for="exerciseName">Exercise</label>
           <div class="control display">
@@ -50,11 +51,13 @@
           <button
           type= "submit"
             class="button is-link btn-first"
+            type="submit"
             v-on:click="addCurrentExercise()"
           >
             Add
           </button>
         </div>
+        </form>
         <!-- <div
           v-for="exercisesDisplayed in exerciseForThatDay"
           v-bind:key="exerciseForThatDay.id"
@@ -96,9 +99,8 @@ export default {
     return {
       exercisesForThatDay: [],
       exercise: {
-        workoutId: "",
         visitId: this.$store.state.visitId,
-        exerciseId: "",
+        // exerciseId: "",
         name: "",
         sets: "",
         reps: "",
@@ -108,11 +110,12 @@ export default {
   },
   methods: {
     addCurrentExercise() {
+      this.exercise.visitId = this.$store.state.visitId;
       workoutService
         .addExercise(this.exercise)
         .then((response) => {
           if (response.status == 201) {
-            this.exercise = response.data;
+            alert("Your exercise has been logged")
           }
         });
     },
