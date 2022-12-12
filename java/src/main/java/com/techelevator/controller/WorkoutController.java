@@ -74,6 +74,11 @@ public class WorkoutController {
         return workoutLogDao.listAllWorkoutLogsByUserId(userId);
     }
 
+    @GetMapping(path = "visit")
+    public List<WorkoutLog> listWorkoutsForAVisit(int visitId){
+        return workoutLogDao.listWorkoutsForAVisit(visitId);
+    }
+
 
 
 
@@ -81,6 +86,8 @@ public class WorkoutController {
     public List <ClassSchedule> listAllClasses(){
         return classScheduleDao.listAllClasses();
     }
+
+
 
 
 

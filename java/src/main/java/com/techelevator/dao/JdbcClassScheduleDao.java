@@ -25,7 +25,7 @@ public class JdbcClassScheduleDao implements ClassScheduleDao{
     public List<ClassSchedule> listAllClasses() {
         List<ClassSchedule> classes = new ArrayList<>();
 
-        String sql = "SELECT class_id, class_name, class_instructor, class_time, class_day FROM class_schedule ORDER BY class_day;";
+        String sql = "SELECT class_id, class_name, class_instructor, class_time, class_day FROM class_schedule;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
 
         while (results.next()){

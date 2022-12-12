@@ -57,6 +57,20 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao{
         return null;
     }
 
+    @Override
+    public List<WorkoutLog> listWorkoutsForAVisit(int visitId){
+        List<WorkoutLog> exercisesByVisit = new ArrayList<>();
+        String sql = "SELECT * FROM work_out WHERE visit_id = ?;";
+
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, visitId);
+
+        while (result.next()){
+            exercisesByVisit.add(mapRowToWorkoutLog(result));
+
+        }return exercisesByVisit;
+
+    }
+
     //Listing workouts by userId to show all workouts
 
     @Override
