@@ -62,16 +62,16 @@
         > -->
         <div class="field">
           <!-- needs to have a v-show if it has something in the array that i made. v-show time if reps and weight are empty -->
-          <div class="control display">
-            <div class="input int2">Exercises</div>
+          <div class="control display" v-for="exercises in exercisesForThatDay" v-bind:key="exercises.id">
+            <div class="input int2">{{exercises.name}}</div>
             &nbsp;:&nbsp;
-            <div class="input int2">Sets</div>
+            <div class="input int2">{{exercises.sets}}</div>
             &nbsp;:&nbsp;
-            <div class="input int2">Reps</div>
+            <div class="input int2">{{exercises.reps}}</div>
             &nbsp;:&nbsp;
-            <div class="input int2">Weight</div>
+            <div class="input int2">{{exercises.weight}}</div>
             &nbsp;:&nbsp;
-            <div class="input int2">Time</div>
+            <div class="input int2">{{exercises.time}}</div>
           </div>
         </div>
         <!-- </div> -->
@@ -122,7 +122,7 @@ export default {
     },
     getExercisesLoggedForVisit(){
       workoutService
-      .getExercisesLogged()
+      .getExercisesLogged(this.$store.state.visitId)
       .then((response) =>{
         this.exercisesForThatDay = response.data;
       })

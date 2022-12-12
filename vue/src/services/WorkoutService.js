@@ -22,6 +22,6 @@ export default{
     },
 
     getExercisesLogged(visitId){
-        return axios.get('workouts/visit', visitId)
+        return axios.get(`workouts/visit/${visitId}`)
     }
 }
