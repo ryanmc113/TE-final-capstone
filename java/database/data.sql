@@ -5,7 +5,9 @@ INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpUL
 
 
 
-				INSERT INTO class_schedule (class_name, class_instructor, class_description, class_time, class_day)
+
+
+INSERT INTO class_schedule (class_name, class_instructor, class_description, class_time, class_day)
                 VALUES ('Cardio Kickboxing', 'Sara', 'Add strength and endurance to your workout & hit some shh', '09:00:00', 'Monday');
 				INSERT INTO class_schedule (class_name, class_instructor, class_description, class_time, class_day)
                 VALUES ('Cardio Kickboxing', 'Sara', 'Add strength and endurance to your workout & hit some shh', '09:00:00', 'Wednesday');
@@ -27,6 +29,9 @@ INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpUL
                 VALUES ('Rock Aerobics', 'Tom M.', 'Dance, scream, or sing - do what makes you de-stress', '06:00:00', 'Tuesday');
 				INSERT INTO class_schedule (class_name, class_instructor, class_description, class_time, class_day)
 				Values ('Convert.ToBeFit(you)', 'Tom. A', 'A beginner''s class to get you in the gym', '07:00:00', 'Monday');
+
+
+
 
 
 
