@@ -9,6 +9,15 @@ public class WorkoutLog {
     private int reps;
     private double weight;
     private int minutes;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public int getWorkoutId() {
         return workoutId;

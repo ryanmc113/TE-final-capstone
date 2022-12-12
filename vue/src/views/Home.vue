@@ -16,7 +16,7 @@ export default {
   components:{
     todaysWorkout,
     workoutAssistance,
-    checkInButtonForUsers
+    checkInButtonForUsers,
   },
   name: "home"
 };
