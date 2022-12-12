@@ -19,7 +19,7 @@ public class JdbcVisitLogDao implements VisitLogDao {
     JdbcTemplate jdbcTemplate;
 
     public JdbcVisitLogDao( JdbcTemplate jdbcTemplate) {
-        formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd H:m:s");
         this.jdbcTemplate = jdbcTemplate;
     }
 
