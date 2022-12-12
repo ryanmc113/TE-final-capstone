@@ -112,15 +112,16 @@ export default {
     
     
   },
-  // created(){
-  //   this.getExercisesLoggedForVisit();
-  // },
+   created(){
+     this.getExercisesLoggedForVisit();
+   },
   methods: {
     addCurrentExercise() {
       this.exercise.visitId = this.$store.state.visitId;
       workoutService
         .addExercise(this.exercise)
         .then((response) => {
+          this.getExercisesLoggedForVisit()
           if (response.status == 201) {
             alert("Your exercise has been logged")
           }
