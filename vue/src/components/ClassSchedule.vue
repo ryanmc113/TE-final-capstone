@@ -17,7 +17,7 @@
       &nbsp;&nbsp;
       <div class="input int2 classSch">{{classes.classTime}}</div>
       &nbsp;&nbsp;
-      <div class="input int2 classSch">{{classes.Name}}</div>
+      <div class="input int2 classSch">{{classes.className}}</div>
      
     </div>
     <div class = "tile">

@@ -104,7 +104,10 @@ export default {
         reps: "",
         time: "",
       },
-    };
+    }
+  },
+  created(){
+    this.getExercisesLoggedForVisit();
   },
   methods: {
     addCurrentExercise() {
@@ -117,6 +120,14 @@ export default {
           }
         });
     },
+    getExercisesLoggedForVisit(){
+      workoutService
+      .getExercisesLogged()
+      .then((response) =>{
+        this.exercisesForThatDay = response.data;
+      })
+    }
+
   },
 };
 </script>

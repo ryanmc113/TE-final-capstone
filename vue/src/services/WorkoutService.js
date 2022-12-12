@@ -19,5 +19,9 @@ export default{
 
     getClassSch(){
         return axios.get('workouts/classes')
+    },
+
+    getExercisesLogged(visitId){
+        return axios.get('workouts/visit', visitId)
     }
 }
