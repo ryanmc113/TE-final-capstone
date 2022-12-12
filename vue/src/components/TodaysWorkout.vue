@@ -73,7 +73,7 @@
             &nbsp;:&nbsp;
             <div class="input int2">{{exercises.weight}}</div>
             &nbsp;:&nbsp;
-            <div class="input int2">{{exercises.time}}</div>
+            <div class="input int2">{{exercises.minutes}}</div>
           </div>
         </div>
         <!-- </div> -->
@@ -108,9 +108,13 @@ export default {
       },
     }
   },
-  created(){
-    this.getExercisesLoggedForVisit();
+  computed:{
+    
+    
   },
+  // created(){
+  //   this.getExercisesLoggedForVisit();
+  // },
   methods: {
     addCurrentExercise() {
       this.exercise.visitId = this.$store.state.visitId;
