@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Workouts from '../components/Workouts.vue'
+import Workouts from '../components/MyWorkouts.vue'
 export default {
 name: "Workouts",
    components: {
