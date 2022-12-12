@@ -10,48 +10,43 @@
       <div class="input int2">Name</div>
     </div>
     &nbsp;&nbsp;
-    <div class ="tile" v-for="classes in allClasses" v-bind:key="classes.id">
-       <div class="input int2 classSch">{{classes.classDay}}</div>
+    <div class="tile" v-for="classes in allClasses" v-bind:key="classes.id">
+      <div class="input int2 classSch">{{ classes.classDay }}</div>
       &nbsp;&nbsp;
-      <div class="input int2 classSch">{{classes.classInstructor}}</div>
+      <div class="input int2 classSch">{{ classes.classInstructor }}</div>
       &nbsp;&nbsp;
-      <div class="input int2 classSch">{{classes.classTime}}</div>
+      <div class="input int2 classSch">{{ classes.classTime }}</div>
       &nbsp;&nbsp;
-      <div class="input int2 classSch">{{classes.className}}</div>
-     
+      <div class="input int2 classSch">{{ classes.className }}</div>
     </div>
-    <div class = "tile">
-
-    </div>
+    <div class="tile"></div>
   </div>
 </template>
 
 <script>
-import workoutService from '../services/WorkoutService'
+import workoutService from "../services/WorkoutService";
 
 export default {
   data() {
-    return{
-      allClasses:[]
-    }
+    return {
+      allClasses: [],
+    };
   },
-  created(){
+  created() {
     this.getClassSch();
   },
-  methods:{
-    getClassSch(){
-      workoutService
-      .getClassSch()
-      .then((response) =>{
+  methods: {
+    getClassSch() {
+      workoutService.getClassSch().then((response) => {
         this.allClasses = response.data;
-      })
-    }
-  }
-}
+      });
+    },
+  },
+};
 </script>
 
 <style>
-.classSch{
+.classSch {
   background-color: rgb(177, 231, 231) !important;
 }
 </style>

@@ -16,6 +16,8 @@ public interface WorkoutLogDao {
 
     List<WorkoutLog> listAllWorkoutLogsByUserId(int userId);
 
+    List<WorkoutLog> listWorkoutsForAVisit(int visitId);
+
 
 
 }
