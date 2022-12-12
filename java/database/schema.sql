@@ -42,7 +42,7 @@ CREATE TABLE visit_log (
 CREATE TABLE exercise (
     exercise_id SERIAL,
     machine boolean DEFAULT false,
-    name varchar(50) NOT NULL,
+    name varchar(50) UNIQUE NOT NULL,
     muscle varchar(400) NOT NULL,
     media_url varchar(400) NOT NULL,
 
@@ -61,7 +61,7 @@ CREATE TABLE workout_log (
 
     CONSTRAINT PK_workout PRIMARY KEY(workout_id),
 	CONSTRAINT FK_visit FOREIGN KEY (visit_id) references visit_log,
-    CONSTRAINT FK_exercise FOREIGN KEY(exercise_id) references exercise,
+    CONSTRAINT FK_exercise_id FOREIGN KEY(exercise_id) references exercise,
     CONSTRAINT sets_limit CHECK (weight >= 0),
     CONSTRAINT reps_limit CHECK (weight >= 0),
     CONSTRAINT weight_limit CHECK (weight >= 0)

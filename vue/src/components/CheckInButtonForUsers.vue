@@ -4,14 +4,14 @@
       class="button is-link btn-first"
       type="submit"
       v-on:click="addCheckInTimeFirst()"
-      v-show="user.visitId == '' " 
+      v-show="this.$store.state.visitId == '' " 
     >
       Check In
     </button>
     <button class ="button is-link btn-first"
     type = "submit"
     v-on:click ="updateCheckoutTimeSecond()" 
-    v-show="user.visitId !== '' ">Check Out</button>
+    v-show="this.$store.state.visitId != '' ">Check Out</button>
   </div>
 </template>
 
@@ -42,7 +42,7 @@ export default {
         .addCheckInTime(newCheckInTime)
         .then((response) => {
           if (response.status === 200) {
-            this.user.visitId = response.data;
+            this.$store.commit("SET_VISIT_ID", response.data)
             // this.$router.push({ new: "Home" });
           }
         })
@@ -62,7 +62,7 @@ export default {
         .then((response) => {
           if (response.status === 200) {
             // this.$router.push({ new: "Home" });
-            this.resetVisitId();
+            this.$store.commit("DELETE_VISIT_ID")
           }
         })
         .catch((error) => {

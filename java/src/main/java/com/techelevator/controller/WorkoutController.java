@@ -1,9 +1,6 @@
 package com.techelevator.controller;
 
-import com.techelevator.dao.AccountDao;
-import com.techelevator.dao.UserDao;
-import com.techelevator.dao.VisitLogDao;
-import com.techelevator.dao.WorkoutLogDao;
+import com.techelevator.dao.*;
 import com.techelevator.model.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -26,13 +23,15 @@ public class WorkoutController {
     WorkoutLogDao workoutLogDao;
     UserDao userDao;
     AccountDao accountDao;
+    ClassScheduleDao classScheduleDao;
 
 
-    public WorkoutController(VisitLogDao visitLogDao, WorkoutLogDao workoutLogDao, UserDao userDao, AccountDao accountDao) {
+    public WorkoutController( VisitLogDao visitLogDao, WorkoutLogDao workoutLogDao, UserDao userDao, AccountDao accountDao, ClassScheduleDao classScheduleDao) {
         this.visitLogDao = visitLogDao;
         this.workoutLogDao = workoutLogDao;
         this.userDao = userDao;
         this.accountDao = accountDao;
+        this.classScheduleDao = classScheduleDao;
     }
 
     // log check-in and return visit_id, which is needed to log individual exercises
@@ -81,6 +80,16 @@ public class WorkoutController {
     @GetMapping(path="exercises")
     public List<Exercise> listExercises() {
         return workoutLogDao.listAllExercises();
+    }
+   
+    @GetMapping(path = "workouts")
+    List<WorkoutLog> listAllWorkoutLogsByUserId(int userId) {
+        return workoutLogDao.listAllWorkoutLogsByUserId(userId);
+    }
+
+    @GetMapping(path = "classes")
+    public List <ClassSchedule> listAllClasses(){
+        return classScheduleDao.listAllClasses();
     }
 
     @GetMapping(path="/all-exercise-history")

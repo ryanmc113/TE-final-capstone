@@ -57,16 +57,20 @@
           v-for="exercisesDisplayed in exerciseForThatDay"
           v-bind:key="exerciseForThatDay.id"
         > -->
-          <div class="field">
-            <!-- needs to have a v-show if it has something in the array that i made. v-show time if reps and weight are empty -->
-            <div class="control display">
-               <div class="input int2">Exercises</div>&nbsp;:&nbsp;
-            <div class="input int2">Sets</div>&nbsp;:&nbsp;
-            <div class="input int2">Reps</div>&nbsp;:&nbsp;
-            <div class="input int2">Weight</div>&nbsp;:&nbsp;
+        <div class="field">
+          <!-- needs to have a v-show if it has something in the array that i made. v-show time if reps and weight are empty -->
+          <div class="control display">
+            <div class="input int2">Exercises</div>
+            &nbsp;:&nbsp;
+            <div class="input int2">Sets</div>
+            &nbsp;:&nbsp;
+            <div class="input int2">Reps</div>
+            &nbsp;:&nbsp;
+            <div class="input int2">Weight</div>
+            &nbsp;:&nbsp;
             <div class="input int2">Time</div>
-            </div>
           </div>
+        </div>
         <!-- </div> -->
       </article>
     </div>
@@ -82,16 +86,16 @@
 import ClassSchedule from "../components/ClassSchedule.vue";
 import workoutService from "../services/WorkoutService";
 // import userService from '@vue/composition-api'
+// get the visitId from checkInButtonForUsers in order to put it in
 export default {
   components: { ClassSchedule },
   name: "todays-workout",
-  props: ["visitId", "userId"],
   data() {
     return {
       exercisesForThatDay: [],
       exercise: {
         workoutId: "",
-        visitId: this.visitId,
+        visitId: this.$store.state.visitId,
         exerciseId: "",
         name: "",
         sets: "",
@@ -103,7 +107,7 @@ export default {
   methods: {
     addCurrentExercise() {
       workoutService
-        .addExercise(this.exercise, this.userId)
+        .addExercise(this.exercise, this.$store.state.user.id)
         .then((response) => {
           if (response.status == 201) {
             this.exercise = response.data;
@@ -127,7 +131,7 @@ export default {
   border: 2px solid #317680 !important;
   display: flex;
 }
-.exDisplayed{
+.exDisplayed {
   background-color: darkcyan;
 }
 </style>

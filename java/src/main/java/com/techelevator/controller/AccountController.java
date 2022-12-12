@@ -27,8 +27,8 @@ public class AccountController {
     }
 
 
-    @PutMapping(path = "/profile")
-    public void updateProfile(@RequestBody Account account) {
+    @PutMapping(path = "")
+    public void updateProfile(@RequestBody Account account, Principal principal) {
         accountDao.updateAccount(account);
     }
 

@@ -43,7 +43,7 @@ public class JdbcVisitLogDao implements VisitLogDao {
     @Override
     public List<VisitLog> isVisitCompleted(int accountId) {
         List<VisitLog> visit = new ArrayList<>();
-        String sql = "SELECT visit_id from visit_log where time(check-in) = CURRENT_DATE and check_out IS NULL and account_id = ?;";
+        String sql = "SELECT visit_id from visit_log where time(check_in) = CURRENT_DATE and check_out IS NULL and account_id = ?;";
         try {
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId);
         while(result.next()) {
