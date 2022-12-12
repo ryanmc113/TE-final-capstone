@@ -79,6 +79,12 @@ public class WorkoutController {
         return workoutLogDao.listWorkoutsForAVisit(visitId);
     }
 
+//    @GetMapping()
+//    public List<WorkoutLog> listWorkoutsForAVisit(@PathVariable int visitId, Principal principal){
+//
+//        return workoutLogDao.listWorkoutsForAVisit(visitId);
+//    }
+
 
 
 
