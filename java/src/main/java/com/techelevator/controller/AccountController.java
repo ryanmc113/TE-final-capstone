@@ -7,6 +7,7 @@ import com.techelevator.model.Account;
 import com.techelevator.model.VisitLog;
 import com.techelevator.model.WorkoutLog;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
