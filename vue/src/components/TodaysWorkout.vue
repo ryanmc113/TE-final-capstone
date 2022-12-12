@@ -108,6 +108,7 @@ export default {
   },
   methods: {
     addCurrentExercise() {
+      this.exercise.visitId = this.$store.state.visitId;
       workoutService
         .addExercise(this.exercise)
         .then((response) => {
