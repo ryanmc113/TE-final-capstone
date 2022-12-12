@@ -18,8 +18,8 @@
             
               class="input"
               type="text"
-              placeholder="time"
-              v-model="exercise.time"
+              placeholder="Minutes"
+              v-model="exercise.minutes"
             />
           </div>
           <div class="field">
@@ -42,7 +42,7 @@
               <input
                 class="input int2"
                 type="text"
-                placeholder="weight"
+                placeholder="Weight"
                 v-model="exercise.weight"
               />
             </div>
@@ -104,7 +104,7 @@ export default {
         name: "",
         sets: "",
         reps: "",
-        time: "",
+        minutes: "",
       },
     }
   },
@@ -125,6 +125,7 @@ export default {
           if (response.status == 201) {
             alert("Your exercise has been logged")
           }
+          this.clearForm();
         });
     },
     getExercisesLoggedForVisit(){
@@ -133,8 +134,16 @@ export default {
       .then((response) =>{
         this.exercisesForThatDay = response.data;
       })
-    }
+    },
+    clearForm(){
+      this.newExercise = {
+        name: "",
+        sets: "",
+        reps: "",
+        minutes: "",
 
+    }
+    }
   },
 };
 </script>
