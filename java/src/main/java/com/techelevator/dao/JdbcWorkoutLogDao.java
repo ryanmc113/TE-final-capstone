@@ -71,7 +71,7 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao {
              workout.add(mapRowToWorkoutLog(results));
         }
         return workout;
-    };
+    }
 
     @Override
     public List<Exercise> listAllExercises() {

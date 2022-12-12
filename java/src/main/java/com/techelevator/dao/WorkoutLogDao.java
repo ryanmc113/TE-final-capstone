@@ -14,8 +14,9 @@ public interface WorkoutLogDao {
 
     WorkoutLog getWorkoutLogById(int workoutId);
 
-
     List<WorkoutLog> listAllWorkoutLogsByUserId(int userId);
+
+    List<Exercise> listAllExercises();
 
 
 
