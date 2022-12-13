@@ -117,16 +117,21 @@ export default {
    },
   methods: {
     addCurrentExercise() {
+      if (this.$store.state.visitId == ''){
+        alert("please check in first")
+      } else {
       this.exercise.visitId = this.$store.state.visitId;
       workoutService
         .addExercise(this.exercise)
         .then((response) => {
           this.getExercisesLoggedForVisit()
-          if (response.status == 201) {
+          if (response.status == 200) {
             alert("Your exercise has been logged")
-            this.clearForm();
-          }
+          } 
+            
+          this.clearForm();
         });
+      }
     },
     getExercisesLoggedForVisit(){
       workoutService
@@ -136,7 +141,7 @@ export default {
       })
     },
     clearForm(){
-      this.newExercise = {
+      this.exercise = {
         name: "",
         sets: "",
         reps: "",

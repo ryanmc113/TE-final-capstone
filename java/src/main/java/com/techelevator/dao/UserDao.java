@@ -1,6 +1,5 @@
 package com.techelevator.dao;
 
-import com.techelevator.model.Account;
 import com.techelevator.model.User;
 
 import java.util.List;
@@ -11,7 +10,8 @@ public interface UserDao {
 
     User getUserById(int userId);
 
-    public void updateUserToEmployee(User user, int userId);
+   void updateUserToEmployee(User user);
+    void updateEmployeeToUser(User user);
 
     User findByUsername(String username);
 
