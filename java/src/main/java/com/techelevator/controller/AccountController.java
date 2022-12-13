@@ -7,7 +7,6 @@ import com.techelevator.dao.VisitLogDao;
 import com.techelevator.model.Account;
 import com.techelevator.model.VisitLog;
 import com.techelevator.model.WorkoutLog;
-import com.techelevator.model.WorkoutMetrics;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
@@ -37,12 +36,6 @@ public class AccountController {
         accountDao.updateAccount(account);
     }
 
-
-    @GetMapping(path = "/x{id}")
-    public String stop(){
-        return null;
-    }
-
 // fix this to take a user id
     @GetMapping(path = "/visit-history/{userId}")
     public List<VisitLog> getVisitsByUser(@PathVariable int userId){
@@ -50,11 +43,15 @@ public class AccountController {
         return visitLogDao.getUsersVisitsByDate(userId);
     }
 
-    //show workout for a certain date
     @GetMapping(path = "/visit-history")
-    public List<VisitLog> getUsersVisitsByDate(Principal principal){
-        int id = userDao.findIdByUsername(principal.getName());
-        return visitLogDao.getUsersVisitsByDate(id);
+    public List<VisitLog> getAllVisits() {
+        return visitLogDao.listAllVisits();
+    }
+
+    //show workout for a certain date
+    @GetMapping(path = "/visit-history/{userId}")
+    public List<VisitLog> getVisitsByUser(@PathVariable int userId){
+        return visitLogDao.listVisitsByUser(userId);
     }
 
 
