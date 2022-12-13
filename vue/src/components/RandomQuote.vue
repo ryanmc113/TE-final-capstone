@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div v-bind="quoteOfTheVisit.text" class="box quote">
+  <div class="box quote">
+    <div v-bind="quoteOfTheVisit.text" >
       <div class ="place">{{ quoteOfTheVisit.text }}</div>
       <div class ="place">{{ quoteOfTheVisit.author }}</div>
     </div>
