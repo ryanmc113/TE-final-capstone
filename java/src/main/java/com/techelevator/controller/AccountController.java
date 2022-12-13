@@ -37,20 +37,23 @@ public class AccountController {
     }
 
 // fix this to take a user id
-    @GetMapping(path = "/visit-history/{userId}")
-    public List<VisitLog> getVisitsByUser(@PathVariable int userId){
+//    @GetMapping(path = "/visit-history/{userId}")
+//    public List<VisitLog> getVisitsByUser(@PathVariable int userId){
+//
+//        return visitLogDao.getUsersVisitsByDate(userId);
+//    }
 
-        return visitLogDao.getUsersVisitsByDate(userId);
-    }
 
-    @GetMapping(path = "/visit-history")
-    public List<VisitLog> getAllVisits() {
-        return visitLogDao.listAllVisits();
-    }
+//    WE SHOULD KEEP THIS MAYBE
+//    @GetMapping(path = "/visit-history")
+//    public List<VisitLog> getAllVisits() {
+//        return visitLogDao.listAllVisits();
+//    }
 
     //show workout for a certain date
-    @GetMapping(path = "/visit-history/{userId}")
-    public List<VisitLog> getVisitsByUser(@PathVariable int userId){
+    @GetMapping(path = "/visit-history")
+    public List<VisitLog> getVisitsByUser(Principal user){
+        int userId = userDao.findIdByUsername(user.getName());
         return visitLogDao.listVisitsByUser(userId);
     }
 
