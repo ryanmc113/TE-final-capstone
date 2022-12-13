@@ -7,6 +7,7 @@
         </tr>
       </thead>
       <tbody>
+
         <tr v-for="day in workoutDays" v-bind:key="day.visitId">
           <router-link :to="{ name: 'usersWorkoutsThatDay', params: { id: day.visitId} }">
             {{ day.checkIn }}</router-link
@@ -23,6 +24,7 @@ import UserService from "../services/UserService.js";
 export default {
   data() {
     return {
+      
       workoutDays: [],
     };
   },

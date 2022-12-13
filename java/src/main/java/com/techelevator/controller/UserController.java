@@ -35,12 +35,14 @@ public class UserController {
     //pulling user's visit history
     //getting all employees
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    @PutMapping("/admin/update")
-    public void updateUsers(@RequestBody User user){
-        if (user.getRole().contains("USER")) {
+//    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PutMapping("/admin/update/user")
+    public void updateUserToEmployee(@RequestBody User user){
+
             dao.updateUserToEmployee(user);
-        } else {
+        }
+        @PutMapping("/admin/update/employee")
+                public void updateEmployeeToUser(@RequestBody User user){
             dao.updateEmployeeToUser(user);
         }
     }
