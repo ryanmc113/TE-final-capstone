@@ -90,6 +90,7 @@ public class WorkoutController {
         return classScheduleDao.listAllClasses();
     }
 
+    //this is a duplicate
     @GetMapping(path="/all-exercise-history")
     public List<WorkoutLog> listMemberExercises() {
         return workoutLogDao.listAllWorkoutLogs();

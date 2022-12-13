@@ -18,6 +18,8 @@ public interface WorkoutLogDao {
 
     List<WorkoutLog> listWorkoutsForAVisit(int visitId);
 
+    //add List Exercise by name
+
 
 
 }
