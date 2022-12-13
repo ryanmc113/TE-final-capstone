@@ -23,8 +23,9 @@ export default {
         .updateCheckOut(checkOutTime)
         .then((response) => {
           if (response.status === 200) {
+                 this.$store.commit("DELETE_VISIT_ID")
             // this.$router.push({ new: "Home" });
-            this.$store.commit("DELETE_VISIT_ID")
+           
           }
         })
         .catch((error) => {
