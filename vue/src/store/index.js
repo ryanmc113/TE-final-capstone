@@ -12,9 +12,9 @@ Vue.use(Vuex)
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user'));
 const currentVisitID = localStorage.getItem('visitId');
+const currentVisitor = localStorage.getItem('currentVisitor')
 
 
-//const currentLogs = localStorage.getItem('logs')
 
 
 if(currentToken != null) {
@@ -26,9 +26,18 @@ export default new Vuex.Store({
     employeeUserLogging: [],
     visitId: currentVisitID || "",
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    employeeLoggedIn: currentVisitor || '',
   },
   mutations: {
+    SET_VISITOR(state){
+state.employeeLoggedIn = true
+localStorage.setItem('currentVisitor', true)
+    },
+    DELETE_VISITOR(state){
+      state.employeeLoggedIn = ''
+      localStorage.removeItem('currentVisitor')
+    },
     SET_EMPLOYEE_LOGGING(state, newLog){
       state.employeeUserLogging.push(newLog)
       
@@ -44,7 +53,7 @@ export default new Vuex.Store({
       state.employeeUserLogging = state.employeeUserLogging.filter((user) =>{
 return user.userId != id 
       })
-      
+
     },
     SET_VISIT_ID(state, id){
       state.visitId = id;
