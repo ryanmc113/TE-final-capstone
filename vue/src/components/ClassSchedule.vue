@@ -8,6 +8,7 @@
       <div class="input int2">Time</div>
       &nbsp;&nbsp;
       <div class="input int2">Name</div>
+      &nbsp;&nbsp;
     </div>
     &nbsp;&nbsp;
     <div class="tile" v-for="classes in allClasses" v-bind:key="classes.id">
@@ -18,6 +19,7 @@
       <div class="input int2 classSch">{{ classes.classTime }}</div>
       &nbsp;&nbsp;
       <div class="input int2 classSch">{{ classes.className }}</div>
+      &nbsp;&nbsp;
     </div>
     <div class="tile"></div>
   </div>
