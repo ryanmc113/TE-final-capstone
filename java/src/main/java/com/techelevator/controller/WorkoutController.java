@@ -67,8 +67,11 @@ public class WorkoutController {
         workoutLogDao.logWorkout(workout);
     }
 
-
-    //get list of logged workouts (to view metrics of logged workouts and visits returns a workoutmetrics log)
+    @GetMapping(path="exercises")
+    public List<Exercise> listExercises() {
+        return workoutLogDao.listAllExercises();
+    }
+   
     @GetMapping(path = "workouts")
     public List<WorkoutLog> listAllWorkoutLogsByUserId(int userId) {
         return workoutLogDao.listAllWorkoutLogsByUserId(userId);
@@ -92,6 +95,29 @@ public class WorkoutController {
     public List <ClassSchedule> listAllClasses(){
         return classScheduleDao.listAllClasses();
     }
+
+    //this is a duplicate
+    @GetMapping(path="/all-exercise-history")
+    public List<WorkoutLog> listMemberExercises() {
+        return workoutLogDao.listAllWorkoutLogs();
+    }
+
+    @GetMapping(path="{id}/exercise-history")
+    public List<WorkoutLog> listExercisesByUserId(@PathVariable int id) {
+        return workoutLogDao.listAllWorkoutLogsByUserId(id);
+    }
+
+    @GetMapping(path = "history/visit")
+    public String totalTimeAtGym(Principal user) {
+        int userId = userDao.findIdByUsername(user.getName());
+        return workoutLogDao.totalTimeAtGym(userId);
+    }
+
+    @GetMapping(path = "history/{visitId}/workout-metrics")
+    public List<AvgWeightAndReps> listAverageWeightAndRepsPerDayForAnExercise(@PathVariable int visitId, Principal user) {
+            int userId = userDao.findIdByUsername(user.getName());
+            return workoutLogDao.averageWeightPerDayForExercise(visitId, userId);
+        }
 
 
 
