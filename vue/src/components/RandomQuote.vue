@@ -1,8 +1,8 @@
 <template>
-  <div class="box quote">
-    <div v-bind="quoteOfTheVisit.text" >
-      <div class ="place">{{ quoteOfTheVisit.text }}</div>
-      <div class ="place">{{ quoteOfTheVisit.author }}</div>
+  <div>
+    <div v-if="quoteOfTheVisit" class="box quote">
+      <div class ="place is-italic">"{{ quoteOfTheVisit.text }}"</div>
+      <div class ="place">-{{ quoteOfTheVisit.author }}</div>
     </div>
   </div>
 </template>
