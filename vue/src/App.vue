@@ -16,7 +16,7 @@
       <router-link
         class="button is-warning"
         v-bind:to="{ name: 'employee-account' }"
-        v-if="$store.state.token != '' && $store.state.employeeLoggedIn == true"
+        v-if="$store.state.token != '' && $store.state.employeeLoggedIn == 'true'"
       >
         Home</router-link
       >
