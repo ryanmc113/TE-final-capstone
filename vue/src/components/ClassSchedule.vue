@@ -38,6 +38,7 @@ export default {
   data() {
     return {
       allClasses: [],
+       
     };
   },
   created() {
@@ -54,6 +55,7 @@ export default {
       });
     },
   },
+
   
 };
 </script>
@@ -61,7 +63,7 @@ export default {
 <style>
 .classSch {
   background-color: rgb(177, 231, 231) !important;
-  display: flexbox;
+  display: flexbox !important;
 
 }
 

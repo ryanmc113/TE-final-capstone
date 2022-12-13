@@ -17,9 +17,9 @@ VALUES ('Spin to win!', 'Walt', 'Get ready to sweat and spin. You will feel this
 INSERT INTO class_schedule (class_name, class_instructor, class_description, class_time, class_day)
 VALUES ('Spin to win!', 'Walt', 'Get ready to sweat and spin. You will feel this tomorrow!', '10:00:00', 'Saturday');
 INSERT INTO class_schedule (class_name, class_instructor, class_description, class_time, class_day)
-VALUES ('What is weighing you down', 'Ryan', 'Get out some stress & lift heavy stuff. Hang out with the bros at the gym.', '04:00:00', 'Monday');
+VALUES ('Weighted down?', 'Ryan', 'Get out some stress & lift heavy stuff. Hang out with the bros at the gym.', '04:00:00', 'Monday');
 INSERT INTO class_schedule (class_name, class_instructor, class_description, class_time, class_day)
-VALUES ('What is weighing you down', 'David', 'Get out some stress & lift heavy stuff. Hang out with the bros at the gym.', '08:00:00', 'Wednesday');
+VALUES ('Weighted down?', 'David', 'Get out some stress & lift heavy stuff. Hang out with the bros at the gym.', '08:00:00', 'Wednesday');
 INSERT INTO class_schedule (class_name, class_instructor, class_description, class_time, class_day)
 VALUES ('Cardio Aerobics', 'Richard', 'Sweatin'' to the oldies flashback style. Have fun and dance to some great oldies like you are in 1985.', '10:00:00', 'Friday');
 INSERT INTO class_schedule (class_name, class_instructor, class_description, class_time, class_day)
@@ -66,6 +66,8 @@ VALUES (true, 'ski erg', 'quads, glutes, hamstrings, back, deltoids, trapezius, 
 INSERT INTO exercise (machine, name, muscle, media_url)
 VALUES (true, 'assault bike', 'triceps, biceps, delts, glutes, quads, hamstrings, chest',
 	   'https://media.giphy.com/media/TWH3IIPuGyxsOpOZin/giphy.gif');
+
+
 
 --INSERT INTO exercise (machine, name, muscle, media_url)
 --	VALUES (true,'bicep curl machine','bicep',
