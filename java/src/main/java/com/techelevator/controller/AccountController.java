@@ -50,6 +50,9 @@ public class AccountController {
 //        return visitLogDao.listAllVisits();
 //    }
 
+
+
+
     //show workout for a certain date
     @GetMapping(path = "/visit-history")
     public List<VisitLog> getVisitsByUser(Principal user){

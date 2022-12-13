@@ -7,24 +7,26 @@
       &nbsp;&nbsp;
       <div class="input int2">Time</div>
       &nbsp;&nbsp;
-      <div class="input int2">Name</div>
+      <div class="input int2 name">Name</div>
       &nbsp;&nbsp;
     </div>
     &nbsp;&nbsp;
     <div class="tile" v-for="classes in allClasses" v-bind:key="classes.id">
-      <div class="input int2 classSch">{{ classes.classDay }}</div>
+      <div class="input int2 classSch ">{{ classes.classDay }}</div>
       &nbsp;&nbsp;
-      <div class="input int2 classSch">{{ classes.classInstructor }}</div>
+      <div class="input int2 classSch ">{{ classes.classInstructor }}</div>
       &nbsp;&nbsp;
-      <div class="input int2 classSch">{{ classes.classTime }}</div>
+      <div class="input int2 classSch ">{{ classes.classTime }}</div>
       &nbsp;&nbsp;
       
-      <div class="input int2 classSch popup" @click="myFunction">{{ classes.className }}
+      <div class="input int2 classSch popup name " @click="myFunction">{{ classes.className }}
       <span class="popuptext"> {{ classes.classDescription }} </span>
       </div>
       
     </div>
-    <div class="tile"></div>
+    <div class="tile">
+      &nbsp; &nbsp;
+    </div>
   </div>
 </template>
 
@@ -36,6 +38,7 @@ export default {
   data() {
     return {
       allClasses: [],
+       
     };
   },
   created() {
@@ -52,6 +55,7 @@ export default {
       });
     },
   },
+
   
 };
 </script>
@@ -59,6 +63,18 @@ export default {
 <style>
 .classSch {
   background-color: rgb(177, 231, 231) !important;
+  display: flexbox !important;
+
+}
+
+.name{
+  display: flexbox;
+  flex-wrap: nowrap;
+}
+
+.tile{
+  margin: 20px;
+
 }
 
 .popup {
@@ -109,6 +125,7 @@ export default {
   from {opacity: 0;}
   to {opacity:1 ;}
 }
+
 
 
 </style>
