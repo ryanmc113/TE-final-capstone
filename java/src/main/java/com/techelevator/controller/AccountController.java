@@ -50,6 +50,9 @@ public class AccountController {
         return visitLogDao.getUsersVisitsByDate(userId);
     }
 
+
+
+
     //show workout for a certain date
     @GetMapping(path = "/visit-history")
     public List<VisitLog> getUsersVisitsByDate(Principal principal){
