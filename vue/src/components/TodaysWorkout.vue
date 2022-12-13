@@ -124,8 +124,8 @@ export default {
           this.getExercisesLoggedForVisit()
           if (response.status == 201) {
             alert("Your exercise has been logged")
+            this.clearForm();
           }
-          this.clearForm();
         });
     },
     getExercisesLoggedForVisit(){
