@@ -8,6 +8,7 @@
       <div class="input int2">Time</div>
       &nbsp;&nbsp;
       <div class="input int2">Name</div>
+      &nbsp;&nbsp;
     </div>
     &nbsp;&nbsp;
     <div class="tile" v-for="classes in allClasses" v-bind:key="classes.id">
