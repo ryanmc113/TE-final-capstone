@@ -12,7 +12,9 @@ Vue.use(Vuex)
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user'));
 const currentVisitID = localStorage.getItem('visitId');
-//const currentLogs = localStorage.getItem('logs')
+const currentVisitor = localStorage.getItem('currentVisitor')
+
+
 
 
 if(currentToken != null) {
@@ -24,17 +26,34 @@ export default new Vuex.Store({
     employeeUserLogging: [],
     visitId: currentVisitID || "",
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    employeeLoggedIn: currentVisitor || '',
   },
   mutations: {
+    SET_VISITOR(state){
+state.employeeLoggedIn = true
+localStorage.setItem('currentVisitor', true)
+    },
+    DELETE_VISITOR(state){
+      state.employeeLoggedIn = ''
+      localStorage.removeItem('currentVisitor')
+    },
     SET_EMPLOYEE_LOGGING(state, newLog){
       state.employeeUserLogging.push(newLog)
+      
       //localStorage.setItem('logs', state.employeeUserLogging)
     },
+     UPDATE_EMPLOYEE_LOG(state, id, time){
+     let updatedLogEndTime = state.employeeUserLogging.filter((user) => {
+        return user.userId == id; 
+      })
+        updatedLogEndTime[0].timeOut = time;
+     },
     DELETE_EMPLOYEE_LOG(state, id){
       state.employeeUserLogging = state.employeeUserLogging.filter((user) =>{
 return user.userId != id 
       })
+
     },
     SET_VISIT_ID(state, id){
       state.visitId = id;

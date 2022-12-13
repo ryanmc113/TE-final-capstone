@@ -37,10 +37,10 @@ public class AccountController {
     }
 
 // fix this to take a user id
-    @GetMapping(path = "/visit-history/yes")
-    public List<VisitLog> getVisitsByUser(Principal principal){
-      int id = userDao.findIdByUsername(principal.getName());
-        return visitLogDao.listAllVisitsByAccountId(id);
+    @GetMapping(path = "/visit-history/{userId}")
+    public List<VisitLog> getVisitsByUser(@PathVariable int userId){
+
+        return visitLogDao.getUsersVisitsByDate(userId);
     }
 
     @GetMapping(path = "/visit-history")

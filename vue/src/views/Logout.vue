@@ -9,6 +9,7 @@ export default {
   created() {   
      this.updateCheckoutTimeSecond();
     this.$store.commit("LOGOUT");
+    this.$store.commit("DELETE_VISITOR")
     this.$router.push("/login");
   },
   methods: {

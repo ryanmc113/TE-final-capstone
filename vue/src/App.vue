@@ -3,20 +3,24 @@
   <div id="app">
     
     <div id="nav" class="to-the-right">
-      <router-link
-    id="to-the-left"
-        class="button is-primary"
-        v-bind:to="{ name: 'logout' }"
-        v-if="$store.state.token != ''"
-        >Logout</router-link
-      >
+   
+       <!-- usershome -->
       <router-link
         class="button is-warning"
         v-bind:to="{ name: 'home' }"
-        v-if="$store.state.token != ''"
+        v-if="$store.state.token != '' && $store.state.employeeLoggedIn == ''"
       >
         Home</router-link
       >
+      <!-- employeehome -->
+      <router-link
+        class="button is-warning"
+        v-bind:to="{ name: 'employee-account' }"
+        v-if="$store.state.token != '' && $store.state.employeeLoggedIn == true"
+      >
+        Home</router-link
+      >
+      
       <router-link
         class="button is-link"
         :to="{ name: 'login' }"
@@ -29,12 +33,43 @@
         v-if="$store.state.token == ''"
         >Need an account?</router-link
       >
+<div  v-if="$store.state.token != ''" class="dropdown is-hoverable">
+  <div class="dropdown-trigger">
+    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu2">
+      <span>My Account</span>
+      <span class="icon is-small">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+  </div>
+  <div class="dropdown-menu" id="dropdown-menu2" role="menu">
+    <div class="dropdown-content">
+      
+        <router-link v-bind:to="{ name: 'usersInfo' }"
+            >Personal Information
+          </router-link>
+      
+      <hr class="dropdown-divider">
+     
+                 <router-link v-bind:to="{ name: 'userHistory' }"
+            >Workout History</router-link
+          >
+      
+      <hr class="dropdown-divider">
       <router-link
-        class="button is-primary"
-        v-bind:to="{ name: 'usersInfo' }"
-        v-if="$store.state.token != ''"
-        >My Account</router-link
-      >
+          
+         
+          v-bind:to="{ name: 'logout' }"
+          v-if="$store.state.token != ''"
+          >Logout</router-link
+        >
+    </div>
+  </div>
+</div>
+
+
+
+
       
     </div>
     <router-view />
@@ -58,9 +93,12 @@
   
 }
 .to-the-right {
+  flex-basis: 5px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  padding-top: 12px;
+  padding-right: 12px;
 }
 #theFoot {
   display: flex !important;

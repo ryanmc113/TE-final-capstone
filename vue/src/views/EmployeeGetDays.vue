@@ -1,15 +1,15 @@
 <template>
     <div>
-        <workout-history/>
+        <employee-workout-history :userId="parseInt($route.params.userId)"/>
     </div>
 </template>
 
 <script>
-import WorkoutHistory from '../components/WorkoutHistory.vue';
+
+import EmployeeWorkoutHistory from '../components/EmployeeWorkoutHistory.vue';
 export default {
 components:{
-    WorkoutHistory,
-   
+    EmployeeWorkoutHistory
 }
         
     
