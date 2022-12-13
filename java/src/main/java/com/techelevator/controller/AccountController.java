@@ -2,6 +2,7 @@ package com.techelevator.controller;
 
 
 import com.techelevator.dao.AccountDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.dao.VisitLogDao;
 import com.techelevator.model.Account;
 import com.techelevator.model.VisitLog;
@@ -19,13 +20,14 @@ import java.util.List;
 @RequestMapping("/account")
 public class AccountController {
 
-
+    private UserDao userDao;
     private AccountDao accountDao;
     private VisitLogDao visitLogDao;
 
-    public AccountController(AccountDao accountDao, VisitLogDao visitLogDao) {
+    public AccountController(AccountDao accountDao, VisitLogDao visitLogDao, UserDao userDao) {
         this.accountDao = accountDao;
         this.visitLogDao = visitLogDao;
+        this.userDao = userDao;
     }
 
 
@@ -40,9 +42,10 @@ public class AccountController {
         return null;
     }
 
-
-    @GetMapping(path = "/{id}/visit-history")
-    public List<VisitLog> getVisitsByAccountId(@PathVariable int id){
+// fix this to take a user id
+    @GetMapping(path = "/visit-history/yes")
+    public List<VisitLog> getVisitsByUser(Principal principal){
+      int id = userDao.findIdByUsername(principal.getName());
         return visitLogDao.listAllVisitsByAccountId(id);
     }
 
@@ -52,8 +55,9 @@ public class AccountController {
     }
 
     //show workout for a certain date
-    @GetMapping(path = "/visit-history/{id}")
-    public List<VisitLog> getUsersVisitsByDate(@PathVariable int id){
+    @GetMapping(path = "/visit-history")
+    public List<VisitLog> getUsersVisitsByDate(Principal principal){
+        int id = userDao.findIdByUsername(principal.getName());
         return visitLogDao.getUsersVisitsByDate(id);
     }
 

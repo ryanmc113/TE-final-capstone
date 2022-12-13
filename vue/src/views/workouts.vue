@@ -1,17 +1,17 @@
 <template>
     <div>
 <my-account-nav/>
-<workouts v-bind:visit-id="parseInt($route.params.id)">
+<my-workouts v-bind:visitId="parseInt($route.params.id)"/>
     </div>
 </template>
 
 <script>
-import Workouts from '../components/Workouts.vue'
+import MyWorkouts from '../components/MyWorkouts.vue'
 import MyAccountNav from '../components/MyAccountNav.vue'
 export default {
 name: "Workouts",
    components: {
-       Workouts,
+       MyWorkouts,
        MyAccountNav
    }
 }

@@ -6,7 +6,7 @@
         <!-- <p class="subtitle">Top tile</p> -->
         <form @submit.prevent> 
         <div class="field">
-          <label class="label">Exercise</label>
+          <label class="label" for="exerciseName">Exercise</label>
           <div class="control display">
             <input
               class="input"
@@ -15,10 +15,11 @@
               v-model="exercise.name"
             />&nbsp;:&nbsp;
             <input
+            
               class="input"
               type="text"
-              placeholder="time"
-              v-model="exercise.time"
+              placeholder="Minutes"
+              v-model="exercise.minutes"
             />
           </div>
           <div class="field">
@@ -41,15 +42,16 @@
               <input
                 class="input int2"
                 type="text"
-                placeholder="weight"
+                placeholder="Weight"
                 v-model="exercise.weight"
               />
             </div>
           </div>
           <!-- possibly need a submit.prevent on this add so it wont refresh to display the exercise at the bottom -->
           <button
+          type= "submit"
             class="button is-link btn-first"
-            type="submit"
+          
             v-on:click="addCurrentExercise()"
           >
             Add
@@ -62,16 +64,16 @@
         > -->
         <div class="field">
           <!-- needs to have a v-show if it has something in the array that i made. v-show time if reps and weight are empty -->
-          <div class="control display">
-            <div class="input int2">Exercises</div>
+          <div class="control display" v-for="exercises in exercisesForThatDay" v-bind:key="exercises.id">
+            <div class="input int2">{{exercises.name}}</div>
             &nbsp;:&nbsp;
-            <div class="input int2">Sets</div>
+            <div class="input int2">{{exercises.sets}}</div>
             &nbsp;:&nbsp;
-            <div class="input int2">Reps</div>
+            <div class="input int2">{{exercises.reps}}</div>
             &nbsp;:&nbsp;
-            <div class="input int2">Weight</div>
+            <div class="input int2">{{exercises.weight}}</div>
             &nbsp;:&nbsp;
-            <div class="input int2">Time</div>
+            <div class="input int2">{{exercises.minutes}}</div>
           </div>
         </div>
         <!-- </div> -->
@@ -102,21 +104,46 @@ export default {
         name: "",
         sets: "",
         reps: "",
-        time: "",
+        minutes: "",
       },
-    };
+    }
   },
+  computed:{
+    
+    
+  },
+   created(){
+     this.getExercisesLoggedForVisit();
+   },
   methods: {
     addCurrentExercise() {
       this.exercise.visitId = this.$store.state.visitId;
       workoutService
         .addExercise(this.exercise)
         .then((response) => {
+          this.getExercisesLoggedForVisit()
           if (response.status == 201) {
             alert("Your exercise has been logged")
           }
+          this.clearForm();
         });
     },
+    getExercisesLoggedForVisit(){
+      workoutService
+      .getExercisesLogged(this.$store.state.visitId)
+      .then((response) =>{
+        this.exercisesForThatDay = response.data;
+      })
+    },
+    clearForm(){
+      this.newExercise = {
+        name: "",
+        sets: "",
+        reps: "",
+        minutes: "",
+
+    }
+    }
   },
 };
 </script>

@@ -48,6 +48,22 @@ public class AuthenticationController {
         
         User user = userDao.findByUsername(loginDto.getUsername());
 
+        if (loginDto.isEmployeeLogin()) {
+            boolean isEmployee = false;
+
+            for (Authority authority : user.getAuthorities()) {
+                if (authority.getName().equalsIgnoreCase("ROLE_EMPLOYEE")) {
+                    isEmployee = true;
+                    break;
+                }
+            }
+
+            if (!isEmployee) {
+                throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+            }
+        }
+
+
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JWTFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
         return new ResponseEntity<>(new LoginResponseDto(jwt, user), httpHeaders, HttpStatus.OK);

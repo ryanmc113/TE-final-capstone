@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.security.Principal;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,16 +62,25 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao {
     @Override
     public List<WorkoutLog> listWorkoutsForAVisit(int visitId){
         List<WorkoutLog> exercisesByVisit = new ArrayList<>();
-        String sql = "SELECT * FROM work_out WHERE visit_id = ?;";
+        String sql = "SELECT * FROM workout_log WHERE visit_id = ?;";
 
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, visitId);
 
-        while (result.next()){
-            exercisesByVisit.add(mapRowToWorkoutLog(result));
+        while (result.next()) {
+            WorkoutLog newLog = new WorkoutLog();
+            newLog.setWorkoutId(result.getInt("workout_id"));
+            newLog.setVisitId(result.getInt("visit_id"));
+            newLog.setName(result.getString("name"));
+            newLog.setSets(result.getInt("sets"));
+            newLog.setReps(result.getInt("reps"));
+            newLog.setWeight(result.getDouble("weight"));
+            newLog.setMinutes(result.getInt("minutes"));
 
-        }return exercisesByVisit;
+            exercisesByVisit.add(newLog);
+        }
+        return exercisesByVisit;
+        }
 
-    }
 
     //Listing workouts by userId to show all workouts
 
@@ -117,6 +127,8 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao {
 //
 //        }
 //    }
+
+
 
 
 

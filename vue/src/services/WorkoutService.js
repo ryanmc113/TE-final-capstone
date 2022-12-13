@@ -1,9 +1,7 @@
 import axios from "axios";
 
 export default{
-    // addCheckInTime(id, checkInTime){
-    //     return axios.post(`/log/visit/${id}`, checkInTime)
-    // },
+  
     addCheckInTime(checkInTime){
         return axios.post(`workouts/check-in`, checkInTime)
     },
@@ -19,5 +17,9 @@ export default{
 
     getClassSch(){
         return axios.get('workouts/classes')
+    },
+
+    getExercisesLogged(visitId){
+        return axios.get(`workouts/visit/${visitId}`)
     }
 }

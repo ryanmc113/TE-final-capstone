@@ -13,13 +13,13 @@ public interface VisitLogDao {
 
     List<VisitLog> isVisitCompleted(int accountId);
 
-    List<VisitLog> listAllVisits();
+    List<VisitLog> listAllVisits(int userId);
 
     List<VisitLog> listAllVisitsByAccountId(int accountId);
 
     VisitLog getVisitLogById(int visitId);
 
-    List<VisitLog> getUsersVisitsByDate(int accountId);
+    List<VisitLog> getUsersVisitsByDate(int userId);
 
 
 

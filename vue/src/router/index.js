@@ -11,6 +11,7 @@ import MyAccountPersonal from '../views/MyAccountPersonal.vue'
 import MyAccountWorkoutHistory from '../views/MyAccountWorkoutHistory.vue'
 import EmployeeGetDays from '../views/EmployeeGetDays.vue'
 import EmployeeGetWorkouts from '../views/EmployeeGetWorkouts.vue'
+import Workouts from '../views/workouts.vue'
 Vue.use(Router)
 
 /**
@@ -26,7 +27,15 @@ const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    
+    {
+      path: '/history/:id',
+      name: "usersWorkoutsThatDay",
+      component: Workouts,
+      meta: {
+        requiresAuth: true
+      }
+
+    },
     {
       path: '/history',
       name: "userHistory",
@@ -118,7 +127,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   // Determine if the route requires Authentication
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
-  const requiresRole = to.matched.some(x => x.meta.requiresRole);
+  //const requiresRole = to.matched.some(x => x.meta.requiresRole);
   // const requiredRole = to.matched.some(x => x.meta.requiredRole);
 
   // If it does and they are not logged in, send the user to "/login"
@@ -126,9 +135,10 @@ router.beforeEach((to, from, next) => {
   if (requiresAuth && store.state.token === '') {
     next("/login");
    } 
-  else if (requiresRole && !store.state.user.role.includes("EMPLOYEE")) {
-    next('/login');
-  } 
+  // else if (requiresRole && !store.state.user.role.includes("EMPLOYEE")) {
+  //   // don't leave
+  //   alert('You are not authorized. Please login as an EMPLOYEE');
+  // } 
   else {
     // Else let them go to their next destination
     next();
