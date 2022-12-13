@@ -2,6 +2,8 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.JdbcUserDao;
 import com.techelevator.dao.JdbcVisitLogDao;
+import com.techelevator.dao.UserDao;
+import com.techelevator.model.User;
 import com.techelevator.model.VisitLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,11 +14,13 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
-
+@CrossOrigin
 @RestController
 
 
+
 public class UserController {
+
     @Autowired
     JdbcTemplate jdbcTemplate = new JdbcTemplate();
     @Autowired
@@ -30,11 +34,15 @@ public class UserController {
     //adding exercises to database table
     //pulling user's visit history
     //getting all employees
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
-    @RequestMapping(path = "/employee/account/{id}/visit", method = RequestMethod.GET)
-    public List<VisitLog> getAllVisits(@PathVariable int id){
-        return visitDao.listAllVisits(id);
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PutMapping("/admin/update")
+    public void updateUsers(@RequestBody User user){
+        if (user.getRole().contains("USER")) {
+            dao.updateUserToEmployee(user);
+        } else {
+            dao.updateEmployeeToUser(user);
+        }
     }
 
 //    @PreAuthorize("hasAnyRole('ROLE_ADMIN)")

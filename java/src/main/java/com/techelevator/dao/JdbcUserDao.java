@@ -91,13 +91,21 @@ public class JdbcUserDao implements UserDao {
 
 
     @Override
-    public void updateUserToEmployee(User user, int userId){
-        String sql = "UPDATE users SET role = 'Employee' where user_id = ?;";
-        try{
-            jdbcTemplate.update(sql, userId, user.getRole());
-        } catch (Exception e){
+    public void updateUserToEmployee(User user) {
+        String sql = "UPDATE users SET role = 'EMPLOYEE' where user_id = ?;";
+        try {
+            jdbcTemplate.update(sql, user.getId());
+        } catch (Exception e) {
             throw e;
         }
+    }
+        public void updateEmployeeToUser(User user){
+            String sql = "UPDATE users SET role = 'USER' where user_id = ?;";
+            try{
+                jdbcTemplate.update(sql, user.getId());
+            } catch (Exception e){
+                throw e;
+            }
     }
 
 

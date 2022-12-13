@@ -27,7 +27,7 @@
           <td>
             <button class="button" v-on:click="logging(no,user.userId)">
               Checkin            </button>
-            <button class button v-if="$store.state.user.role.includes('ADMIN')">Make Employee</button>
+            <button class button v-if="$store.state.user.role.includes('ADMIN')" v-on:click="makeEmployee(user)">Make Employee</button>
           </td>
            <td>
             <button class="button">
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-
+import authService from "../services/AuthService"
 import employeeService from "../services/EmployeeService";
 export default {
   name: "employeeAccount",
@@ -87,6 +87,13 @@ export default {
   },
   
   methods: {
+    makeEmployee(user){
+      authService.updateUser(user).then(response=>{
+       if(response.status){
+         alert("This user has been updated")
+       }
+      })
+    },
     getAllUsers() {
       employeeService.getUsers().then(response =>
       this.allUsers = response.data);

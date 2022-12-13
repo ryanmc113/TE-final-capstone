@@ -13,6 +13,9 @@ export default {
   register(user) {
     return axios.post("/register", user)
   },
+  updateUser(user) {
+    return axios.put("admin/update", user)
+  }
 
  
 
