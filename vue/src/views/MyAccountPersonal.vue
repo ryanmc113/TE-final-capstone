@@ -1,7 +1,7 @@
 <template>
     <div id="moving">
     
-          <my-account-nav/>
+        My Information
         
       
 <personal-info/>
@@ -10,11 +10,10 @@
 
 <script>
 import PersonalInfo from '../components/PersonalInfo.vue'
-import MyAccountNav from '../components/MyAccountNav.vue'
 export default {
     components: {
         PersonalInfo,
-        MyAccountNav
+      
     },
 
 }

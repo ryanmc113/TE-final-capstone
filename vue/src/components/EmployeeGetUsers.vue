@@ -10,7 +10,6 @@
       </thead>
       <tbody>
         <td>
-          <!-- need to add v-model to bind data refer to event handling hw  -->
           <input
             type="text"
             class="input"
@@ -26,13 +25,13 @@
           <td>{{ user.firstName }} </td>
           <td>{{ user.lastName }}</td>
           <td>
-            <button class="button" v-on:click="logging(user.status, user.id)">
-              {{ allLogs.userId === "Check In" ? "Check Out" : "Check In" }}
-            </button>
+            <button class="button" v-on:click="logging(no,user.userId)">
+              Checkin            </button>
+            <button class button v-if="$store.state.user.role.includes('ADMIN')">Make Employee</button>
           </td>
            <td>
             <button class="button">
-              <router-link v-bind:to="{ name: 'employee-view-user-history' }"> View Workouts</router-link>
+              <router-link v-bind:to="{ name: 'employee-view-user-history', params: {userId: user.userId }  }"> View Workouts</router-link>
             </button>
           </td>
         </tr>
@@ -42,6 +41,7 @@
 </template>
 
 <script>
+
 import employeeService from "../services/EmployeeService";
 export default {
   name: "employeeAccount",
@@ -87,7 +87,6 @@ export default {
   },
   
   methods: {
-    
     getAllUsers() {
       employeeService.getUsers().then(response =>
       this.allUsers = response.data);
@@ -102,34 +101,30 @@ export default {
     addLog(id) {
       this.newLog.userId = id;
       this.newLog.timeIn = this.getTime();
-      //add COMMIT
-      this.allLogs.push(this.newLog);
+      this.$store.commit("SET_EMPLOYEE_LOGGING", this.newLog)
       this.clearNewLog();
     },
     checkId(id) {
       return this.allLogs.userId == id;
     },
     updateLog(id) {
-      let updatedLogEndTime = this.allLogs.filter((user) => {
-       return user.userId == id;
-      })
-      updatedLogEndTime[0].timeOut = this.getTime();
-      return updatedLogEndTime
+      this.$store.commit("UPDATE_EMPLOYEE_LOG", id, this.getTime())
+    
     },
     clearNewLog() {
       this.newLog = { userId: null, timeIn: null, timeOut: null };
     },
     clearUserLog(id){
-        this.allLogs = this.allLogs.filter((user) => {
-       return !(user.userId == id);
-      })
+      this.$store.commit("DELETE_EMPLOYEE_LOG", id)
+    
         
     },
+  //change status stuff
     logging(userStatus, id) {
-      if (userStatus == "Check Out") {
+      
         this.addLog(id);
         this.flipStatus(id);
-      } else if (userStatus == "Check In") {
+       if (userStatus == "Check In") {
         let userLeavingLog = this.updateLog(id);
         this.postLog(userLeavingLog);
         this.clearUserLog(id);

@@ -1,16 +1,16 @@
 <template>
     <div>
 
-<workouts v-bind:visit-id="parseInt($route.params.id)"/>
+<employee-get-workouts :visitId="parseInt($route.params.visitId)"/>
     </div>
 </template>
 
 <script>
-import Workouts from '../components/MyWorkouts.vue'
+import  EmployeeGetWorkouts from '../components/EmployeeGetWorkouts.vue'
 export default {
 name: "Workouts",
    components: {
-       Workouts,
+       EmployeeGetWorkouts,
        
    }
 }

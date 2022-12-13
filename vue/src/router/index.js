@@ -104,7 +104,7 @@ const router = new Router({
       }
     },
     {
-      path:"/employee/:id/history",
+      path:"/employee/:userId/history",
       name:"employee-view-user-history",
       component: EmployeeGetDays,
       meta: {
@@ -113,7 +113,7 @@ const router = new Router({
       }
     },
     {
-    path:"employee/:id/history:id",
+    path:"/employee/:userId/history/:visitId",
     name: "employee-view-user-workout",
     component: EmployeeGetWorkouts,
     meta: {
