@@ -1,43 +1,41 @@
 <template>
-    <div class="scrollmenu">
-  <a href="#home">Home</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
-  <a href="#home">Home</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
-  <a href="#home">Home</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
-  <a href="#home">Home</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
-  <a href="#home">Home</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
-
+<div>
+    <div v-for="assistance in assistanceExercisesArray" v-bind:key="assistance.id" class="scrollmenu">
+      <div>{{assistance.name}}</div>
+  </div>
 </div>
 </template>
 
 <script>
+import assistanceExercises from "../services/AssistanceExercises";
 
 export default {
-    data() {
-        
+  data() {
+    return {
+      assistanceExercisesArray: [],
+    };
+  },
+  created() {
+    this.getAssistanceExercisesFromBack();
+  },
+  methods: {
+    getAssistanceExercisesFromBack() {
+      assistanceExercises.getAssistanceExercises().then((response) => {
+        this.assistanceExercisesArray = response.data;
+      });
     },
-}
+  },
+};
 </script>
 
 <style scoped>
 div.scrollmenu {
   background-color: rgb(192, 192, 192);
-  overflow: auto;
+  overflow-y: hidden;
+  overflow-x: scroll;
   white-space: nowrap;
   border-radius: 15px;
+  width: auto;
 }
 
 div.scrollmenu a {
