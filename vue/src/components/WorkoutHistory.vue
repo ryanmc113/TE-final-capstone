@@ -1,14 +1,16 @@
 <template>
   <div>
-Month year
+
     <table>
       <thead>
         <tr>
-          <th>Days in the gym</th>
+          <th>Your visits logged</th>
         </tr>
+        <input type="month" value="2022-12" v-model="monthFilter">
+        <tr><br></tr>
       </thead>
       <tbody>
-        <tr v-for="day in fullWorkoutDays" v-bind:key="day.visitId">
+        <tr v-for="day in filterByMonth" v-bind:key="day.visitId">
           <router-link
             :to="{ name: 'usersWorkoutsThatDay', params: { id: day.visitId } }"
           >
@@ -24,11 +26,19 @@ Month year
 import UserService from "../services/UserService.js";
 
 export default {
+  computed: {
+    filterByMonth(){
+      let filteredFullWorkoutDays = this.fullWorkoutDays;
+      filteredFullWorkoutDays = filteredFullWorkoutDays.filter(fullDay =>
+     
+        fullDay.year + "-"+  this.getMonthNumber(fullDay.month) == this.monthFilter
+      )
+      return filteredFullWorkoutDays
+    }
+  },
   data() {
     return {
-      year:[2022],
-      months:['January', 'February','March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-      currentMonth: '',
+      monthFilter: '2022-12',
       fullWorkoutDays: [],
       makingADay: {
         visitId: '',
@@ -87,10 +97,39 @@ if (month == 1){
 }else if (month == 12){
   month = 'December'
 } return month
-    }
+    },
+    getMonthNumber(month){
+      if (month == 'January'){
+        month = 1
+      } else if (month == 'February'){
+        month = 2
+    
+      }if (month == 'March'){
+        month = 3
+      }else if (month == 'April'){
+        month = 4
+      }else if (month == 'May'){
+        month = 5
+      }else if (month == 'June'){
+        month = 6
+      }else if (month == 'July'){
+        month = 7
+      }else if (month == 'August'){
+        month = 8
+      }else if (month == 'September'){
+        month = 9
+      }else if (month == 'October'){
+        month = 10
+      }else if (month == 'November'){
+        month = 11
+      }else if (month == 'December'){
+        month = 12
+      }
+      return month
     
   },
-};
+}
+}
 </script>
 
 <style scoped>
