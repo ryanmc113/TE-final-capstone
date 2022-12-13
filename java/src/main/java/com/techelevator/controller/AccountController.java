@@ -36,12 +36,6 @@ public class AccountController {
         accountDao.updateAccount(account);
     }
 
-
-    @GetMapping(path = "/x{id}")
-    public String stop(){
-        return null;
-    }
-
 // fix this to take a user id
     @GetMapping(path = "/visit-history/yes")
     public List<VisitLog> getVisitsByUser(Principal principal){
@@ -55,10 +49,9 @@ public class AccountController {
     }
 
     //show workout for a certain date
-    @GetMapping(path = "/visit-history")
-    public List<VisitLog> getUsersVisitsByDate(Principal principal){
-        int id = userDao.findIdByUsername(principal.getName());
-        return visitLogDao.getUsersVisitsByDate(id);
+    @GetMapping(path = "/visit-history/{userId}")
+    public List<VisitLog> getVisitsByUser(@PathVariable int userId){
+        return visitLogDao.listVisitsByUser(userId);
     }
 
 

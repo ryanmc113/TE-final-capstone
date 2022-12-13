@@ -1,14 +1,12 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.AvgWeightAndReps;
 import com.techelevator.model.Exercise;
-import com.techelevator.model.ClassSchedule;
 import com.techelevator.model.WorkoutLog;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
-import java.security.Principal;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 @Component
@@ -128,10 +126,35 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao {
 //        }
 //    }
 
+    @Override
+    public String totalTimeAtGym(int userId) {
+        String sql = "SELECT sum(check_out - check_in) AS total_time from visit_log where user_id = ?;";
+        try {
+            return jdbcTemplate.queryForObject(sql, String.class, userId);
+        } catch (NullPointerException e) {
+            throw e;
+        }
+    }
 
-
-
-
+    @Override
+    public List<AvgWeightAndReps> averageWeightPerDayForExercise(int visitId, int userId) {
+        List<AvgWeightAndReps> avgWeight = new ArrayList<>();
+        String sql = "SELECT avg(weight) AS weight, avg(reps) AS reps, date(check_in) FROM workout_log " +
+                "JOIN visit_log USING (visit_id) where user_id = ? AND exercise_id = ? GROUP BY date(check_in);";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, visitId, userId);
+            while (results.next()) {
+                   AvgWeightAndReps oneExercise = new AvgWeightAndReps();
+                oneExercise.setWeight(results.getInt("weight"));
+                oneExercise.setReps(results.getInt("reps"));
+                oneExercise.setDate(results.getString("date"));
+                    avgWeight.add(oneExercise);
+                }
+            } catch (Exception e) {
+                throw e;
+            }
+            return avgWeight;
+        }
 
     private WorkoutLog mapRowToWorkoutLog(SqlRowSet rs){
         WorkoutLog newLog = new WorkoutLog();

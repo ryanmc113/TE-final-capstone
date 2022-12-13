@@ -63,11 +63,11 @@ public class JdbcVisitLogDao implements VisitLogDao {
 
 
     @Override
-    public List<VisitLog> listAllVisits(int id) {
+    public List<VisitLog> listAllVisits() {
         List<VisitLog> visits = new ArrayList<>();
 
-        String sql = "SELECT * FROM visit_log WHERE user_id = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+        String sql = "SELECT * FROM visit_log;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
 
         while (results.next()){
             visits.add(mapRowToVisitLog(results));
@@ -91,19 +91,7 @@ public class JdbcVisitLogDao implements VisitLogDao {
 
 
     @Override
-    public VisitLog getVisitLogById(int visitId) {
-        String sql = "SELECT * FROM visit_log WHERE visit_id = ?;";
-
-        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, visitId);
-
-        if (result.next()){
-            return mapRowToVisitLog(result);
-        }
-        return null;
-    }
-
-    @Override
-    public List<VisitLog> getUsersVisitsByDate(int userId){
+    public List<VisitLog> listVisitsByUser(int userId){
         List<VisitLog> visitsByDate = new ArrayList<>();
 
         String sql = "SELECT visit_id, check_in, check_out FROM visit_log WHERE user_id = ? ORDER BY date(check_in) DESC ;";

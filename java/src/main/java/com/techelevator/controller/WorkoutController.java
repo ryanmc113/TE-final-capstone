@@ -107,6 +107,20 @@ public class WorkoutController {
         return workoutLogDao.listAllWorkoutLogsByUserId(id);
     }
 
+    @GetMapping(path = "history/visit")
+    public String totalTimeAtGym(Principal user) {
+        int userId = userDao.findIdByUsername(user.getName());
+        return workoutLogDao.totalTimeAtGym(userId);
+    }
+
+    @GetMapping(path = "history/{visitId}/workout-metrics")
+    public List<AvgWeightAndReps> listAverageWeightAndRepsPerDayForAnExercise(@PathVariable int visitId, Principal user) {
+            int userId = userDao.findIdByUsername(user.getName());
+            return workoutLogDao.averageWeightPerDayForExercise(visitId, userId);
+        }
+
+
+
 
 
     //get exercise by id (will bring back exercise object for assistance button)
