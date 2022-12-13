@@ -23,7 +23,7 @@ public interface WorkoutLogDao {
 
     String totalTimeAtGym(int userId);
 
-    List<AvgWeightAndReps> averageWeightPerDayForExercise(int visitId, int userId);
+    List<AvgWeightAndReps> averageWeightPerDayForExercise(int userId, int exerciseId);
 
 
 

@@ -137,12 +137,12 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao {
     }
 
     @Override
-    public List<AvgWeightAndReps> averageWeightPerDayForExercise(int visitId, int userId) {
+    public List<AvgWeightAndReps> averageWeightPerDayForExercise(int userId, int exerciseId) {
         List<AvgWeightAndReps> avgWeight = new ArrayList<>();
         String sql = "SELECT avg(weight) AS weight, avg(reps) AS reps, date(check_in) FROM workout_log " +
                 "JOIN visit_log USING (visit_id) where user_id = ? AND exercise_id = ? GROUP BY date(check_in);";
         try {
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, visitId, userId);
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, exerciseId);
             while (results.next()) {
                    AvgWeightAndReps oneExercise = new AvgWeightAndReps();
                 oneExercise.setWeight(results.getInt("weight"));

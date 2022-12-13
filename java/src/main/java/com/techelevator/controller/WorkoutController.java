@@ -114,9 +114,9 @@ public class WorkoutController {
     }
 
     @GetMapping(path = "history/{visitId}/workout-metrics")
-    public List<AvgWeightAndReps> listAverageWeightAndRepsPerDayForAnExercise(@PathVariable int visitId, Principal user) {
+    public List<AvgWeightAndReps> listAverageWeightAndRepsPerDayForAnExercise(@PathVariable int exerciseId, Principal user) {
             int userId = userDao.findIdByUsername(user.getName());
-            return workoutLogDao.averageWeightPerDayForExercise(visitId, userId);
+            return workoutLogDao.averageWeightPerDayForExercise(userId, exerciseId);
         }
 
 
