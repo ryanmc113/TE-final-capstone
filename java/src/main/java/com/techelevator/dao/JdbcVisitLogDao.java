@@ -115,7 +115,6 @@ public class JdbcVisitLogDao implements VisitLogDao {
             visit.setVisitId(result.getInt("visit_id"));
             visit.setCheckIn(String.valueOf(result.getTimestamp("check_in")));
             visit.setCheckOut(String.valueOf(result.getTimestamp("check_out")));
-
             visitsByDate.add(visit);
         }
         return visitsByDate;

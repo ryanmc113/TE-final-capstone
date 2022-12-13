@@ -10,6 +10,7 @@
         v-if="$store.state.token != ''"
         >Logout</router-link
       >
+       <!-- usersinfo -->
       <router-link
         class="button is-warning"
         v-bind:to="{ name: 'home' }"
@@ -17,6 +18,7 @@
       >
         Home</router-link
       >
+      
       <router-link
         class="button is-link"
         :to="{ name: 'login' }"
