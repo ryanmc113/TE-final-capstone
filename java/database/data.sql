@@ -17,9 +17,9 @@ VALUES ('Spin to win!', 'Walt', 'Get ready to sweat and spin. You will feel this
 INSERT INTO class_schedule (class_name, class_instructor, class_description, class_time, class_day)
 VALUES ('Spin to win!', 'Walt', 'Get ready to sweat and spin. You will feel this tomorrow!', '10:00:00', 'Saturday');
 INSERT INTO class_schedule (class_name, class_instructor, class_description, class_time, class_day)
-VALUES ('Weighted down?', 'Ryan', 'Get out some stress & lift heavy stuff. Hang out with the bros at the gym.', '04:00:00', 'Monday');
+VALUES ('Weighed down?', 'Ryan', 'Get out some stress & lift heavy stuff. Hang out with the bros at the gym.', '04:00:00', 'Monday');
 INSERT INTO class_schedule (class_name, class_instructor, class_description, class_time, class_day)
-VALUES ('Weighted down?', 'David', 'Get out some stress & lift heavy stuff. Hang out with the bros at the gym.', '08:00:00', 'Wednesday');
+VALUES ('Weighed down?', 'David', 'Get out some stress & lift heavy stuff. Hang out with the bros at the gym.', '08:00:00', 'Wednesday');
 INSERT INTO class_schedule (class_name, class_instructor, class_description, class_time, class_day)
 VALUES ('Cardio Aerobics', 'Richard', 'Sweatin'' to the oldies flashback style. Have fun and dance to some great oldies like you are in 1985.', '10:00:00', 'Friday');
 INSERT INTO class_schedule (class_name, class_instructor, class_description, class_time, class_day)
