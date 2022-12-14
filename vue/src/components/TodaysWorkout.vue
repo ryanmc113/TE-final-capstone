@@ -48,6 +48,7 @@
             </div>
           </div>
           <!-- possibly need a submit.prevent on this add so it wont refresh to display the exercise at the bottom -->
+          <br>
           <button
           type= "submit"
             class="button is-link btn-first"
@@ -56,6 +57,7 @@
           >
             Add
           </button>
+          <br>
         </div>
         </form>
         <!-- <div
