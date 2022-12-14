@@ -35,6 +35,11 @@ public class WorkoutController {
     }
 
     // log check-in and return visit_id, which is needed to log individual exercises
+
+    @PostMapping(path = "log/visit")
+    public int logVisitCheckInForEmployee(@RequestBody VisitLog visit) {
+        return visitLogDao.logCheckIn(visit);
+    }
     @PostMapping(path = "check-in")
     public int logVisitCheckIn(@RequestBody VisitLog visit, Principal principal) {
       //@RequestParam int account_id, @RequestParam String checkInTime
