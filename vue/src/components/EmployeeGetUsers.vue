@@ -69,7 +69,8 @@ export default {
     
       newLog: {
         userId: null,
-        timeIn: null,
+        checkIn: null,
+      
       },
       allUsers: [],
        errorMsg: "",
@@ -126,18 +127,19 @@ export default {
     
     addLog(id) {
       this.newLog.userId = id;
-      this.newLog.timeIn = this.getTime();
-      this.clearNewLog();
+      this.newLog.checkIn = this.getTime();
+      
     },
    
     
     clearNewLog() {
-      this.newLog = { userId: null, timeIn: null, timeOut: null };
+      this.newLog = { userId: null, timeIn: null };
     },
   
   //change status stuff
     logging(id) {
-      let newishLog=this.addLog(id)
+      this.addLog(id)
+      let newishLog = this.newLog
        this.postLog(newishLog);
         this.clearNewLog(id);
         
