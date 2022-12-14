@@ -1,7 +1,8 @@
 <template>
     <div>
         <div id="basicInfo"> 
-            <h1>Basic Info</h1>
+            <h1> Basic Info</h1>
+            
             <form>
             <div>
                 <label for="firstName">First Name: </label>
@@ -20,6 +21,8 @@
           <option value="Endurance">Increase Endurance</option>
           <option value="Flexibility">Increased Flexibility</option>
         </select>
+            <div>
+      </div>
       </div>
             
             <div>
@@ -82,7 +85,9 @@ methods: {
          firstName: this.userInfo.firstName,
          lastName: this.userInfo.lastName,
          goal: this.userInfo.goal,
-         email: this.userInfo.email
+         email: this.userInfo.email,
+         mediaURL: this.userInfo.mediaURL
+         
      }
      userService.updateUsersInfo(updateUser).then(response=>{
      if (response.status == 200){

@@ -79,6 +79,17 @@
           <option value="Flexibility">Increased Flexibility</option>
         </select>
       </div>
+      <div>
+         
+      </div>
+      <label for="Image">Image:  </label>
+      <div class="radio_img">
+        <input type="radio" class="image" v-model="user.account.mediaURL" value="bodybuilder.png"><img class="img" src="bodybuilder.png">
+        <input type="radio" class="image" v-model="user.account.mediaURL" value="bicycle.png"><img class="img" src="bicycle.png">
+        <input type="radio" class="image" v-model="user.account.mediaURL" value="db.png"><img class="img" src="db.png">
+        <input type="radio" class="image" v-model="user.account.mediaURL" value="star.png"><img class="img" src="star.png">
+        <input type="radio" class="image" v-model="user.account.mediaURL" value="yogi.png"><img class="img" src="yogi.png">
+      </div>
       <br />
       <button class="btn btn-lg btn-primary btn-block button is-primary" type="submit">
         Create Account
@@ -94,6 +105,32 @@ export default {
   name: "register",
   data() {
     return {
+      option:[
+        {
+          title: "db",
+          memberImage: "db.png"
+        },
+        {
+          title: "bodybuilder",
+          memberImage: "bodybuilder.png"
+        },
+        {
+          title: "bicycle",
+          memberImage: "bicycle.png"
+        },
+        {
+          title: "flower",
+          memberImage: "flower.png"
+        },
+        {
+          title: "yogi",
+          memberImage: "yogi.png"
+        },
+        {
+          title: "star",
+          memberImage: "star.png"
+        }
+      ],
       user: {
         username: "",
         password: "",
@@ -104,6 +141,7 @@ export default {
           lastName: "",
           email: "",
           goal: "",
+          mediaURL: "",
         },
       },
       registrationErrors: false,
@@ -144,6 +182,17 @@ export default {
 </script>
 
 <style>
+
+.img{
+  max-width: 40px;
+  max-height: 40px;
+  margin-left: 10px;
+
+}
+.radio_img{
+  display: flex;
+  
+}
 
 
 </style>
