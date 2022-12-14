@@ -36,12 +36,11 @@ public class AccountController {
         accountDao.updateAccount(account);
     }
 
-// fix this to take a user id
-//    @GetMapping(path = "/visit-history/{userId}")
-//    public List<VisitLog> getVisitsByUser(@PathVariable int userId){
-//
-//        return visitLogDao.getUsersVisitsByDate(userId);
-//    }
+    @GetMapping(path = "/visit-history/{userId}")
+    public List<VisitLog> getVisitsByUser(@PathVariable int userId){
+
+        return visitLogDao.listVisitsByUser(userId);
+    }
 
 
 //    WE SHOULD KEEP THIS MAYBE
@@ -49,6 +48,9 @@ public class AccountController {
 //    public List<VisitLog> getAllVisits() {
 //        return visitLogDao.listAllVisits();
 //    }
+
+
+
 
     //show workout for a certain date
     @GetMapping(path = "/visit-history")
