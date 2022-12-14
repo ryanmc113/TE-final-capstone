@@ -33,8 +33,7 @@
             <button class="button" v-on:click="logging(user.userId)">
               Checkin
             </button>
-            <!-- button v-if="$store.state.user.role.includes('ADMIN')" add below-->
-            <button class v-on:click="makeEmployee(user.userId)">
+            <button class v-on:click="makeEmployee(user.userId)" v-if="$store.state.user.role.includes('ADMIN')">
               Make Employee
             </button>
           </td>
@@ -69,7 +68,8 @@ export default {
     
       newLog: {
         userId: null,
-        timeIn: null,
+        checkIn: null,
+      
       },
       allUsers: [],
        errorMsg: "",
@@ -102,18 +102,21 @@ export default {
   },
   
   methods: {
-    makeUser(id){
-     const updateUser = {
-        userId: id
-      }
-      authService.updateEmployeeToUser(updateUser).then(response=>{
-       if(response.status){
-         alert("This user has been updated")
-       }
-      })
-    },
-    makeEmployee(id){
-      authService.updateUserToEmployee(id).then(response=>{
+    // makeUser(id){
+    //  const updateUser = {
+    //     userId: id
+    //   }
+    //   authService.updateEmployeeToUser(updateUser).then(response=>{
+    //    if(response.status){
+    //      alert("This user has been updated")
+    //    }
+    //   })
+    // },
+    makeEmployee(userId){
+const updateUser = {
+  id: userId
+}
+      authService.updateUserToEmployee(updateUser).then(response=>{
        if(response.status){
          alert("This user has been updated")
        }
@@ -126,18 +129,19 @@ export default {
     
     addLog(id) {
       this.newLog.userId = id;
-      this.newLog.timeIn = this.getTime();
-      this.clearNewLog();
+      this.newLog.checkIn = this.getTime();
+      
     },
    
     
     clearNewLog() {
-      this.newLog = { userId: null, timeIn: null, timeOut: null };
+      this.newLog = { userId: null, timeIn: null };
     },
   
   //change status stuff
     logging(id) {
-      let newishLog=this.addLog(id)
+      this.addLog(id)
+      let newishLog = this.newLog
        this.postLog(newishLog);
         this.clearNewLog(id);
         
@@ -147,7 +151,7 @@ export default {
     postLog(log) {
       employeeService.createLogInDatabase(log)
       .then((response) =>{
-          if(response.status === 201){
+          if(response.status === 200){
               alert("Wish them a good rest of the day!")
           }
           

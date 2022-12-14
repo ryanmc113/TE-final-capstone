@@ -96,6 +96,7 @@
    padding-top: 12px;
   padding-right: 50px;
   padding-left: 45px;
+  padding-bottom: 20px;
 }
 .to-the-left {
   
