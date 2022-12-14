@@ -29,11 +29,11 @@ public class JdbcAccountDao implements AccountDao {
 
 //Front-end doesn't need all info - may want to add media_url
     @Override
-    public List<Account> listUserAccount(){
+    public List<Account> listUserAccount(int id){
         List <Account> accountList = new ArrayList<>();
-        String sql = "SELECT first_name, last_name, user_id FROM account;";
+        String sql = "SELECT first_name, last_name, user_id FROM account WHERE user_id != ?;";
         try {
-            SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
+            SqlRowSet result = jdbcTemplate.queryForRowSet(sql, id);
             while (result.next()) {
                 Account newAccount = new Account();
                 newAccount.setFirstName(result.getString("first_name"));
