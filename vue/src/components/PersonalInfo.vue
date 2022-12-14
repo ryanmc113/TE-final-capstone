@@ -20,6 +20,17 @@
           <option value="Endurance">Increase Endurance</option>
           <option value="Flexibility">Increased Flexibility</option>
         </select>
+            <div>
+            <label for="Image">Image: </label>
+        <select name="image" id="image" v-model="userInfo.image">
+        <option value="db" src="../img_user/db.png"></option>
+        <option value="bodybuilder" src="../img_user/bodybuilder"></option>
+        <option value="bicycle" src="../img_user/bicycle"></option>
+        <option value="flower" src="../img_user/flower.png"></option>
+        <option value="yogi" src="../img_user/yogi.png"></option>
+        <option value="star" src="../img_user/star.png"></option>
+        </select>
+      </div>
       </div>
             
             <div>
@@ -82,7 +93,8 @@ methods: {
          firstName: this.userInfo.firstName,
          lastName: this.userInfo.lastName,
          goal: this.userInfo.goal,
-         email: this.userInfo.email
+         email: this.userInfo.email,
+         mediaURL: this.userInfo.mediaURL
      }
      userService.updateUsersInfo(updateUser).then(response=>{
      if (response.status == 200){

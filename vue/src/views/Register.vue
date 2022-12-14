@@ -79,6 +79,15 @@
           <option value="Flexibility">Increased Flexibility</option>
         </select>
       </div>
+      <div>
+         <label for="Image">Image: </label>
+        <select :option="option" label="title" name="image">
+          <template slot="option" slot-scope="option">
+            <img src="option.memberImage"/>
+            {{option.title}}
+          </template>
+          </select>
+      </div>
       <br />
       <button class="btn btn-lg btn-primary btn-block button is-primary" type="submit">
         Create Account
@@ -94,6 +103,32 @@ export default {
   name: "register",
   data() {
     return {
+      option:[
+        {
+          title: "db",
+          memberImage: "db.png"
+        },
+        {
+          title: "bodybuilder",
+          memberImage: "bodybuilder.png"
+        },
+        {
+          title: "bicycle",
+          memberImage: "bicycle.png"
+        },
+        {
+          title: "flower",
+          memberImage: "flower.png"
+        },
+        {
+          title: "yogi",
+          memberImage: "yogi.png"
+        },
+        {
+          title: "star",
+          memberImage: "star.png"
+        }
+      ],
       user: {
         username: "",
         password: "",
@@ -104,6 +139,7 @@ export default {
           lastName: "",
           email: "",
           goal: "",
+          mediaURL: "",
         },
       },
       registrationErrors: false,

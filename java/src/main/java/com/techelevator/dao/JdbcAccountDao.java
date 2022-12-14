@@ -110,9 +110,9 @@ public class JdbcAccountDao implements AccountDao {
 // add media url
     @Override
     public void updateAccount(Account account) {
-        String sql = "UPDATE account SET first_name = ?, last_name = ?, email = ?, goal = ? where user_id = ?;";
+        String sql = "UPDATE account SET first_name = ?, last_name = ?, email = ?, goal = ?, media_url = ? where user_id = ?;";
 //        try {
-            jdbcTemplate.update(sql, account.getFirstName(), account.getLastName(), account.getEmail(), account.getGoal(), account.getUserId());
+            jdbcTemplate.update(sql, account.getFirstName(), account.getLastName(), account.getEmail(), account.getGoal(), account.getUserId(), account.getMediaURL());
 //        } catch (Exception e) {
 //            throw e;
 //        }
