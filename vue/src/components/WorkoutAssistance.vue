@@ -3,7 +3,7 @@
       <article class="tile is-child notification is-danger">
         <p class="title">Assistance</p>
         <div class="content">
-          <assistance/>
+          <!-- <assistance/> -->
         </div>
       </article>
     </div>
@@ -11,13 +11,15 @@
 
 // <script>
 
-import assistance from "../components/Assistance.vue"
+// import assistance from "../components/Assistance.vue"
 
 
-export default {
-  components: { assistance },
-  data() {}
-}
+// export default {
+//   components: { assistance },
+//   data() {
+    
+//   },
+// }
 </script>
 
 

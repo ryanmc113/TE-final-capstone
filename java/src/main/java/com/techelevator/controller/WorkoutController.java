@@ -77,7 +77,7 @@ public class WorkoutController {
         return workoutLogDao.listAllWorkoutLogsByUserId(userId);
     }
 
-//    @GetMapping(path = "visit/{visitId}")
+    @GetMapping(path = "visit/{visitId}")
     public List<WorkoutLog> listWorkoutsForAVisit(@PathVariable int visitId){
         return workoutLogDao.listWorkoutsForAVisit(visitId);
     }
