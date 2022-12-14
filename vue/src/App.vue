@@ -1,7 +1,10 @@
 
 <template>
+
   <div id="app">
-    
+    <div class="header">
+          <img src="TJC_logo.png" alt="" height="100px" width="150px">
+
     <div id="nav" class="to-the-right">
    
        <!-- usershome -->
@@ -67,7 +70,7 @@
   </div>
 </div>
 
-
+</div>
 
 
       
@@ -86,7 +89,14 @@
 </template>
 
 <style>
-
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+   padding-top: 12px;
+  padding-right: 50px;
+  padding-left: 45px;
+}
 .to-the-left {
   
   justify-content: flex-start !important;
@@ -97,8 +107,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding-top: 12px;
-  padding-right: 12px;
+ 
 }
 #theFoot {
   display: flex !important;
