@@ -31,30 +31,30 @@ export default new Vuex.Store({
   },
   mutations: {
     SET_VISITOR(state){
-state.employeeLoggedIn = true
-localStorage.setItem('currentVisitor', true)
+state.employeeLoggedIn = 'true'
+localStorage.setItem('currentVisitor', 'true')
     },
     DELETE_VISITOR(state){
       state.employeeLoggedIn = ''
       localStorage.removeItem('currentVisitor')
     },
-    SET_EMPLOYEE_LOGGING(state, newLog){
-      state.employeeUserLogging.push(newLog)
+//     SET_EMPLOYEE_LOGGING(state, newLog){
+//       state.employeeUserLogging.push(newLog)
       
-      //localStorage.setItem('logs', state.employeeUserLogging)
-    },
-     UPDATE_EMPLOYEE_LOG(state, id, time){
-     let updatedLogEndTime = state.employeeUserLogging.filter((user) => {
-        return user.userId == id; 
-      })
-        updatedLogEndTime[0].timeOut = time;
-     },
-    DELETE_EMPLOYEE_LOG(state, id){
-      state.employeeUserLogging = state.employeeUserLogging.filter((user) =>{
-return user.userId != id 
-      })
+//       //localStorage.setItem('logs', state.employeeUserLogging)
+//     },
+//      UPDATE_EMPLOYEE_LOG(state, id, time){
+//      let updatedLogEndTime = state.employeeUserLogging.filter((user) => {
+//         return user.userId == id; 
+//       })
+//         updatedLogEndTime[0].timeOut = time;
+//      },
+//     DELETE_EMPLOYEE_LOG(state, id){
+//       state.employeeUserLogging = state.employeeUserLogging.filter((user) =>{
+// return user.userId != id 
+//       })
 
-    },
+    
     SET_VISIT_ID(state, id){
       state.visitId = id;
       localStorage.setItem('visitId', id);
