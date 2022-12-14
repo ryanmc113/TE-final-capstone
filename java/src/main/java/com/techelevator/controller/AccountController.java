@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.security.Principal;
 import java.util.List;
 
@@ -75,8 +76,9 @@ public Account getInfo(Principal principal){
 
 
     @GetMapping(path = "/employee/users")
-    public List<Account> getUsers(){
-        return accountDao.listUserAccount();
+    public List<Account> getUsers(Principal principal){
+       int id = userDao.findIdByUsername(principal.getName());
+        return accountDao.listUserAccount(id);
     }
 
 

@@ -1,29 +1,40 @@
 <template>
   <div class="workouts">
+    <h1 class="is-size-2">My Exercises</h1>
     <table>
       <thead>
-        <tr>
-          My Workout
-        </tr>
-        <tr>
-          {{
-            date
-          }}
-        </tr>
+        <th>Exercise Name</th>
+        
+        <th>Sets</th>
+        <th>Reps</th>
+        <th>Weight</th>
+        <th>Time</th>
       </thead>
-      <tbody>
+      <tbody class="inline">
         <tr v-for="workout in myWorkouts" v-bind:key="workout.workout_id">
-          <div class="input int2">{{workout.name}}</div>
-            &nbsp;:&nbsp;
-            <div class="input int2">{{workout.sets}}</div>
-            &nbsp;:&nbsp;
-            <div class="input int2">{{workout.reps}}</div>
-            &nbsp;:&nbsp;
-            <div class="input int2">{{workout.weight}}</div>
-            &nbsp;:&nbsp;
-            <div class="input int2">{{workout.minutes}}</div>
+          <td>
+            <div class="input">
+              {{ workout.name }}
+            </div>
+          </td>
           
-     
+          <td>
+            <div class="input">
+              {{ workout.sets }}
+            </div>
+          </td>
+          
+          <td>
+            <div class="input">{{ workout.reps }}</div>
+          </td>
+          
+          <td>
+            <div class="input">{{ workout.weight }}</div>
+          </td>
+       
+          <td>
+            <div class="input">{{ workout.minutes }}</div>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -51,3 +62,8 @@ export default {
   },
 };
 </script>
+ 
+ <style scoped>
+.inline {
+}
+</style>

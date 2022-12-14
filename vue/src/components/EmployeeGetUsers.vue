@@ -33,10 +33,8 @@
             <button class="button" v-on:click="logging(user.userId)">
               Checkin
             </button>
-            <button class v-on:click="makeEmployee(user.userId)" v-if="$store.state.user.role.includes('ADMIN')">
-              Make Employee
-            </button>
-          </td>
+            
+         
           <td>
             <button class="button">
               <router-link
@@ -49,6 +47,11 @@
               >
             </button>
           </td>
+          <td>
+            <button class="button" v-on:click="makeEmployee(user.userId)" v-if="$store.state.user.role.includes('ADMIN')">
+              Make Employee
+            </button>
+            </td>
         </tr>
       </tbody>
     </table>
