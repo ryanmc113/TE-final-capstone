@@ -112,7 +112,7 @@ public class JdbcAccountDao implements AccountDao {
     public void updateAccount(Account account) {
         String sql = "UPDATE account SET first_name = ?, last_name = ?, email = ?, goal = ?, media_url = ? where user_id = ?;";
 //        try {
-            jdbcTemplate.update(sql, account.getFirstName(), account.getLastName(), account.getEmail(), account.getGoal(), account.getUserId(), account.getMediaURL());
+            jdbcTemplate.update(sql, account.getFirstName(), account.getLastName(), account.getEmail(), account.getGoal(), account.getMediaURL(), account.getUserId() );
 //        } catch (Exception e) {
 //            throw e;
 //        }
