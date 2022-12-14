@@ -1,7 +1,10 @@
 
 <template>
+
   <div id="app">
-    
+    <div class="header">
+          <img src="TJC_logo.png" alt="" height="100px" width="150px">
+
     <div id="nav" class="to-the-right">
    
        <!-- usershome -->
@@ -16,7 +19,7 @@
       <router-link
         class="button is-warning"
         v-bind:to="{ name: 'employee-account' }"
-        v-if="$store.state.token != '' && $store.state.employeeLoggedIn == true"
+        v-if="$store.state.token != '' && $store.state.employeeLoggedIn == 'true'"
       >
         Home</router-link
       >
@@ -69,7 +72,7 @@
   </div>
 </div>
 
-
+</div>
 
 
       
@@ -88,7 +91,15 @@
 </template>
 
 <style>
-
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+   padding-top: 12px;
+  padding-right: 50px;
+  padding-left: 45px;
+  padding-bottom: 20px;
+}
 .to-the-left {
   
   justify-content: flex-start !important;
@@ -99,8 +110,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding-top: 12px;
-  padding-right: 12px;
+ 
 }
 #theFoot {
   display: flex !important;

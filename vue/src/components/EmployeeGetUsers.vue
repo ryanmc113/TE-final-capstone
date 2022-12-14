@@ -1,6 +1,6 @@
 <template>
-  <div >
-  <h1 class = "is-size-2">Search Users</h1>
+  <div>
+    <h1 class="is-size-2">Search Users</h1>
     <table id="tblUsers">
       <thead>
         <tr>
@@ -18,21 +18,35 @@
           />&nbsp;
         </td>
         <td>
-          <input class="input" type="text" id="lastNameFilter" v-model="findUser.lastName" />
+          <input
+            class="input"
+            type="text"
+            id="lastNameFilter"
+            v-model="findUser.lastName"
+          />
         </td>
         <!-- need to ad v-for to filter through list. look at userlist hw - event handling -->
         <tr v-for="user in filteredList" v-bind:key="user.userId">
-          <td>{{ user.firstName }} </td>
+          <td>{{ user.firstName }}</td>
           <td>{{ user.lastName }}</td>
           <td>
-            <button class="button" v-on:click="logging(no,user.userId)">
-              Checkin            </button>
-              <!-- button v-if="$store.state.user.role.includes('ADMIN')" add below-->
-            <button class  v-on:click="makeEmployee(user.userId)">Make Employee</button>
+            <button class="button" v-on:click="logging(user.userId)">
+              Checkin
+            </button>
+            <button class v-on:click="makeEmployee(user.userId)" v-if="$store.state.user.role.includes('ADMIN')">
+              Make Employee
+            </button>
           </td>
-           <td>
+          <td>
             <button class="button">
-              <router-link v-bind:to="{ name: 'employee-view-user-history', params: {userId: user.userId }  }"> View Workouts</router-link>
+              <router-link
+                v-bind:to="{
+                  name: 'employee-view-user-history',
+                  params: { userId: user.userId },
+                }"
+              >
+                View Workouts</router-link
+              >
             </button>
           </td>
         </tr>
@@ -51,18 +65,18 @@ export default {
     },
   data() {
     return {
-      allLogs: [],
+    
       newLog: {
         userId: null,
-        timeIn: null,
-        timeOut: null,
+        checkIn: null,
+      
       },
       allUsers: [],
        errorMsg: "",
       findUser: {
         firstName: "",
         lastName: "",
-        status: "",
+       
       },
     };
   },
@@ -88,18 +102,21 @@ export default {
   },
   
   methods: {
-    makeUser(id){
-     const updateUser = {
-        userId: id
-      }
-      authService.updateEmployeeToUser(updateUser).then(response=>{
-       if(response.status){
-         alert("This user has been updated")
-       }
-      })
-    },
-    makeEmployee(id){
-      authService.updateUserToEmployee(id).then(response=>{
+    // makeUser(id){
+    //  const updateUser = {
+    //     userId: id
+    //   }
+    //   authService.updateEmployeeToUser(updateUser).then(response=>{
+    //    if(response.status){
+    //      alert("This user has been updated")
+    //    }
+    //   })
+    // },
+    makeEmployee(userId){
+const updateUser = {
+  id: userId
+}
+      authService.updateUserToEmployee(updateUser).then(response=>{
        if(response.status){
          alert("This user has been updated")
        }
@@ -109,51 +126,32 @@ export default {
       employeeService.getUsers().then(response =>
       this.allUsers = response.data);
     },
-    flipStatus(id) {
-      this.allLogs.forEach((log) => {
-        if (log.userId == id) {
-          log.userId = log.userId === null ? "Check Out" : "Check In";
-        }
-      });
-    },
+    
     addLog(id) {
       this.newLog.userId = id;
-      this.newLog.timeIn = this.getTime();
-      this.$store.commit("SET_EMPLOYEE_LOGGING", this.newLog)
-      this.clearNewLog();
-    },
-    checkId(id) {
-      return this.allLogs.userId == id;
-    },
-    updateLog(id) {
-      this.$store.commit("UPDATE_EMPLOYEE_LOG", id, this.getTime())
-    
-    },
-    clearNewLog() {
-      this.newLog = { userId: null, timeIn: null, timeOut: null };
-    },
-    clearUserLog(id){
-      this.$store.commit("DELETE_EMPLOYEE_LOG", id)
-    
-        
-    },
-  //change status stuff
-    logging(userStatus, id) {
+      this.newLog.checkIn = this.getTime();
       
-        this.addLog(id);
-        this.flipStatus(id);
-       if (userStatus == "Check In") {
-        let userLeavingLog = this.updateLog(id);
-        this.postLog(userLeavingLog);
-        this.clearUserLog(id);
-        this.flipStatus(id);
-     
-      }
     },
-    postLog(userLeavingLog) {
-      employeeService.createLogInDatabase(userLeavingLog)
+   
+    
+    clearNewLog() {
+      this.newLog = { userId: null, timeIn: null };
+    },
+  
+  //change status stuff
+    logging(id) {
+      this.addLog(id)
+      let newishLog = this.newLog
+       this.postLog(newishLog);
+        this.clearNewLog(id);
+        
+     
+      },
+    
+    postLog(log) {
+      employeeService.createLogInDatabase(log)
       .then((response) =>{
-          if(response.status === 201){
+          if(response.status === 200){
               alert("Wish them a good rest of the day!")
           }
           
@@ -177,21 +175,20 @@ export default {
       var dateTime = date + " " + time;
       return dateTime;
     },
-  },
-};
+ 
+}
+}
 </script>
 
 <style scoped>
-
 .button2 {
-  background-color: white; 
-  color: black; 
-  border: 2px solid #008CBA;
+  background-color: white;
+  color: black;
+  border: 2px solid #008cba;
 }
 
 .button2:hover {
-  background-color: #008CBA;
+  background-color: #008cba;
   color: white;
 }
-
 </style>

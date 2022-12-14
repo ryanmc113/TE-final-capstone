@@ -7,7 +7,7 @@ import workoutService from "../services/WorkoutService";
 export default {
   
   created() {   
-     this.updateCheckoutTimeSecond();
+   this.updateCheckoutTimeSecond();
     this.$store.commit("LOGOUT");
     this.$store.commit("DELETE_VISITOR")
     this.$router.push("/login");
@@ -17,7 +17,7 @@ export default {
       if (this.$store.state.visitId !=""){
       const checkOutTime = { 
         userId: this.$store.state.user.id, 
-      checkOutTime: this.getTime() 
+      checkOut: this.getTime() 
       };
       workoutService
         .updateCheckOut(checkOutTime)

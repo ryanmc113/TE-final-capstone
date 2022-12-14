@@ -36,7 +36,6 @@ public class AccountController {
         accountDao.updateAccount(account);
     }
 
-
     @GetMapping(path = "/visit-history/{userId}")
     public List<VisitLog> getVisitsByUser(@PathVariable int userId){
 
