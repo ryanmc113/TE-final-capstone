@@ -1,10 +1,10 @@
 <template>
     <div class="scrollmenu">
   <div v-for="exercisesDisplayed in allExercisesArray" v-bind:key="exercisesDisplayed.id">
-    <div>{{exercisesDisplayed.media_url}}</div>
+    <img :src="exercisesDisplayed.mediaUrl" alt="No Image">
+    <!-- <div>{{exercisesDisplayed.mediaUrl}}</div> -->
     <div>{{exercisesDisplayed.name}}</div>
     <div>{{exercisesDisplayed.muscle}}</div>
-    <div>{{exercisesDisplayed.machine}}</div>
   </div>
 
 </div>
@@ -20,13 +20,13 @@ export default {
       }
         
     },
-    create(){
+    created(){
       this.getAssistedExercisesSecond();
     },
     methods:{
       getAssistedExercisesSecond(){
         assistanceExercises
-        .getAssistanceExercises
+        .getAssistanceExercises()
         .then((response) =>{
           if(response.status == 200){
             this.allExercisesArray = response.data;

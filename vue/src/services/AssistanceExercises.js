@@ -2,6 +2,6 @@ import axios from "axios";
 
 export default{
     getAssistanceExercises(){
-        return axios.get("exercises")
+        return axios.get("/workouts/exercises")
     }
 }

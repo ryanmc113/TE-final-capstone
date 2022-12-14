@@ -107,7 +107,7 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao {
                 exercise.setMachine(results.getBoolean("machine"));
                 exercise.setName(results.getString("name"));
                 exercise.setMuscle(results.getString("muscle"));
-                exercise.setMedia_url(results.getString("media_url"));
+                exercise.setMediaUrl(results.getString("media_url"));
                 exerciseList.add(exercise);
             }
         } catch (Exception e) {
