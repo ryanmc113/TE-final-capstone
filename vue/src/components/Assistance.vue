@@ -1,34 +1,39 @@
 <template>
     <div class="scrollmenu">
-  <a href="#home">Home</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
-  <a href="#home">Home</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
-  <a href="#home">Home</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
-  <a href="#home">Home</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
-  <a href="#about">About</a>
-  <a href="#home">Home</a>
-  <a href="#news">News</a>
-  <a href="#contact">Contact</a>
+  <div v-for="exercisesDisplayed in allExercisesArray" v-bind:key="exercisesDisplayed.id">
+    <img :src="exercisesDisplayed.mediaUrl" alt="No Image">
+    <!-- <div>{{exercisesDisplayed.mediaUrl}}</div> -->
+    <div>{{exercisesDisplayed.name}}</div>
+    <div>{{exercisesDisplayed.muscle}}</div>
+  </div>
 
 </div>
 </template>
 
 <script>
+import assistanceExercises from "../services/AssistanceExercises"
 
 export default {
     data() {
+      return{
+        allExercisesArray:[]
+      }
         
     },
+    created(){
+      this.getAssistedExercisesSecond();
+    },
+    methods:{
+      getAssistedExercisesSecond(){
+        assistanceExercises
+        .getAssistanceExercises()
+        .then((response) =>{
+          if(response.status == 200){
+            this.allExercisesArray = response.data;
+          }
+        })
+      }
+    }
 }
 </script>
 

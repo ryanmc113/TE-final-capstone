@@ -36,7 +36,7 @@ VALUES (true,'bicep curl machine','bicep',
 		'https://media0.giphy.com/media/l1TWTuEXuBqluUMGLU/giphy.gif?cid=790b7611b18269533b568ddbe0d6801a1ed7c4ab9edf39fa&rid=giphy.gif&ct=g');
 
 INSERT INTO exercise (machine, name, muscle, media_url)
-VALUES (true,'chest press machine','chest', 'https://gfycat.com/alarmedreasonableaustralianfreshwatercrocodile');
+VALUES (true,'chest press machine','chest', '');
 
 INSERT INTO exercise (machine, name, muscle, media_url)
 VALUES (true, 'calf raises machine', 'calf', 'https://i.pinimg.com/originals/4b/38/05/4b38051e17931a543c31528310e92360.gif');
@@ -47,7 +47,7 @@ VALUES (true, 'GHR- glute/hamstring development', 'glutes, quads, hamstrings',
 
 INSERT INTO exercise (machine, name, muscle, media_url) 
 VALUES (true, 'chest supported row', 'chest',
-	   'https://tenor.com/bTDNt.gif');
+	   'https://media.giphy.com/media/56GiLC8cTedmEB9N73/giphy.gif');
 
 INSERT INTO exercise (machine, name, muscle, media_url) 
 VALUES (true, 'pit shark', 'legs, quads, abs, adductors, calves, glutes, hamstrings, lower back',
@@ -55,7 +55,7 @@ VALUES (true, 'pit shark', 'legs, quads, abs, adductors, calves, glutes, hamstri
 
 INSERT INTO exercise (machine, name, muscle, media_url) 
 VALUES (false, 'bench press','chest, deltoids, triceps, biceps',
-	   'https://gfycat.com/waryhelplessimago');
+	   'https://media2.giphy.com/media/WmoZimTVtLtGKA9YdV/giphy.gif?cid=ecf05e470vdy60lf90k5qrq4mpeccrmlwsrl1mhnac3dggk5&rid=giphy.gif&ct=g');
 
 INSERT INTO exercise (machine, name, muscle, media_url) 
 VALUES (true, 'elliptical', 
@@ -100,17 +100,17 @@ VALUES (false, 'hula hoop',
 INSERT INTO exercise (machine, name, muscle, media_url)
 VALUES (true, 'leg press',
         'legs, quads, hamstrings, glutes, calves',
-	   'https://tenor.com/view/leg-press-workout-heavy-weights-tough-focused-gif-13985833');
+	   'https://media.giphy.com/media/UIze7SZJbFQ6u4SP6E/giphy.gif');
 
 INSERT INTO exercise (machine, name, muscle, media_url)
 VALUES (true, 'shoulder press',
         'shoulder, deltoid, triceps, trapezius, pecs',
-	   'https://gfycat.com/browninfiniteammonite');
+	   'https://media.giphy.com/media/fHilEnXhUnye6wW4AB/giphy.gif');
 
 INSERT INTO exercise (machine, name, muscle, media_url)
 VALUES (true, 'row machine',
         'legs, quads, hamstrings, back, abs, arms, shoulders, calves',
-	   'https://tenor.com/view/workout-machine-row-focused-heavy-intense-gif-13985887');
+	   'https://media.giphy.com/media/26DMTbM0OAxbdPiYo/giphy.gif');
 
 INSERT INTO exercise (machine, name, muscle, media_url)
 VALUES (true, 'cat crunches',
@@ -120,12 +120,12 @@ VALUES (true, 'cat crunches',
 INSERT INTO exercise (machine, name, muscle, media_url)
 VALUES (true, 'cable row',
         'back, biceps, lats, rhomboids, trapezius',
-	   'https://tenor.com/view/exercising-2chainz-pulling-fitness-seated-row-machine-gif-20042370');
+	   'https://media.giphy.com/media/egAdrDi7bTqm0akSa3/giphy-downsized-large.gif');
 
 INSERT INTO exercise (machine, name, muscle, media_url)
 VALUES (true, 'hamstring curl',
         'legs, glutes, quads, quadriceps, calves',
-	   'https://gfycat.com/breakablewickedkissingbug');
+	   'https://media.giphy.com/media/iJhntkaAsyfdO3WFPB/giphy.gif');
 
 INSERT INTO exercise (machine, name, muscle, media_url)
 VALUES (true, 'leg extension machine',
@@ -135,7 +135,7 @@ VALUES (true, 'leg extension machine',
 INSERT INTO exercise (machine, name, muscle, media_url)
 VALUES (true, 'lat pull-down',
         'lats, back, biceps, delts, rhomboids, traps',
-	   'https://gfycat.com/difficultpepperybasenji');
+	   'https://media.giphy.com/media/3o7TKEQAt0iltJEJxu/giphy.gif');
 
 INSERT INTO exercise (machine, name, muscle, media_url)
 VALUES (true, 'tricep extension cable',
@@ -145,7 +145,8 @@ VALUES (true, 'tricep extension cable',
 INSERT INTO exercise (machine, name, muscle, media_url)
 VALUES (true, 'back extension',
         'lower back, glutes, hamstring, calves, calf',
-	   'https://gfycat.com/skeletallegalcuttlefish');
+	   'https://media.giphy.com/media/VPByqa8IPNAZm26neB/giphy.gif');
+--class schedule data
 
 --Add classes to equipment table
 	   INSERT INTO exercise (machine, name, muscle, media_url)

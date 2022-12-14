@@ -6,7 +6,7 @@ public class Exercise {
     private boolean machine;
     private String name;
     private String muscle;
-    private String media_url;
+    private String mediaUrl;
 
     public int getExerciseID() {
         return exerciseID;
@@ -40,11 +40,11 @@ public class Exercise {
         this.muscle = muscle;
     }
 
-    public String getMedia_url() {
-        return media_url;
+    public String getMediaUrl() {
+        return mediaUrl;
     }
 
-    public void setMedia_url(String media_url) {
-        this.media_url = media_url;
+    public void setMediaUrl(String mediaUrl) {
+        this.mediaUrl = mediaUrl;
     }
 }
