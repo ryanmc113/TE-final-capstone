@@ -32,7 +32,8 @@ const router = new Router({
       name: "usersWorkoutsThatDay",
       component: Workouts,
       meta: {
-        requiresAuth: true
+        requiresAuth: true,
+        
       }
 
     },
@@ -42,6 +43,7 @@ const router = new Router({
       component: MyAccountWorkoutHistory,
       meta: {
         requiresAuth: true
+        
       }
 
     },
@@ -100,7 +102,7 @@ const router = new Router({
       component: EmployeeAccount,
       meta:{
         requiresAuth: true,
-        requiresRole: false
+        requiresRole: true
       }
     },
     {
@@ -109,7 +111,7 @@ const router = new Router({
       component: EmployeeGetDays,
       meta: {
         requiresAuth: true,
-        requiresRole: false
+        requiresRole: true
       }
     },
     {
@@ -118,7 +120,7 @@ const router = new Router({
     component: EmployeeGetWorkouts,
     meta: {
       requiresAuth: true,
-      requiresRole: false
+      requiresRole: true
     }
     }
   ]
@@ -127,7 +129,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   // Determine if the route requires Authentication
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
-  //const requiresRole = to.matched.some(x => x.meta.requiresRole);
+  const requiresRole = to.matched.some(x => x.meta.requiresRole);
   // const requiredRole = to.matched.some(x => x.meta.requiredRole);
 
   // If it does and they are not logged in, send the user to "/login"
@@ -135,10 +137,10 @@ router.beforeEach((to, from, next) => {
   if (requiresAuth && store.state.token === '') {
     next("/login");
    } 
-  // else if (requiresRole && !store.state.user.role.includes("EMPLOYEE")) {
-  //   // don't leave
-  //   alert('You are not authorized. Please login as an EMPLOYEE');
-  // } 
+  else if (requiresRole && !store.state.user.role.includes("EMPLOYEE") && !store.state.user.role.includes("ADMIN"))  {
+    // don't leave
+    alert('You are not authorized. Please login as an EMPLOYEE');
+  } 
   else {
     // Else let them go to their next destination
     next();

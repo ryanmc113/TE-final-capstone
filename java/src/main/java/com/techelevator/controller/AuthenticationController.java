@@ -52,7 +52,7 @@ public class AuthenticationController {
             boolean isEmployee = false;
 
             for (Authority authority : user.getAuthorities()) {
-                if (authority.getName().equalsIgnoreCase("ROLE_EMPLOYEE")) {
+                if (authority.getName().equalsIgnoreCase("ROLE_EMPLOYEE" ) || authority.getName().equalsIgnoreCase("ROLE_ADMIN" )) {
                     isEmployee = true;
                     break;
                 }
