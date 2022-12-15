@@ -98,14 +98,16 @@ export default {
   max-width: 700px;
   margin: auto;
 
-  height: 50vh;
+  height: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
 
 .button {
   background-color: #fe6678 !important;
+  
 }
 
 .form-signin{
