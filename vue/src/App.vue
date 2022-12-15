@@ -4,7 +4,7 @@
   <div id="app">
     <div class="header">
           <img src="TJC_logo.png" alt="" height="100px" width="150px">
-
+          
     <div id="nav" class="to-the-right">
    
        <!-- usershome -->
@@ -99,6 +99,7 @@
   padding-right: 50px;
   padding-left: 45px;
   padding-bottom: 20px;
+
 }
 .to-the-left {
   

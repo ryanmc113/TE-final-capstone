@@ -1,6 +1,6 @@
 <template>
     <div>
-        My History
+        &nbsp; &nbsp; My History
         <workout-history :visitId="parseInt($route.params.id)"/>
     </div>
 </template>
@@ -16,3 +16,9 @@ components:{
     
 }
 </script>
+
+<style scoped>
+div{
+    margin-left:10px;
+}
+</style>
