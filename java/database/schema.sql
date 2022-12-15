@@ -65,7 +65,8 @@ CREATE TABLE workout_log (
     CONSTRAINT FK_exercise_id FOREIGN KEY(exercise_id) references exercise,
     CONSTRAINT sets_limit CHECK (weight >= 0),
     CONSTRAINT reps_limit CHECK (weight >= 0),
-    CONSTRAINT weight_limit CHECK (weight >= 0)
+    CONSTRAINT weight_limit CHECK (weight >= 0),
+    CONSTRAINT minutes CHECK (weight >= 0)
 );
 
  CREATE TABLE class_schedule (

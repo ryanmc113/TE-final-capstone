@@ -5,16 +5,16 @@
             
             <form>
             <div>
-                <label for="firstName">First Name: </label>
-                <input type="text"  v-model="userInfo.firstName" >
+                <label for="firstName" >First Name: </label>
+                <input type="text" class="first"  v-model="userInfo.firstName" >
             </div>
             <div>
                 <label for="lastName">Last Name: </label>
-                <input type="text"  v-model="userInfo.lastName" >
+                <input type="text" class="last" v-model="userInfo.lastName" >
             </div>
             <div>
                 <label for="Goal">Goal: </label>
-        <select name="goal" id="goal" v-model="userInfo.goal">
+        <select name="goal" id="goal" class="goal" v-model="userInfo.goal">
           <option value="Activity">Increase Activity</option>
           <option value="gainMuscle">Gain Muscle</option>
           <option value="loseWeight">Lose Weight</option>
@@ -22,6 +22,7 @@
           <option value="Flexibility">Increased Flexibility</option>
         </select>
             <div>
+            
       </div>
       </div>
             

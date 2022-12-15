@@ -18,7 +18,7 @@
             
               class="input"
               type="text"
-              placeholder="Minutes"
+              placeholder="Minutes (#)"
               v-model="exercise.minutes"
             />
           </div>
@@ -30,19 +30,19 @@
               <input
                 class="input int2"
                 type="text"
-                placeholder="Sets"
+                placeholder="Sets (#)"
                 v-model="exercise.sets"
               />&nbsp;X&nbsp;
               <input
                 class="input int2"
                 type="text"
-                placeholder="Reps"
+                placeholder="Reps (#)"
                 v-model="exercise.reps"
               />&nbsp;:&nbsp;
               <input
                 class="input int2"
                 type="text"
-                placeholder="Weight"
+                placeholder="Weight (lbs)"
                 v-model="exercise.weight"
               />
             </div>
