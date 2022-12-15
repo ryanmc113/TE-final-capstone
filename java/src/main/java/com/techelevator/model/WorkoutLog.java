@@ -1,5 +1,9 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.validation.constraints.Positive;
+
 public class WorkoutLog {
 
     private int workoutId;
@@ -8,6 +12,7 @@ public class WorkoutLog {
     private int sets;
     private int reps;
     private double weight;
+
     private int minutes;
     private String name;
 

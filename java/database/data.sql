@@ -158,7 +158,7 @@ VALUES (true, 'back extension',
        'https://media2.giphy.com/media/p3qOJa4kAwlEbsKpAH/giphy.gif?cid=ecf05e47abafj6vjn0q0vcnw7m6yo56kl8jj3yoo563jagz6&rid=giphy.gif&ct=g');
 
        INSERT INTO exercise(machine, name, muscle, media_url)
-       VALUES (false, 'What is weighing you down', 'Upper Body',
+       VALUES (false, 'Weighted down?', 'Upper Body',
        'https://media3.giphy.com/media/PjOi4kgUeH0fQmr8aK/giphy.gif?cid=ecf05e478awg2nrrmch5axevzz5ofcw2aqjgovn0z92fn56g&rid=giphy.gif&ct=g');
 
        INSERT INTO exercise(machine, name, muscle, media_url)

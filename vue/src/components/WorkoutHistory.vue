@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <table>
+    <table class="table">
       <thead>
         <tr>
           <th>Your visits logged</th>
@@ -19,6 +19,9 @@
         </tr>
       </tbody>
     </table>
+
+
+    <br>
   </div>
 </template>
 

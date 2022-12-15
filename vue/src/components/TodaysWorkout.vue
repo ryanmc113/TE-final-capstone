@@ -18,7 +18,7 @@
             
               class="input"
               type="text"
-              placeholder="Minutes"
+              placeholder="Minutes (#)"
               v-model="exercise.minutes"
             />
           </div>
@@ -30,19 +30,19 @@
               <input
                 class="input int2"
                 type="text"
-                placeholder="Sets"
+                placeholder="Sets (#)"
                 v-model="exercise.sets"
               />&nbsp;X&nbsp;
               <input
                 class="input int2"
                 type="text"
-                placeholder="Reps"
+                placeholder="Reps (#)"
                 v-model="exercise.reps"
               />&nbsp;:&nbsp;
               <input
                 class="input int2"
                 type="text"
-                placeholder="Weight"
+                placeholder="Weight (lbs)"
                 v-model="exercise.weight"
               />
             </div>
@@ -65,8 +65,19 @@
           v-bind:key="exerciseForThatDay.id"
         > -->
         <div class="field">
+          <div class="input int3 ">Name:</div>
+          &nbsp;&nbsp; &nbsp;
+          <div class="input int3">Sets:</div>
+          &nbsp;&nbsp;&nbsp;
+          <div class="input int3"> Reps: </div>
+          &nbsp; &nbsp;&nbsp;
+          <div class="input int3">Weight (lbs):</div>
+          &nbsp;&nbsp; &nbsp;
+          <div class="input int3">Minutes:</div>
+          
           <!-- needs to have a v-show if it has something in the array that i made. v-show time if reps and weight are empty -->
           <div class="control display" v-for="exercises in exercisesForThatDay" v-bind:key="exercises.id">
+            
             <div class="input int2">{{exercises.name}}</div>
             &nbsp;:&nbsp;
             <div class="input int2">{{exercises.sets}}</div>
@@ -157,6 +168,14 @@ export default {
 <style scoped>
 .int2 {
   width: 30%;
+  margin: 10px;
+}
+.int3{
+  width: 16%;
+  margin-left: 10px;
+  background-color:rgb(150, 248, 215);
+  
+
 }
 .display {
   display: flex;
@@ -171,4 +190,5 @@ export default {
 .exDisplayed {
   background-color: darkcyan;
 }
+
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div class="workouts">
     <h1 class="is-size-2">My Exercises</h1>
+  
     <table>
       <thead>
         <th>Exercise Name</th>
