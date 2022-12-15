@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div >
     <h1 class="is-size-2">Search Users</h1>
-    <table id="tblUsers">
+    <table class="tile is-child notification is-warning" id="tblUsers">
       <thead>
         <tr>
           <th>First Name</th>
