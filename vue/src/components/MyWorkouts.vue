@@ -39,6 +39,12 @@
         </tr>
       </tbody>
     </table>
+    <br>
+    <router-link :to="'/history'">
+    <button class="button">Go Back to Workout History</button>
+    </router-link>
+    <br>
+    <br>
   </div>
 </template>
 
@@ -65,6 +71,7 @@ export default {
 </script>
  
  <style scoped>
-.inline {
+.workouts {
+  margin-left:20px;
 }
 </style>

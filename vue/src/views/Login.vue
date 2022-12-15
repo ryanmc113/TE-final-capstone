@@ -1,6 +1,7 @@
 <template class>
+
   <div id="login" class="text-center">
-    <section><img src="people_workout.png" /></section>
+    <section><img class="image" src="people_workout.png" /></section>
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal is-size-2">
         Welcome to the Workout Companion
@@ -48,6 +49,7 @@
       </div>
     </form>
   </div>
+  
 </template>
 
 <script>
@@ -89,7 +91,7 @@ export default {
 </script>
 
 <style>
-.text-center {
+.text-center .form-signin{
   background-color: #a7bbc3;
   border: 10px solid #012f63;
   border-radius: 20px;
@@ -106,10 +108,24 @@ export default {
   background-color: #fe6678 !important;
 }
 
-.form-signin {
+.form-signin{
+
   flex-direction: column;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+h1{
+  text-align: center;
+}
+
+.image{
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  border-radius:5px;
+  max-height: 200px;
+  max-width: 250px;
+  margin-left:10px;
 }
 </style>

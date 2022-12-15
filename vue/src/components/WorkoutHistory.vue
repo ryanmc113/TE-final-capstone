@@ -1,15 +1,15 @@
 <template>
-  <div>
+  <div class="main">
 
     <table class="table">
       <thead>
         <tr>
-          <th>Your visits logged</th>
+          <th>Your logged visits</th>
         </tr>
         <input type="month" value="2022-12" v-model="monthFilter">
         <tr><br></tr>
       </thead>
-      <tbody>
+      <tbody class="data-list">
         <tr v-for="day in filterByMonth" v-bind:key="day.visitId">
           <router-link
             :to="{ name: 'usersWorkoutsThatDay', params: { id: day.visitId } }"
@@ -19,7 +19,6 @@
         </tr>
       </tbody>
     </table>
-
 
     <br>
   </div>
@@ -140,4 +139,12 @@ if (month == 1){
   display: flex;
 
 }
+.main{
+  margin-left:20px;
+}
+table{
+  margin-left:20px;
+}
+
+
 </style>

@@ -65,15 +65,17 @@
           v-bind:key="exerciseForThatDay.id"
         > -->
         <div class="field">
+          <div class="display">
           <div class="input int3 ">Name:</div>
-          &nbsp;&nbsp; &nbsp;
+          &nbsp;&nbsp;
           <div class="input int3">Sets:</div>
-          &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;
           <div class="input int3"> Reps: </div>
-          &nbsp; &nbsp;&nbsp;
+          &nbsp;
           <div class="input int3">Weight (lbs):</div>
-          &nbsp;&nbsp; &nbsp;
+          &nbsp;
           <div class="input int3">Minutes:</div>
+          </div>
           
           <!-- needs to have a v-show if it has something in the array that i made. v-show time if reps and weight are empty -->
           <div class="control display" v-for="exercises in exercisesForThatDay" v-bind:key="exercises.id">
@@ -173,7 +175,9 @@ export default {
 .int3{
   width: 16%;
   margin-left: 10px;
+  margin:10px;
   background-color:rgb(150, 248, 215);
+  
   
 
 }
@@ -186,6 +190,7 @@ export default {
   background-color: #58d9eb !important;
   border: 2px solid #317680 !important;
   display: flex;
+  margin-left:10px;
 }
 .exDisplayed {
   background-color: darkcyan;
