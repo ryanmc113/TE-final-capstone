@@ -6,24 +6,24 @@
         {{ registrationErrorMsg }}
       </div>
       <div>
-        <label for="username" class="">Username</label>
+        <label for="username" class="Font">Username</label>
       </div>
       <input
         type="text"
         id="username"
-        class="form-control"
+        class="form-control input Focus"
         placeholder="Username"
         v-model="user.username"
         required
         autofocus
       />
       <div>
-        <label for="password" class="">Password</label>
+        <label for="password" class="Font">Password</label>
       </div>
       <input
         type="password"
         id="password"
-        class="form-control"
+        class="form-control input Focus"
         placeholder="Password"
         v-model="user.password"
         required
@@ -32,18 +32,18 @@
         <input
           type="password"
           id="confirmPassword"
-          class="form-control"
+          class="form-control input Focus"
           placeholder="Confirm Password"
           v-model="user.confirmPassword"
           required
         />
       </div>
-      <label for="firstName" class="">First Name</label>
+      <label for="firstName" class="Font">First Name</label>
       <div>
         <input
           type="firstName"
           id="firstName"
-          class="form-control"
+          class="form-control input Focus"
           placeholder="Deborah"
           v-model="user.account.firstName"
         />
@@ -53,7 +53,7 @@
         <input
           type="lastName"
           id="lastName"
-          class="form-control"
+          class="form-control input Focus"
           placeholder="Lorde"
           v-model="user.account.lastName"
         />
@@ -63,15 +63,20 @@
         <input
           type="Email"
           id="email"
-          class="form-control"
+          class="form-control input Focus"
           placeholder="john.doe@gmail.com"
           v-model="user.account.email"
         />
       </div>
 
-      <label for="goals" class="">Goal</label>
+      <label for="goals" class="Font">Goal</label>
       <div>
-        <select name="goal" id="goal" v-model="user.account.goal">
+        <select
+          name="goal"
+          id="goal"
+          Class="Focus select"
+          v-model="user.account.goal"
+        >
           <option value="Activity">Increase Activity</option>
           <option value="gainMuscle">Gain Muscle</option>
           <option value="loseWeight">Lose Weight</option>
@@ -79,19 +84,45 @@
           <option value="Flexibility">Increased Flexibility</option>
         </select>
       </div>
-      <div>
-         
-      </div>
-      <label for="Image">Image:  </label>
+      <div></div>
+      <label for="Image">Image: </label>
       <div class="radio_img">
-        <input type="radio" class="image" v-model="user.account.mediaURL" value="bodybuilder.png"><img class="img" src="bodybuilder.png">
-        <input type="radio" class="image" v-model="user.account.mediaURL" value="bicycle.png"><img class="img" src="bicycle.png">
-        <input type="radio" class="image" v-model="user.account.mediaURL" value="db.png"><img class="img" src="db.png">
-        <input type="radio" class="image" v-model="user.account.mediaURL" value="star.png"><img class="img" src="star.png">
-        <input type="radio" class="image" v-model="user.account.mediaURL" value="yogi.png"><img class="img" src="yogi.png">
+        <input
+          type="radio"
+          class="image"
+          v-model="user.account.mediaURL"
+          value="bodybuilder.png"
+        /><img class="img" src="bodybuilder.png" />
+        <input
+          type="radio"
+          class="image"
+          v-model="user.account.mediaURL"
+          value="bicycle.png"
+        /><img class="img" src="bicycle.png" />
+        <input
+          type="radio"
+          class="image"
+          v-model="user.account.mediaURL"
+          value="db.png"
+        /><img class="img" src="db.png" />
+        <input
+          type="radio"
+          class="image"
+          v-model="user.account.mediaURL"
+          value="star.png"
+        /><img class="img" src="star.png" />
+        <input
+          type="radio"
+          class="image"
+          v-model="user.account.mediaURL"
+          value="yogi.png"
+        /><img class="img" src="yogi.png" />
       </div>
       <br />
-      <button class="btn btn-lg btn-primary btn-block button is-primary" type="submit">
+      <button
+        class="btn btn-lg btn-primary btn-block button is-primary"
+        type="submit"
+      >
         Create Account
       </button>
     </form>
@@ -105,31 +136,31 @@ export default {
   name: "register",
   data() {
     return {
-      option:[
+      option: [
         {
           title: "db",
-          memberImage: "db.png"
+          memberImage: "db.png",
         },
         {
           title: "bodybuilder",
-          memberImage: "bodybuilder.png"
+          memberImage: "bodybuilder.png",
         },
         {
           title: "bicycle",
-          memberImage: "bicycle.png"
+          memberImage: "bicycle.png",
         },
         {
           title: "flower",
-          memberImage: "flower.png"
+          memberImage: "flower.png",
         },
         {
           title: "yogi",
-          memberImage: "yogi.png"
+          memberImage: "yogi.png",
         },
         {
           title: "star",
-          memberImage: "star.png"
-        }
+          memberImage: "star.png",
+        },
       ],
       user: {
         username: "",
@@ -181,18 +212,52 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+/* 
+form{
+  background-color:darkgrey;
+  display: flex;
+  border-radius: 10px;
+  align-self: center;
+  justify-items: center;
+  flex-direction: column;
 
-.img{
+
+
+}
+input{
+  display:flex;
+  justify-content: center;
+  align-self: center;
+} */
+
+.text-center {
+  background-color: #a7bbc3;
+  border: 10px solid #012f63;
+  border-radius: 20px;
+  max-width: 700px;
+  margin: auto;
+
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  background-color: #fe6678 !important;
+}
+
+.img {
   max-width: 40px;
   max-height: 40px;
   margin-left: 10px;
-
 }
-.radio_img{
+.radio_img {
   display: flex;
-  
 }
 
-
+.font {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 </style>

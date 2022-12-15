@@ -101,15 +101,17 @@ export default {
   max-width: 700px;
   margin: auto; */
 
-  height: 50vh;
+  height: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
   color: azure;
+  
 }
 
 .button {
   background-color: #fe6678 !important;
+  
 }
 
 .form-signin{
@@ -126,14 +128,14 @@ export default {
 h1{
   text-align: center;
 }
-
+/* 
 .image{
   display: flex;
   align-items: center;
   justify-items: center;
   border-radius:5px;
   max-height: 200px;
-  max-width: 250px;
+  max-width: 250px; 
   margin-left:10px;
-}
+}  */
 </style>
