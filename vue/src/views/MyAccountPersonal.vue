@@ -1,7 +1,7 @@
 <template>
     <div id="moving">
     
-        My Information
+        <h6 class="is-size-3"> My Information</h6>
         
       
 <personal-info/>

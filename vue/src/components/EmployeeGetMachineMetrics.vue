@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="is-size-2" >Most Used Machines</h1>
-    <table class="tile is-child notification is-warning">
+    <table class="tile is-child notification">
       <thead>
         <tr>
           <th>Machine Name</th>
