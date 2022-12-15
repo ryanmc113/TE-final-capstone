@@ -24,7 +24,7 @@ public class JdbcWorkoutLogDao implements WorkoutLogDao {
         String sql = "INSERT INTO workout_log (visit_id, name, sets, reps, weight, minutes) " +
                 "VALUES (?, ?, ?, ?, ?, ?);";
          return jdbcTemplate.update(sql, workoutLog.getVisitId(), workoutLog.getName(), workoutLog.getSets(), workoutLog.getReps(), workoutLog.getWeight(), workoutLog.getMinutes()) == 1;
-         
+
     }
 
 
