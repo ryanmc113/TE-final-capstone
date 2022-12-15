@@ -1,6 +1,6 @@
 <template>
-   <div class="tile is-parent">
-      <article class="tile is-child notification is-danger">
+   <div class="homemade"> 
+      <article >
         <p class="title">Assistance</p>
         <div class="content">
           <assistance/>
@@ -29,4 +29,12 @@ export default {
     align-content: center;
     justify-content: center;
 }
+.homemade{
+  margin: 5%;
+  background-color: #FE667B;
+  border-radius: 5px;
+}
+/* class="tile is-parent" */
+/* class="tile is-child notification is-danger" */
+
 </style>
