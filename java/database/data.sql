@@ -32,18 +32,20 @@ Values ('Convert.ToBeFit(you)', 'Tom. A', 'A beginner''s class to get you in the
 --equipment data
 
 INSERT INTO exercise (machine, name, muscle, media_url)
+VALUES (true, 'treadmill',
+        'legs, thighs, quads, hamstrings, calves, glutes',
+	   'https://media.giphy.com/media/YpZh61QjwuXq15FhV7/giphy.gif');
+
+
+INSERT INTO exercise (machine, name, muscle, media_url)
 VALUES (true,'bicep curl machine','bicep',
 		'https://media0.giphy.com/media/l1TWTuEXuBqluUMGLU/giphy.gif?cid=790b7611b18269533b568ddbe0d6801a1ed7c4ab9edf39fa&rid=giphy.gif&ct=g');
 
 INSERT INTO exercise (machine, name, muscle, media_url)
-VALUES (true,'chest press machine','chest', '');
+VALUES (true,'chest press machine','chest', 'https://media.giphy.com/media/3n1J7hJGOoMWnseuMq/giphy-downsized-large.gif');
 
 INSERT INTO exercise (machine, name, muscle, media_url)
 VALUES (true, 'calf raises machine', 'calf', 'https://i.pinimg.com/originals/4b/38/05/4b38051e17931a543c31528310e92360.gif');
-
-INSERT INTO exercise (machine, name, muscle, media_url)
-VALUES (true, 'GHR- glute/hamstring development', 'glutes, quads, hamstrings',
-	   'https://gfycat.com/craftynimbleass');
 
 INSERT INTO exercise (machine, name, muscle, media_url) 
 VALUES (true, 'chest supported row', 'chest',
@@ -77,10 +79,6 @@ VALUES (false, 'squats',
         'glutes, quads, hamstrings, adductor, hip flexors, calves',
 	   'https://media.giphy.com/media/3o7btMPzJrsdyWVHeo/giphy.gif');
 
-INSERT INTO exercise (machine, name, muscle, media_url)
-VALUES (true, 'treadmill',
-        'legs, thighs, quads, hamstrings, calves, glutes',
-	   'https://media.giphy.com/media/YpZh61QjwuXq15FhV7/giphy.gif');
 
 INSERT INTO exercise (machine, name, muscle, media_url)
 VALUES (false, 'sit ups',
@@ -113,11 +111,6 @@ VALUES (true, 'row machine',
 	   'https://media.giphy.com/media/26DMTbM0OAxbdPiYo/giphy.gif');
 
 INSERT INTO exercise (machine, name, muscle, media_url)
-VALUES (true, 'cat crunches',
-        'abs, heart, longevity, the cure for life',
-	   'https://tenor.com/view/cat-meme-working-out-workout-situp-cat-gif-25374202');
-
-INSERT INTO exercise (machine, name, muscle, media_url)
 VALUES (true, 'cable row',
         'back, biceps, lats, rhomboids, trapezius',
 	   'https://media.giphy.com/media/egAdrDi7bTqm0akSa3/giphy-downsized-large.gif');
@@ -127,10 +120,6 @@ VALUES (true, 'hamstring curl',
         'legs, glutes, quads, quadriceps, calves',
 	   'https://media.giphy.com/media/iJhntkaAsyfdO3WFPB/giphy.gif');
 
-INSERT INTO exercise (machine, name, muscle, media_url)
-VALUES (true, 'leg extension machine',
-        'legs, quads, quadriceps, rectus femoris, vastus medialis',
-	   'https://tenor.com/bXPY4.gif');
 
 INSERT INTO exercise (machine, name, muscle, media_url)
 VALUES (true, 'lat pull-down',
@@ -140,7 +129,7 @@ VALUES (true, 'lat pull-down',
 INSERT INTO exercise (machine, name, muscle, media_url)
 VALUES (true, 'tricep extension cable',
         'arms, chest, back, biceps, triceps, forearm flexors, core, abs, obliques',
-	   'https://gfycat.com/spectacularcoolatlanticspadefish');
+	   'https://media.giphy.com/media/hNrpV2ksuav6sVFMrg/giphy-downsized-large.gif');
 
 INSERT INTO exercise (machine, name, muscle, media_url)
 VALUES (true, 'back extension',
