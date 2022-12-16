@@ -2,6 +2,7 @@
   <div>
     <div id="basicInfo" class="is-two-thirds">
       <h1>Basic Info</h1>
+      <!-- <img src="/{{userInfo.mediaURL}}" alt=""> -->
       <div class="field"></div>
       <form class="field is-two-thirds">
         <div>
@@ -38,7 +39,7 @@
           Update Account
         </button>
       </form>
-      <h1>Privacy</h1>
+      <!-- <h1>Privacy</h1>
       <form @submit.prevent>
         <div>
           <label for="newPassword">New Password</label>
@@ -50,7 +51,7 @@
           <input type="text" v-model="password.confirmPassword" />
         </div>
         <button class="button" type="submit">Change Password</button>
-      </form>
+      </form> -->
     </div>
   </div>
 </template>

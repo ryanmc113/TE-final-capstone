@@ -99,7 +99,8 @@
   padding-right: 50px;
   padding-left: 45px;
   padding-bottom: 20px;
-
+ 
+  background-image:linear-gradient(aqua,white);
 }
 .to-the-left {
   
@@ -117,6 +118,7 @@
   display: flex !important;
   justify-content: space-between !important;
   padding: 7px !important;
+  background-image:linear-gradient(white,aqua);
 }
 
 /* .footer{
