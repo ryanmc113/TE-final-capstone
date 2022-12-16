@@ -232,7 +232,7 @@ input{
 } */
 
 .text-center {
-  background-color: #a7bbc3;
+  background-color: #a7bbc3 !important;
   border: 10px solid #012f63;
   border-radius: 20px;
   max-width: 700px;

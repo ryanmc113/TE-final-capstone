@@ -15,3 +15,10 @@ name: "Workouts",
    }
 }
 </script>
+
+<style scoped>
+div{
+    margin-left:10px;
+}
+</style>
+
