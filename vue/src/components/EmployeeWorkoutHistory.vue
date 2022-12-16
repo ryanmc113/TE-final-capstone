@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="main">
     <table>
       <thead>
         <tr>
-          <th>Days in the gym</th>
+          <th> Days in the gym</th>
         </tr>
         <input type="month" value="2022-12" v-model="monthFilter">
       </thead>
@@ -15,7 +15,12 @@
         </tr>
       </tbody>
     </table>
+    <br>
+    <router-link :to='"/employee"'>
+    <button class="button">Go back to Employee Page</button>
+    </router-link>
   </div>
+  
 </template>
 
 <script>
@@ -128,3 +133,16 @@ if (month == 1){
 }
 };
 </script>
+
+<style scoped>
+
+table{
+  margin-left:50px;
+}
+main{
+  margin-left:20px;
+}
+tr{
+  margin-left:20px;
+}
+</style>

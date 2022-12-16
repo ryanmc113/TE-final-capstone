@@ -233,15 +233,15 @@ input{
 
 .text-center {
   background-color: #a7bbc3 !important;
-  border: 10px solid #012f63;
-  border-radius: 20px;
-  max-width: 700px;
-  margin: auto;
+  border: 10px solid #012f63 !important;
+  border-radius: 20px !important;
+  max-width: 700px !important;
+  margin: auto !important;
 
-  height: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: fit-content !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .button {
