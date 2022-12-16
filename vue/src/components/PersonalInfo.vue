@@ -1,8 +1,9 @@
 <template>
   <div>
     <div id="basicInfo" class="is-two-thirds">
+        <img class="myPic" v-bind:src='userInfo.mediaURL' alt="">
       <h1>Basic Info</h1>
-      <!-- <img src="/{{userInfo.mediaURL}}" alt=""> -->
+  
       <div class="field"></div>
       <form class="field is-two-thirds">
         <div>
@@ -98,6 +99,10 @@ export default {
 </script>
 
 <style scoped>
+.myPic{
+   max-width: 40px;
+  max-height: 40px;
+}
 label{
     margin: 10px;
     padding: 10px 0px 10px 0px;
