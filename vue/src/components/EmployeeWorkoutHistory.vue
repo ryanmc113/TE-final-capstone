@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="main">
     <table>
       <thead>
         <tr>
-          <th>Days in the gym</th>
+          <th> Days in the gym</th>
         </tr>
         <input type="month" value="2022-12" v-model="monthFilter">
       </thead>
@@ -15,7 +15,12 @@
         </tr>
       </tbody>
     </table>
+    <br>
+    <router-link :to='"/employee"'>
+    <button class=" is-warning">Go back to Employee Page</button>
+    </router-link>
   </div>
+  
 </template>
 
 <script>
@@ -97,24 +102,24 @@ if (month == 1){
     },
     getMonthNumber(month){
       if (month == 'January'){
-        month = 1
+        month = '01'
       } else if (month == 'February'){
-        month = 2
+        month = '02'
     
       }if (month == 'March'){
-        month = 3
+        month = '03'
       }else if (month == 'April'){
-        month = 4
+        month = '04'
       }else if (month == 'May'){
-        month = 5
+        month = '05'
       }else if (month == 'June'){
-        month = 6
+        month = '06'
       }else if (month == 'July'){
-        month = 7
+        month = '07'
       }else if (month == 'August'){
-        month = 8
+        month = '08'
       }else if (month == 'September'){
-        month = 9
+        month = '09'
       }else if (month == 'October'){
         month = 10
       }else if (month == 'November'){
@@ -128,3 +133,16 @@ if (month == 1){
 }
 };
 </script>
+
+<style scoped>
+
+table{
+  margin-left:50px;
+}
+main{
+  margin-left:20px;
+}
+tr{
+  margin-left:20px;
+}
+</style>

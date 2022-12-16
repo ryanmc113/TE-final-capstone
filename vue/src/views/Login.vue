@@ -90,7 +90,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .text-center{
   background-image: url("/people_workout.png");
 }

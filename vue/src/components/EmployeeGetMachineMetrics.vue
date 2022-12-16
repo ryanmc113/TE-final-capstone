@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1 class="is-size-2" >Most Used Machines</h1>
-    <table class="tile is-child notification">
+    <h2 class="is-size-5" >Top 10 Most Used Machines This Month</h2>
+    <table class="tile is-child notification is-warning">
       <thead>
         <tr>
           <th>Machine Name</th>
@@ -30,11 +30,19 @@ export default {
     return {
       allMachines: [
         {
+          machineName: "Bicep Curl Machine",
+          machineUsers: "323"
+          },
+        {
           machineName: "Leg Press",
           machineUsers: "240",
         },
+        {
+          machineName: "Treadmill",
+          machineUsers: "220"
+          },
         { 
-          machineName: "Arm Press", 
+          machineName: "Chest Press", 
           machineUsers: "213" 
           },
           { 
@@ -42,13 +50,25 @@ export default {
           machineUsers: "198" 
           },
           { 
-          machineName: "Dip Machine", 
+          machineName: "Cable Row", 
           machineUsers: "173" 
           },
           { 
           machineName: "Leg Extension Machine", 
           machineUsers: "170" 
           },
+          {
+            machineName: "Elliptical",
+            machineUsers: "163"
+          },
+          {
+          machineName: "Ski ERG",
+          machineUsers: "90"
+          },
+          {
+            machineName: "Back Extension",
+            machineUsers: "32"
+          }
       ],
     };
   },
